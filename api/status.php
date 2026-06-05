@@ -16,8 +16,33 @@ try {
         if (!in_array($status, ['pending', 'confirmed', 'cooking', 'ready', 'completed', 'cancelled'], true)) {
             json_response(false, null, 'Status tidak valid', 422);
         }
+        
+        $db->beginTransaction();
+        $orderStmt = $db->prepare('SELECT status FROM orders WHERE id = ? FOR UPDATE');
+        $orderStmt->execute([(int) $data['order_id']]);
+        $currentStatus = $orderStmt->fetchColumn();
+        if (!$currentStatus) {
+            $db->rollBack();
+            json_response(false, null, 'Pesanan tidak ditemukan', 404);
+        }
+        
+        if ($currentStatus === 'cancelled') {
+            $db->rollBack();
+            json_response(true, null, 'Status diperbarui (sudah batal)');
+        }
+        
+        if ($status === 'cancelled') {
+            $detailsStmt = $db->prepare('SELECT menu_id, quantity FROM order_details WHERE order_id = ?');
+            $detailsStmt->execute([(int) $data['order_id']]);
+            $items = $detailsStmt->fetchAll();
+            foreach ($items as $item) {
+                $db->prepare('UPDATE menus SET stock = stock + ? WHERE id = ? AND stock IS NOT NULL')->execute([$item['quantity'], $item['menu_id']]);
+            }
+        }
+        
         $stmt = $db->prepare('UPDATE orders SET status = ? WHERE id = ?');
         $stmt->execute([$status, (int) $data['order_id']]);
+        $db->commit();
         json_response(true, null, 'Status diperbarui');
     }
 

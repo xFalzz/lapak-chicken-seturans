@@ -1,5 +1,6 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE IF EXISTS rate_limits;
 DROP TABLE IF EXISTS banners;
 DROP TABLE IF EXISTS operating_hours;
 DROP TABLE IF EXISTS settings;
@@ -57,9 +58,11 @@ CREATE TABLE menus (
   price       DECIMAL(10,2) NOT NULL,
   image_url   VARCHAR(500),
   is_active   TINYINT(1) DEFAULT 1,
+  stock       INT DEFAULT NULL,
   created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 CREATE TABLE carts (
   id         INT AUTO_INCREMENT PRIMARY KEY,
@@ -156,6 +159,14 @@ CREATE TABLE banners (
   image     VARCHAR(255),
   is_active TINYINT(1) DEFAULT 1,
   FOREIGN KEY (branch_id) REFERENCES branches(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE rate_limits (
+  ip           VARCHAR(45) NOT NULL,
+  action       VARCHAR(50) NOT NULL,
+  attempts     INT DEFAULT 1,
+  last_attempt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (ip, action)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 SET FOREIGN_KEY_CHECKS = 1;

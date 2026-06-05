@@ -59,39 +59,41 @@ require __DIR__ . '/../includes/header.php';
     </div>
 </section>
 <script>
-// Rate limiting state
-let registerAttempts = 0;
-let lockUntil = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  // Rate limiting state
+  let registerAttempts = 0;
+  let lockUntil = 0;
 
-qs('[data-register-form]')?.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  
-  // Rate limiting check
-  if (Date.now() < lockUntil) {
-      const waitSeconds = Math.ceil((lockUntil - Date.now()) / 1000);
-      toast(`Terlalu banyak percobaan. Coba lagi dalam ${waitSeconds} detik.`, 'error');
-      return;
-  }
-  
-  const submitBtn = event.target.querySelector('button[type="submit"]');
-  submitBtn.classList.add('loading');
-  
-  try {
-    await apiFetch('api/auth.php?action=register', { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(event.target).entries())) });
-    registerAttempts = 0;
-    window.location.href = `${APP.baseUrl}/customer/menu.php`;
-  } catch (error) { 
-    submitBtn.classList.remove('loading');
-    registerAttempts++;
+  qs('[data-register-form]')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
     
-    // Lock for 60s after 3 failed attempts
-    if (registerAttempts >= 3) {
-        lockUntil = Date.now() + 60000;
-        toast(`Terlalu banyak percobaan gagal. Pendaftaran dikunci selama 60 detik.`, 'error');
-    } else {
-        toast(error.message, 'error'); 
+    // Rate limiting check
+    if (Date.now() < lockUntil) {
+        const waitSeconds = Math.ceil((lockUntil - Date.now()) / 1000);
+        toast(`Terlalu banyak percobaan. Coba lagi dalam ${waitSeconds} detik.`, 'error');
+        return;
     }
-  }
+    
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    submitBtn.classList.add('loading');
+    
+    try {
+      await apiFetch('api/auth.php?action=register', { method: 'POST', body: JSON.stringify(Object.fromEntries(new FormData(event.target).entries())) });
+      registerAttempts = 0;
+      window.location.href = `${APP.baseUrl}/customer/menu.php`;
+    } catch (error) { 
+      submitBtn.classList.remove('loading');
+      registerAttempts++;
+      
+      // Lock for 60s after 3 failed attempts
+      if (registerAttempts >= 3) {
+          lockUntil = Date.now() + 60000;
+          toast(`Terlalu banyak percobaan gagal. Pendaftaran dikunci selama 60 detik.`, 'error');
+      } else {
+          toast(error.message, 'error'); 
+      }
+    }
+  });
 });
 </script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

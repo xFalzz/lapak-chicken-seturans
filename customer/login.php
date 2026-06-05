@@ -48,41 +48,43 @@ require __DIR__ . '/../includes/header.php';
     </div>
 </section>
 <script>
-// Rate limiting state
-let loginAttempts = 0;
-let lockUntil = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  // Rate limiting state
+  let loginAttempts = 0;
+  let lockUntil = 0;
 
-qs('[data-login-form]')?.addEventListener('submit', async (event) => {
-  event.preventDefault();
-  
-  // Rate limiting check
-  if (Date.now() < lockUntil) {
-      const waitSeconds = Math.ceil((lockUntil - Date.now()) / 1000);
-      toast(`Terlalu banyak percobaan. Coba lagi dalam ${waitSeconds} detik.`, 'error');
-      return;
-  }
-  
-  const submitBtn = event.target.querySelector('button[type="submit"]');
-  submitBtn.classList.add('loading');
-  
-  const data = Object.fromEntries(new FormData(event.target).entries());
-  try {
-    const result = await apiFetch('api/auth.php?action=login', { method: 'POST', body: JSON.stringify(data) });
-    loginAttempts = 0; // reset
-    const routes = { admin: 'admin/index.php', kasir: 'kasir/index.php', dapur: 'dapur/index.php', customer: 'customer/menu.php' };
-    window.location.href = `${APP.baseUrl}/${routes[result.role] || 'customer/menu.php'}`;
-  } catch (error) { 
-    submitBtn.classList.remove('loading');
-    loginAttempts++;
+  qs('[data-login-form]')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
     
-    // Lock for 30s after 3 failed attempts
-    if (loginAttempts >= 3) {
-        lockUntil = Date.now() + 30000;
-        toast(`Terlalu banyak percobaan gagal. Akun dikunci selama 30 detik.`, 'error');
-    } else {
-        toast(error.message, 'error'); 
+    // Rate limiting check
+    if (Date.now() < lockUntil) {
+        const waitSeconds = Math.ceil((lockUntil - Date.now()) / 1000);
+        toast(`Terlalu banyak percobaan. Coba lagi dalam ${waitSeconds} detik.`, 'error');
+        return;
     }
-  }
+    
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    submitBtn.classList.add('loading');
+    
+    const data = Object.fromEntries(new FormData(event.target).entries());
+    try {
+      const result = await apiFetch('api/auth.php?action=login', { method: 'POST', body: JSON.stringify(data) });
+      loginAttempts = 0; // reset
+      const routes = { admin: 'admin/index.php', kasir: 'kasir/index.php', dapur: 'dapur/index.php', customer: 'customer/menu.php' };
+      window.location.href = `${APP.baseUrl}/${routes[result.role] || 'customer/menu.php'}`;
+    } catch (error) { 
+      submitBtn.classList.remove('loading');
+      loginAttempts++;
+      
+      // Lock for 30s after 3 failed attempts
+      if (loginAttempts >= 3) {
+          lockUntil = Date.now() + 30000;
+          toast(`Terlalu banyak percobaan gagal. Akun dikunci selama 30 detik.`, 'error');
+      } else {
+          toast(error.message, 'error'); 
+      }
+    }
+  });
 });
 </script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

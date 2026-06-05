@@ -84,13 +84,13 @@ function get_status_color(string $status): string
     ][$status] ?? 'badge-gray';
 }
 
-function generate_order_code(int $branch_id): string
+function generate_order_code(PDO $db, int $branch_id): string
 {
-    $db = db();
     $prefix = ORDER_PREFIX . $branch_id . '-' . date('Ymd') . '-';
-    $stmt = $db->prepare('SELECT COUNT(*) + 1 FROM orders WHERE branch_id = ? AND DATE(created_at) = CURDATE()');
+    $stmt = $db->prepare('SELECT COUNT(*) FROM orders WHERE branch_id = ? AND DATE(created_at) = CURDATE() FOR UPDATE');
     $stmt->execute([$branch_id]);
-    return $prefix . str_pad((string) $stmt->fetchColumn(), 4, '0', STR_PAD_LEFT);
+    $count = (int) $stmt->fetchColumn();
+    return $prefix . str_pad((string) ($count + 1), 4, '0', STR_PAD_LEFT);
 }
 
 function time_ago(string $datetime): string
@@ -112,6 +112,11 @@ function time_ago(string $datetime): string
 
 function get_or_create_cart(PDO $db): int
 {
+    // Garbage collection for guest or expired carts (older than 7 days)
+    if (mt_rand(1, 100) === 1) {
+        $db->query('DELETE FROM carts WHERE updated_at < DATE_SUB(NOW(), INTERVAL 7 DAY)');
+    }
+
     $user = current_user();
     if ($user) {
         $stmt = $db->prepare('SELECT id FROM carts WHERE user_id = ? ORDER BY id DESC LIMIT 1');
@@ -205,4 +210,45 @@ function is_branch_open(PDO $db, int $branch_id): bool
 function branch_options(PDO $db): array
 {
     return $db->query('SELECT * FROM branches ORDER BY name')->fetchAll();
+}
+
+function check_rate_limit(string $action, int $max_attempts = 5, int $decay_seconds = 60): void
+{
+    $db = db();
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    
+    // Clean up expired rate limits
+    $expired = time() - $decay_seconds;
+    $db->prepare('DELETE FROM rate_limits WHERE last_attempt < ?')->execute([$expired]);
+    
+    // Check current attempts
+    $stmt = $db->prepare('SELECT attempts, last_attempt FROM rate_limits WHERE ip = ? AND action = ? LIMIT 1');
+    $stmt->execute([$ip, $action]);
+    $limit = $stmt->fetch();
+    
+    if ($limit) {
+        if ((int)$limit['attempts'] >= $max_attempts) {
+            $seconds_left = $decay_seconds - (time() - (int)$limit['last_attempt']);
+            if ($seconds_left > 0) {
+                json_response(false, null, 'Terlalu banyak percobaan. Silakan coba lagi dalam ' . $seconds_left . ' detik.', 429);
+            } else {
+                $db->prepare('DELETE FROM rate_limits WHERE ip = ? AND action = ?')->execute([$ip, $action]);
+            }
+        }
+    }
+}
+
+function increment_rate_limit(string $action): void
+{
+    $db = db();
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $stmt = $db->prepare('INSERT INTO rate_limits (ip, action, attempts, last_attempt) VALUES (?, ?, 1, ?) ON DUPLICATE KEY UPDATE attempts = attempts + 1, last_attempt = ?');
+    $stmt->execute([$ip, $action, time(), time()]);
+}
+
+function clear_rate_limit(string $action): void
+{
+    $db = db();
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+    $db->prepare('DELETE FROM rate_limits WHERE ip = ? AND action = ?')->execute([$ip, $action]);
 }

@@ -36,8 +36,10 @@ require __DIR__ . '/../includes/header.php';
         </div>
         
         <div class="grid grid-4" data-menu-grid>
-            <?php foreach ($menus as $menu): ?>
-                <article class="menu-card <?= $menu['is_active'] ? '' : 'unavailable' ?>" data-category="<?= (int) $menu['category_id'] ?>" data-name="<?= e(strtolower($menu['name'])) ?>">
+            <?php foreach ($menus as $menu): 
+                $isAvailable = $menu['is_active'] && ($menu['stock'] === null || $menu['stock'] > 0);
+            ?>
+                <article class="menu-card <?= $isAvailable ? '' : 'unavailable' ?>" data-category="<?= (int) $menu['category_id'] ?>" data-name="<?= e(strtolower($menu['name'])) ?>">
                     <div class="menu-img-wrap">
                         <?php if (!empty($menu['image_url'])): ?>
                             <img src="<?= e($menu['image_url']) ?>" alt="<?= e($menu['name']) ?>" loading="lazy">
@@ -52,8 +54,11 @@ require __DIR__ . '/../includes/header.php';
                         <h3><?= e($menu['name']) ?></h3>
                         <p title="<?= e($menu['description']) ?>"><?= e($menu['description']) ?></p>
                         <span class="price"><?= format_rupiah((float) $menu['price']) ?></span>
+                        <?php if ($menu['stock'] !== null && $menu['stock'] > 0): ?>
+                            <span class="stock-badge" style="font-size: 0.8rem; color: var(--primary); margin-top: 4px; display: block; font-weight: 500;">Stok: <?= (int)$menu['stock'] ?> porsi</span>
+                        <?php endif; ?>
                         
-                        <?php if ($menu['is_active']): ?>
+                        <?php if ($isAvailable): ?>
                             <form data-add-cart class="menu-actions">
                                 <input type="hidden" name="menu_id" value="<?= (int) $menu['id'] ?>">
                                 <div style="display: grid; grid-template-columns: 1fr 64px; gap: 8px;">
@@ -84,27 +89,29 @@ require __DIR__ . '/../includes/header.php';
 
 <script src="<?= base_url('assets/js/cart.js') ?>?v=1.2"></script>
 <script>
-qsa('[data-filter-category]').forEach(btn => btn.addEventListener('click', () => {
-  qsa('[data-filter-category]').forEach(item => item.classList.remove('active'));
-  btn.classList.add('active');
-  const cat = btn.dataset.filterCategory;
-  qsa('[data-menu-grid] .menu-card').forEach(card => {
-      if (cat === 'all' || card.dataset.category === cat) {
-          card.style.display = '';
-      } else {
-          card.style.display = 'none';
-      }
-  });
-}));
+document.addEventListener('DOMContentLoaded', () => {
+  qsa('[data-filter-category]').forEach(btn => btn.addEventListener('click', () => {
+    qsa('[data-filter-category]').forEach(item => item.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.filterCategory;
+    qsa('[data-menu-grid] .menu-card').forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+  }));
 
-qs('[data-menu-search]')?.addEventListener('input', (e) => {
-  const term = e.target.value.toLowerCase();
-  qsa('[data-menu-grid] .menu-card').forEach(card => {
-      if (card.dataset.name.includes(term)) {
-          card.style.display = '';
-      } else {
-          card.style.display = 'none';
-      }
+  qs('[data-menu-search]')?.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    qsa('[data-menu-grid] .menu-card').forEach(card => {
+        if (card.dataset.name.includes(term)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
   });
 });
 </script>

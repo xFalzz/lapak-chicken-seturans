@@ -36,29 +36,54 @@ try {
         }
         $taxRate = (float) get_branch_setting($db, $branchId, 'tax_rate', DEFAULT_TAX_RATE);
         $total = $cart['subtotal'] + ($cart['subtotal'] * $taxRate);
-        $code = generate_order_code($branchId);
 
         $db->beginTransaction();
-        $stmt = $db->prepare('INSERT INTO orders (branch_id, user_id, order_code, customer_name, customer_phone, order_type, status, total) VALUES (?, ?, ?, ?, ?, ?, "pending", ?)');
-        $stmt->execute([
-            $branchId,
-            current_user()['id'] ?? null,
-            $code,
-            sanitize($data['customer_name'] ?? ''),
-            sanitize($data['customer_phone'] ?? ''),
-            sanitize($data['order_type'] ?? 'takeaway'),
-            $total,
-        ]);
-        $orderId = (int) $db->lastInsertId();
-        $detail = $db->prepare('INSERT INTO order_details (order_id, menu_id, sauce_id, quantity, subtotal) VALUES (?, ?, ?, ?, ?)');
-        foreach ($cart['items'] as $item) {
-            $detail->execute([$orderId, $item['menu_id'], $item['sauce_id'], $item['quantity'], $item['subtotal']]);
+        try {
+            // Check and decrement stock with SELECT FOR UPDATE
+            foreach ($cart['items'] as $item) {
+                $menuStmt = $db->prepare('SELECT name, stock, is_active FROM menus WHERE id = ? FOR UPDATE');
+                $menuStmt->execute([$item['menu_id']]);
+                $menuItem = $menuStmt->fetch();
+                if (!$menuItem || !$menuItem['is_active']) {
+                    throw new Exception('Menu ' . ($menuItem['name'] ?? 'tidak diketahui') . ' tidak tersedia');
+                }
+                if ($menuItem['stock'] !== null) {
+                    if ($item['quantity'] > (int)$menuItem['stock']) {
+                        throw new Exception('Stok ' . $menuItem['name'] . ' tidak mencukupi (Tersisa: ' . $menuItem['stock'] . ')');
+                    }
+                    // Decrement stock
+                    $updateStock = $db->prepare('UPDATE menus SET stock = stock - ? WHERE id = ?');
+                    $updateStock->execute([$item['quantity'], $item['menu_id']]);
+                }
+            }
+
+            $code = generate_order_code($db, $branchId);
+
+            $stmt = $db->prepare('INSERT INTO orders (branch_id, user_id, order_code, customer_name, customer_phone, order_type, status, total) VALUES (?, ?, ?, ?, ?, ?, "pending", ?)');
+            $stmt->execute([
+                $branchId,
+                current_user()['id'] ?? null,
+                $code,
+                sanitize($data['customer_name'] ?? ''),
+                sanitize($data['customer_phone'] ?? ''),
+                sanitize($data['order_type'] ?? 'takeaway'),
+                $total,
+            ]);
+            $orderId = (int) $db->lastInsertId();
+            $detail = $db->prepare('INSERT INTO order_details (order_id, menu_id, sauce_id, quantity, subtotal) VALUES (?, ?, ?, ?, ?)');
+            foreach ($cart['items'] as $item) {
+                $detail->execute([$orderId, $item['menu_id'], $item['sauce_id'], $item['quantity'], $item['subtotal']]);
+            }
+            $payment = $db->prepare('INSERT INTO payments (order_id, payment_method, payment_status, amount_paid) VALUES (?, ?, "unpaid", 0)');
+            $payment->execute([$orderId, sanitize($data['payment_method'] ?? 'Cash')]);
+            $db->prepare('DELETE FROM cart_items WHERE cart_id = ?')->execute([$cart['cart_id']]);
+            
+            $db->commit();
+            json_response(true, ['order_id' => $orderId, 'order_code' => $code], 'Pesanan dibuat');
+        } catch (Exception $e) {
+            $db->rollBack();
+            json_response(false, null, $e->getMessage(), 422);
         }
-        $payment = $db->prepare('INSERT INTO payments (order_id, payment_method, payment_status, amount_paid) VALUES (?, ?, "unpaid", 0)');
-        $payment->execute([$orderId, sanitize($data['payment_method'] ?? 'Cash')]);
-        $db->prepare('DELETE FROM cart_items WHERE cart_id = ?')->execute([$cart['cart_id']]);
-        $db->commit();
-        json_response(true, ['order_id' => $orderId, 'order_code' => $code], 'Pesanan dibuat');
     }
 
     if ($action === 'status') {
@@ -83,7 +108,7 @@ try {
             $where[] = 'DATE(o.created_at) <= ?';
             $params[] = $_GET['date_to'];
         }
-        $stmt = $db->prepare('SELECT o.*, b.name branch_name, COALESCE(p.payment_status, "unpaid") payment_status FROM orders o JOIN branches b ON b.id = o.branch_id LEFT JOIN payments p ON p.order_id = o.id WHERE ' . implode(' AND ', $where) . ' ORDER BY o.created_at DESC LIMIT 200');
+        $stmt = $db->prepare('SELECT o.*, b.name branch_name, COALESCE(p.payment_status, "unpaid") payment_status, COUNT(od.id) items_count FROM orders o JOIN branches b ON b.id = o.branch_id LEFT JOIN payments p ON p.order_id = o.id LEFT JOIN order_details od ON od.order_id = o.id WHERE ' . implode(' AND ', $where) . ' GROUP BY o.id ORDER BY o.created_at DESC LIMIT 200');
         $stmt->execute($params);
         json_response(true, $stmt->fetchAll());
     }
