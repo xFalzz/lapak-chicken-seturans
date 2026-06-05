@@ -1,0 +1,14 @@
+.dapur-body { background: #111; color: #fff; }
+.dapur-body .topbar, .dapur-body .footer { display: none; }
+.kds { min-height: 100vh; padding: 20px; }
+.kds-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+.kds-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.kds-card { background: #1d1d1d; border: 3px solid var(--primary); border-radius: var(--radius-md); padding: 18px; }
+.kds-card.cooking { border-color: var(--warning); }
+.kds-card.urgent { border-color: var(--danger); animation: pulse 1s infinite; }
+.kds-code { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; }
+.kds-item { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+.kds-qty { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+@keyframes pulse { 50% { box-shadow: 0 0 0 6px rgba(229,57,53,.3); } }
+@media (min-width: 768px) { .kds-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .kds-grid { grid-template-columns: repeat(3, 1fr); } }

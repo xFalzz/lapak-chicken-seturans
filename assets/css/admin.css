@@ -1,0 +1,5 @@
+.admin-layout { background: #f7f7f7; }
+.admin-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin-bottom: 16px; }
+.chart { display: flex; align-items: end; gap: 8px; height: 180px; padding-top: 16px; }
+.bar { flex: 1; min-width: 32px; border-radius: 8px 8px 0 0; background: var(--primary); display: grid; align-items: end; justify-items: center; font-size: .75rem; font-weight: 700; }
+.crud-actions { display: flex; gap: 8px; flex-wrap: wrap; }

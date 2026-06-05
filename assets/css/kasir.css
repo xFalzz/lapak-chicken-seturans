@@ -1,0 +1,13 @@
+.kasir-layout { background: #fff8df; }
+.order-queue { display: grid; gap: 16px; }
+.order-ticket { border-left: 8px solid var(--primary); }
+.order-ticket .code { font-size: 1.6rem; font-weight: 800; }
+.payment-total { font-size: 2rem; font-weight: 800; }
+.receipt { max-width: 420px; margin: 24px auto; background: var(--white); color: #111; font-family: 'Courier New', monospace; }
+.receipt hr { border: 0; border-top: 1px dashed #111; }
+@media print {
+  .topbar, .footer, .sidebar, .print-actions { display: none !important; }
+  body { background: white; }
+  .content-with-sidebar { margin: 0; padding: 0; }
+  .receipt { box-shadow: none; margin: 0; max-width: none; }
+}
