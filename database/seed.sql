@@ -25,22 +25,22 @@ INSERT INTO sauces (id, name, price_extra, is_active) VALUES
 (4, 'Keju', 3000, 1),
 (5, 'Sambal Matah', 2500, 1);
 
-INSERT INTO menus (id, category_id, name, slug, description, price, is_active) VALUES
-(1, 1, 'Ayam Crispy Original', 'ayam-crispy-original', 'Ayam goreng renyah khas Lapak Chicken.', 15000, 1),
-(2, 1, 'Ayam Geprek Seturan', 'ayam-geprek-seturan', 'Ayam geprek pedas dengan sambal bawang.', 18000, 1),
-(3, 1, 'Chicken Wings', 'chicken-wings', 'Sayap ayam crispy dengan pilihan saus.', 17000, 1),
-(4, 1, 'Chicken Popcorn', 'chicken-popcorn', 'Potongan ayam kecil renyah untuk ngemil.', 16000, 1),
-(5, 2, 'Classic Chicken Burger', 'classic-chicken-burger', 'Burger ayam crispy, lettuce, dan saus spesial.', 22000, 1),
-(6, 2, 'Cheese Chicken Burger', 'cheese-chicken-burger', 'Burger ayam crispy dengan keju leleh.', 25000, 1),
-(7, 2, 'Double Chicken Burger', 'double-chicken-burger', 'Dua patty ayam crispy untuk lapar serius.', 32000, 1),
-(8, 3, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar.', 5000, 1),
-(9, 3, 'Lemon Tea', 'lemon-tea', 'Teh lemon dingin dengan rasa ringan.', 8000, 1),
-(10, 3, 'Air Mineral', 'air-mineral', 'Air mineral botol.', 4000, 1),
-(11, 4, 'French Fries', 'french-fries', 'Kentang goreng gurih.', 12000, 1),
-(12, 4, 'Onion Ring', 'onion-ring', 'Bawang bombai crispy.', 13000, 1),
-(13, 5, 'Paket Hemat 1', 'paket-hemat-1', 'Ayam crispy, nasi, dan es teh.', 22000, 1),
-(14, 5, 'Paket Hemat 2', 'paket-hemat-2', 'Ayam geprek, nasi, dan lemon tea.', 26000, 1),
-(15, 5, 'Paket Rame', 'paket-rame', 'Empat ayam crispy, empat nasi, dan empat minuman.', 85000, 1);
+INSERT INTO menus (id, category_id, name, slug, description, price, image_url, is_active) VALUES
+(1, 1, 'Ayam Crispy Original', 'ayam-crispy-original', 'Ayam goreng renyah khas Lapak Chicken.', 15000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1),
+(2, 1, 'Ayam Geprek Seturan', 'ayam-geprek-seturan', 'Ayam geprek pedas dengan sambal bawang.', 18000, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80', 1),
+(3, 1, 'Chicken Wings', 'chicken-wings', 'Sayap ayam crispy dengan pilihan saus.', 17000, 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80', 1),
+(4, 1, 'Chicken Popcorn', 'chicken-popcorn', 'Potongan ayam kecil renyah untuk ngemil.', 16000, 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80', 1),
+(5, 2, 'Classic Chicken Burger', 'classic-chicken-burger', 'Burger ayam crispy, lettuce, dan saus spesial.', 22000, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80', 1),
+(6, 2, 'Cheese Chicken Burger', 'cheese-chicken-burger', 'Burger ayam crispy dengan keju leleh.', 25000, 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80', 1),
+(7, 2, 'Double Chicken Burger', 'double-chicken-burger', 'Dua patty ayam crispy untuk lapar serius.', 32000, 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80', 1),
+(8, 3, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar.', 5000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80', 1),
+(9, 3, 'Lemon Tea', 'lemon-tea', 'Teh lemon dingin dengan rasa ringan.', 8000, 'https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=600&q=80', 1),
+(10, 3, 'Air Mineral', 'air-mineral', 'Air mineral botol.', 4000, 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=600&q=80', 1),
+(11, 4, 'French Fries', 'french-fries', 'Kentang goreng gurih.', 12000, 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80', 1),
+(12, 4, 'Onion Ring', 'onion-ring', 'Bawang bombai crispy.', 13000, 'https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=600&q=80', 1),
+(13, 5, 'Paket Hemat 1', 'paket-hemat-1', 'Ayam crispy, nasi, dan es teh.', 22000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1),
+(14, 5, 'Paket Hemat 2', 'paket-hemat-2', 'Ayam geprek, nasi, dan lemon tea.', 26000, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80', 1),
+(15, 5, 'Paket Rame', 'paket-rame', 'Empat ayam crispy, empat nasi, dan empat minuman.', 85000, 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80', 1);
 
 INSERT INTO operating_hours (branch_id, day_of_week, open_time, close_time, is_closed)
 SELECT b.id, d.day, '10:00:00', '22:00:00', 0

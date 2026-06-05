@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/includes/functions.php';
 $db = db();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_verify()) {
         flash('error', 'Token CSRF tidak valid');
@@ -16,53 +17,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         redirect(base_url('customer/menu.php'));
     }
 }
+
 $branches = branch_options($db);
 $selectedBranch = (int) ($_SESSION['branch_id'] ?? ($branches[0]['id'] ?? 0));
 $bannersStmt = $db->prepare('SELECT * FROM banners WHERE branch_id = ? AND is_active = 1 ORDER BY id DESC');
 $bannersStmt->execute([$selectedBranch]);
 $banners = $bannersStmt->fetchAll();
-$pageTitle = 'Pilih Cabang';
+
+$pageTitle = 'Beranda';
 require __DIR__ . '/includes/header.php';
 ?>
+
 <section class="hero">
-    <div class="container">
+    <div class="container hero-content">
         <h1>Lapak Chicken Seturan</h1>
-        <p>Ayam crispy panas, saus pilihan, dan checkout cepat untuk dine-in, takeaway, atau delivery di cabang terdekat.</p>
-        <a class="btn btn-primary" href="#branches"><i class="fa-solid fa-location-dot"></i>Pilih Cabang</a>
+        <p>Temukan kenikmatan ayam crispy favoritmu. Pesan untuk dine-in, takeaway, atau delivery dengan cepat dan mudah.</p>
+        
+        <div class="hero-search-bar" onclick="document.getElementById('branches').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
+            <div class="hero-search-input">
+                <span>Lokasi Terdekat</span>
+                <small>Pilih cabang untuk mulai memesan</small>
+            </div>
+            <button class="hero-search-btn" type="button" aria-label="Cari Cabang">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
     </div>
 </section>
-<section id="branches" class="section">
+
+<section id="branches" class="section section-light">
     <div class="container">
-        <div class="page-title">
-            <h1>Pilih cabang</h1>
-            <span class="badge badge-black">Buka 10:00-22:00</span>
+        <div class="page-title" style="margin-bottom: 32px;">
+            <h2 style="font-size: 2rem;">Pilih Cabang</h2>
         </div>
-        <div class="grid grid-2">
+        
+        <div class="grid grid-3">
             <?php foreach ($branches as $branch): ?>
-                <form method="post" class="card branch-card">
+                <?php $isOpen = is_branch_open($db, (int) $branch['id']); ?>
+                <form method="post" class="branch-card" style="opacity: <?= $isOpen ? '1' : '0.6' ?>;">
                     <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
                     <input type="hidden" name="branch_id" value="<?= (int) $branch['id'] ?>">
-                    <h2><?= e($branch['name']) ?></h2>
-                    <p class="muted"><?= e($branch['address']) ?></p>
-                    <p><i class="fa-solid fa-phone"></i> <?= e($branch['phone']) ?></p>
-                    <span class="badge <?= is_branch_open($db, (int) $branch['id']) ? 'badge-green' : 'badge-red' ?>">
-                        <?= is_branch_open($db, (int) $branch['id']) ? 'Buka sekarang' : 'Tutup' ?>
-                    </span>
-                    <button class="btn btn-primary" type="submit">Pesan dari cabang ini</button>
+                    
+                    <div class="branch-img-wrap">
+                        <span class="badge <?= $isOpen ? 'badge-white' : 'badge-red' ?>" style="background: var(--white); color: <?= $isOpen ? 'var(--black)' : 'var(--danger)' ?>;">
+                            <?= $isOpen ? 'Buka Sekarang' : 'Tutup' ?>
+                        </span>
+                        <!-- Placeholder since we don't have branch images in DB yet -->
+                        <div class="placeholder"><i class="fa-solid fa-store"></i></div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 4px;">
+                        <div>
+                            <h3><?= e($branch['name']) ?></h3>
+                            <p><?= e($branch['address']) ?></p>
+                        </div>
+                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--black); white-space: nowrap;">
+                            <i class="fa-solid fa-star" style="font-size: 0.8rem; margin-right: 2px;"></i> 4.8
+                        </div>
+                    </div>
+                    
+                    <button class="btn <?= $isOpen ? 'btn-primary' : 'btn-outline' ?>" type="submit" style="width: 100%; border-radius: var(--radius-pill);" <?= $isOpen ? '' : 'disabled' ?>>
+                        <?= $isOpen ? 'Pesan di sini' : 'Tutup' ?>
+                    </button>
                 </form>
             <?php endforeach; ?>
         </div>
-        <?php if ($banners): ?>
-            <div class="section">
-                <div class="banner-track" data-carousel>
-                    <?php foreach ($banners as $banner): ?>
-                        <article class="banner" style="background-image: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.7)), url('<?= e($banner['image']) ?>')">
-                            <h2><?= e($banner['title']) ?></h2>
-                        </article>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        <?php endif; ?>
     </div>
 </section>
+
+<?php if ($banners): ?>
+<section class="section">
+    <div class="container">
+        <div class="page-title" style="margin-bottom: 24px;">
+            <h2 style="font-size: 1.8rem;">Promo Menarik</h2>
+        </div>
+        <div class="banner-carousel" id="bannerCarousel">
+            <div class="banner-track" id="bannerTrack">
+                <?php foreach ($banners as $index => $banner): ?>
+                    <article class="banner" style="background-image: url('<?= e($banner['image']) ?>')">
+                        <h3><?= e($banner['title']) ?></h3>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+            <?php if (count($banners) > 1): ?>
+                <div class="banner-nav" id="bannerNav">
+                    <?php foreach ($banners as $index => $banner): ?>
+                        <div class="banner-dot <?= $index === 0 ? 'active' : '' ?>" data-index="<?= $index ?>"></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <?php require __DIR__ . '/includes/footer.php'; ?>

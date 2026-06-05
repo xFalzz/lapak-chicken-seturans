@@ -55,6 +55,7 @@ CREATE TABLE menus (
   slug        VARCHAR(150) UNIQUE,
   description TEXT,
   price       DECIMAL(10,2) NOT NULL,
+  image_url   VARCHAR(500),
   is_active   TINYINT(1) DEFAULT 1,
   created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT
