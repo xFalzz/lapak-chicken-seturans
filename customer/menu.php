@@ -2,8 +2,14 @@
 require_once __DIR__ . '/../includes/functions.php';
 $db = db();
 if (empty($_SESSION['branch_id'])) {
-    flash('error', 'Pilih cabang dulu sebelum memesan');
-    redirect(base_url('index.php'));
+    $defaultBranch = $db->query('SELECT id, name FROM branches WHERE is_active = 1 ORDER BY id ASC LIMIT 1')->fetch();
+    if ($defaultBranch) {
+        $_SESSION['branch_id'] = (int) $defaultBranch['id'];
+        $_SESSION['branch_name'] = $defaultBranch['name'];
+    } else {
+        $_SESSION['branch_id'] = 1;
+        $_SESSION['branch_name'] = 'Lapak Chicken Seturan';
+    }
 }
 $categories = $db->query('SELECT * FROM categories WHERE is_active = 1 ORDER BY name')->fetchAll();
 $sauces     = $db->query('SELECT * FROM sauces WHERE is_active = 1 ORDER BY price_extra, name')->fetchAll();
@@ -82,9 +88,10 @@ require __DIR__ . '/../includes/header.php';
                             class="menu-card <?= $isAvailable ? '' : 'unavailable' ?>"
                             data-category="<?= (int) $menu['category_id'] ?>"
                             data-name="<?= e(strtolower($menu['name'])) ?>"
-                            style="border-radius:24px;overflow:hidden;background:white;box-shadow:0 8px 24px rgba(0,0,0,0.03);border:1px solid var(--outline-variant);position:relative;">
+                            onclick="openMenuModal(<?= (int) $menu['id'] ?>)"
+                            style="border-radius:24px;overflow:hidden;background:white;box-shadow:0 8px 24px rgba(0,0,0,0.03);border:1px solid var(--outline-variant);position:relative;cursor:pointer;">
 
-                            <div class="menu-img-wrap" onclick="openMenuModal(<?= (int) $menu['id'] ?>)" style="cursor:pointer;position:relative;height:180px;">
+                            <div class="menu-img-wrap" style="position:relative;height:180px;">
                                 <?php if ($hasImage): ?>
                                     <img src="<?= e($menu['image_url']) ?>" alt="<?= e($menu['name']) ?>" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
                                 <?php else: ?>
@@ -103,13 +110,13 @@ require __DIR__ . '/../includes/header.php';
                             </div>
 
                             <div class="menu-card-content" style="padding:20px;">
-                                <h3 onclick="openMenuModal(<?= (int) $menu['id'] ?>)" style="cursor:pointer;font-size:1.1rem;font-weight:800;margin-bottom:8px;line-height:1.3;"><?= e($menu['name']) ?></h3>
+                                <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:8px;line-height:1.3;"><?= e($menu['name']) ?></h3>
                                 <p style="font-size:0.85rem;color:var(--secondary);display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px;">Ayam goreng renyah dengan sambal spesial yang diproses dengan bumbu rahasia.</p>
                                 
                                 <div class="menu-card-footer" style="display:flex;align-items:center;justify-content:space-between;">
                                     <span class="price" style="font-weight:800;font-size:1.15rem;color:var(--primary);"><?= format_rupiah((float) $menu['price']) ?></span>
                                     <?php if ($isAvailable): ?>
-                                        <button onclick="openMenuModal(<?= (int) $menu['id'] ?>)" style="width:40px;height:40px;border-radius:50%;background:var(--primary-container);color:var(--on-surface);border:none;display:grid;place-items:center;cursor:pointer;font-size:1.1rem;transition:transform 0.2s;">
+                                        <button type="button" style="width:40px;height:40px;border-radius:50%;background:var(--primary-container);color:var(--on-surface);border:none;display:grid;place-items:center;cursor:pointer;font-size:1.1rem;transition:transform 0.2s;">
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                     <?php else: ?>

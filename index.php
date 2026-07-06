@@ -19,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $branches = branch_options($db);
+if (empty($_SESSION['branch_id']) && !empty($branches)) {
+    $_SESSION['branch_id'] = (int) $branches[0]['id'];
+    $_SESSION['branch_name'] = $branches[0]['name'];
+}
 $selectedBranch = (int) ($_SESSION['branch_id'] ?? ($branches[0]['id'] ?? 0));
 
 $popularMenus = $db->query('SELECT m.*, c.name category_name FROM menus m JOIN categories c ON c.id = m.category_id WHERE m.is_active = 1 LIMIT 4')->fetchAll();
