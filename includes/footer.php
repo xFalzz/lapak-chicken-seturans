@@ -147,7 +147,11 @@
     document.addEventListener('click', () => {
         menu.style.display = 'none';
     });
-    menu.addEventListener('click', (e) => e.stopPropagation());
+    menu.addEventListener('click', (e) => {
+        if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('[data-logout]')) {
+            e.stopPropagation();
+        }
+    });
 })();
 </script>
 </body>
