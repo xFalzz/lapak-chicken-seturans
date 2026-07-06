@@ -51,6 +51,16 @@ function require_role(array $roles): void
     }
 }
 
+function require_login(): void
+{
+    if (!is_logged_in()) {
+        flash('error', 'Silakan login terlebih dahulu.');
+        header('Location: ' . base_url('customer/login.php'));
+        exit;
+    }
+}
+
+
 function require_json_role(array $roles): void
 {
     if (!is_logged_in() || !in_array(user_role(), $roles, true)) {

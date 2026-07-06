@@ -1,90 +1,142 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = 'Login';
+$pageTitle = 'Masuk ke Akun';
 require __DIR__ . '/../includes/header.php';
 ?>
-<section class="section" style="min-height: calc(100vh - var(--header-height)); display: flex; align-items: center; background: url('https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1600&q=80') center/cover; position: relative;">
-    <div style="position: absolute; inset: 0; background: rgba(26, 28, 35, 0.85); backdrop-filter: blur(8px);"></div>
-    <div class="container auth-container" style="position: relative; z-index: 10;">
-        <form class="card auth-card" data-login-form>
-            <div style="width: 64px; height: 64px; background: var(--primary-light); border-radius: 50%; display: grid; place-items: center; margin: 0 auto 16px; font-size: 1.8rem; color: var(--primary-dark);">
-                <i class="fa-solid fa-user-lock"></i>
-            </div>
-            <h1>Selamat Datang</h1>
-            <p>Silakan masuk ke akun Anda untuk mulai memesan</p>
+
+<section class="auth-section">
+    <div class="container" style="padding: 0 var(--container-pad);">
+        <div class="auth-split">
             
-            <div class="form-grid">
-                <div class="form-field">
-                    <label>Email atau Nomor Telepon</label>
-                    <div style="position: relative;">
-                        <i class="fa-solid fa-user" style="position: absolute; top: 50%; left: 16px; transform: translateY(-50%); color: var(--gray);"></i>
-                        <input name="identity" required placeholder="email@contoh.com / 0812..." style="padding-left: 44px;">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label>Password</label>
-                    <div style="position: relative;">
-                        <i class="fa-solid fa-lock" style="position: absolute; top: 50%; left: 16px; transform: translateY(-50%); color: var(--gray);"></i>
-                        <input type="password" name="password" required placeholder="Masukkan password Anda" style="padding-left: 44px;">
-                    </div>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.9rem;">
-                        <input type="checkbox" name="remember" value="1" style="width: 18px; height: 18px; accent-color: var(--primary-dark); min-height: auto;">
-                        Ingat saya (30 hari)
-                    </label>
-                </div>
-                
-                <button class="btn btn-primary" type="submit" style="width: 100%; margin-top: 16px; font-size: 1.1rem; padding: 14px;">
-                    <i class="fa-solid fa-right-to-bracket"></i> Masuk Sekarang
-                </button>
-                
-                <div style="text-align: center; margin-top: 16px; font-size: 0.95rem;">
-                    Belum punya akun? <a href="<?= base_url('customer/register.php') ?>" style="color: var(--primary-dark); font-weight: 600;">Daftar di sini</a>
+            <!-- Brand Panel (kiri) -->
+            <div class="auth-image-panel">
+                <div class="auth-image-content">
+                    <div class="auth-image-title">FRESH YOUR<br>DAY!</div>
+                    <div class="auth-image-subtitle">MakanGes Bareng<br>Lapak Chicken</div>
+                    <p style="font-size:0.95rem;opacity:0.9;">Nikmati diskon potongan harga spesial 50% untuk semua Ayam Crispy khusus pengguna Lapak Chicken. Pesan sekarang!</p>
                 </div>
             </div>
-        </form>
+
+            <!-- Form Panel (kanan) -->
+            <div class="auth-form-panel">
+                <div style="text-align:center;margin-bottom:32px;">
+                    <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.4rem;color:var(--on-surface);margin-bottom:16px;">
+                        <span class="brand-icon" style="width:32px;height:32px;background:var(--primary-container);color:var(--on-primary-container);display:grid;place-items:center;border-radius:8px;font-size:0.9rem;">LC</span>
+                        Lapak Chicken
+                    </div>
+                    <h1>Selamat Datang</h1>
+                    <p style="color:var(--secondary);font-size:0.95rem;">Bikin pesananmu lebih mudah dan login aplikasimu sekarang juga!</p>
+                </div>
+
+                <form class="form-grid" data-login-form novalidate>
+                    <div class="form-field">
+                        <label for="login-identity">Email <span style="color:var(--error);">*</span></label>
+                        <input
+                            id="login-identity"
+                            name="identity"
+                            required
+                            placeholder="cs@lapak-chicken.com"
+                            autocomplete="username">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="login-password">Kata Sandi <span style="color:var(--error);">*</span></label>
+                        <div style="position:relative;">
+                            <input
+                                id="login-password"
+                                type="password"
+                                name="password"
+                                required
+                                placeholder="Masukkan password Anda"
+                                autocomplete="current-password"
+                                style="width:100%;">
+                            <button type="button" id="toggleLoginPwd" aria-label="Tampilkan password" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--secondary);cursor:pointer;">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
+                        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:0.88rem;font-weight:600;color:var(--secondary);">
+                            <input type="checkbox" name="remember" value="1" style="width:16px;height:16px;accent-color:var(--primary-container);">
+                            Ingat akun saya
+                        </label>
+                        <a href="#" style="font-size:0.88rem;font-weight:600;color:var(--on-surface);">Lupa Password?</a>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center;margin-top:16px;min-height:48px;" id="loginSubmitBtn">
+                        LOGIN <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <div class="auth-divider" style="margin-top:32px;">Atau daftar menggunakan</div>
+
+                <div class="auth-social-btns">
+                    <button type="button" class="btn btn-social"><i class="fa-brands fa-google"></i> Google</button>
+                    <button type="button" class="btn btn-social"><i class="fa-brands fa-facebook"></i> Facebook</button>
+                </div>
+
+                <div style="text-align:center;font-size:0.85rem;color:var(--secondary);margin-top:16px;">
+                    Belum punya akun Lapak Chicken? <a href="<?= base_url('customer/register.php') ?>" style="color:var(--on-surface);font-weight:700;">Daftar Sekarang</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Rate limiting state
-  let loginAttempts = 0;
-  let lockUntil = 0;
+    // === Toggle Password Visibility ===
+    const toggleBtn = document.getElementById('toggleLoginPwd');
+    const pwdInput  = document.getElementById('login-password');
+    if (toggleBtn && pwdInput) {
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = pwdInput.type === 'password';
+            pwdInput.type = isHidden ? 'text' : 'password';
+            toggleBtn.querySelector('i').className = isHidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+        });
+    }
 
-  qs('[data-login-form]')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    
-    // Rate limiting check
-    if (Date.now() < lockUntil) {
-        const waitSeconds = Math.ceil((lockUntil - Date.now()) / 1000);
-        toast(`Terlalu banyak percobaan. Coba lagi dalam ${waitSeconds} detik.`, 'error');
-        return;
-    }
-    
-    const submitBtn = event.target.querySelector('button[type="submit"]');
-    submitBtn.classList.add('loading');
-    
-    const data = Object.fromEntries(new FormData(event.target).entries());
-    try {
-      const result = await apiFetch('api/auth.php?action=login', { method: 'POST', body: JSON.stringify(data) });
-      loginAttempts = 0; // reset
-      const routes = { admin: 'admin/index.php', kasir: 'kasir/index.php', dapur: 'dapur/index.php', customer: 'customer/menu.php' };
-      window.location.href = `${APP.baseUrl}/${routes[result.role] || 'customer/menu.php'}`;
-    } catch (error) { 
-      submitBtn.classList.remove('loading');
-      loginAttempts++;
-      
-      // Lock for 30s after 3 failed attempts
-      if (loginAttempts >= 3) {
-          lockUntil = Date.now() + 30000;
-          toast(`Terlalu banyak percobaan gagal. Akun dikunci selama 30 detik.`, 'error');
-      } else {
-          toast(error.message, 'error'); 
-      }
-    }
-  });
+    // === Login Form Submit ===
+    let loginAttempts = 0;
+    let lockUntil = 0;
+
+    qs('[data-login-form]')?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (Date.now() < lockUntil) {
+            const wait = Math.ceil((lockUntil - Date.now()) / 1000);
+            toast(`Terlalu banyak percobaan. Coba lagi dalam ${wait} detik.`, 'error');
+            return;
+        }
+
+        const form = event.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.classList.add('loading');
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        try {
+            const result = await apiFetch('api/auth.php?action=login', { method: 'POST', body: JSON.stringify(data) });
+            loginAttempts = 0;
+            const routes = {
+                admin: 'admin/index.php',
+                kasir: 'kasir/index.php',
+                dapur: 'dapur/index.php',
+                customer: 'index.php'
+            };
+            window.location.href = `${APP.baseUrl}/${routes[result.role] || 'index.php'}`;
+        } catch (error) {
+            submitBtn.classList.remove('loading');
+            loginAttempts++;
+            if (loginAttempts >= 3) {
+                lockUntil = Date.now() + 30000;
+                toast('Terlalu banyak percobaan gagal. Akun dikunci 30 detik.', 'error');
+            } else {
+                toast(error.message || 'Login gagal. Periksa kembali data Anda.', 'error');
+            }
+        }
+    });
 });
 </script>
+
 <?php require __DIR__ . '/../includes/footer.php'; ?>
