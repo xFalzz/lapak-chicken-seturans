@@ -4,9 +4,9 @@ $pageTitle = 'Daftar Akun';
 require __DIR__ . '/../includes/header.php';
 ?>
 
-<section class="auth-section">
+<section class="auth-section bg-light">
     <div class="container" style="padding: 0 var(--container-pad);">
-        <div class="auth-split">
+        <div class="auth-split-register">
             
             <!-- Brand Panel (kiri) -->
             <div class="auth-text-panel">
@@ -47,45 +47,55 @@ require __DIR__ . '/../includes/header.php';
                 <form class="form-grid" data-register-form novalidate>
                     <div class="form-field">
                         <label for="reg-name">Nama Lengkap</label>
-                        <input
-                            id="reg-name"
-                            name="name"
-                            required
-                            placeholder="Masukkan nama lengkap Anda"
-                            autocomplete="name">
+                        <div class="input-with-icon">
+                            <i class="fa-regular fa-user input-icon"></i>
+                            <input
+                                id="reg-name"
+                                name="name"
+                                required
+                                placeholder="Masukkan nama lengkap Anda"
+                                autocomplete="name">
+                        </div>
                     </div>
 
                     <div class="form-field">
                         <label for="reg-email">Email</label>
-                        <input
-                            id="reg-email"
-                            type="email"
-                            name="email"
-                            placeholder="user@lapak-chicken.com"
-                            autocomplete="email">
+                        <div class="input-with-icon">
+                            <i class="fa-regular fa-envelope input-icon"></i>
+                            <input
+                                id="reg-email"
+                                type="email"
+                                name="email"
+                                placeholder="example@gmail.com"
+                                autocomplete="email">
+                        </div>
                     </div>
 
                     <div class="form-field">
-                        <label for="reg-phone">No Telepon (WhatsApp) <span style="color:var(--error);">*</span></label>
-                        <input
-                            id="reg-phone"
-                            name="phone"
-                            type="tel"
-                            required
-                            placeholder="0812 3456 7890"
-                            autocomplete="tel">
+                        <label for="reg-phone">Nomor Telepon (WhatsApp) <span style="color:var(--error);">*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fa-solid fa-phone input-icon" style="font-size:0.9rem;"></i>
+                            <input
+                                id="reg-phone"
+                                name="phone"
+                                type="tel"
+                                required
+                                placeholder="0821xxxxxxx"
+                                autocomplete="tel">
+                        </div>
                     </div>
 
                     <div class="form-field">
                         <label for="reg-password">Kata Sandi <span style="color:var(--error);">*</span></label>
-                        <div style="position:relative;">
+                        <div style="position:relative;" class="input-with-icon">
+                            <i class="fa-solid fa-lock input-icon"></i>
                             <input
                                 id="reg-password"
                                 type="password"
                                 name="password"
                                 minlength="6"
                                 required
-                                placeholder="Minimal 6 karakter"
+                                placeholder="Min. 6 karakter"
                                 autocomplete="new-password"
                                 style="width:100%;">
                             <button type="button" id="toggleRegPwd" aria-label="Tampilkan password" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--secondary);cursor:pointer;">

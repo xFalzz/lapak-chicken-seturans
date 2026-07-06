@@ -33,133 +33,138 @@ require __DIR__ . '/../includes/header.php';
             <input type="hidden" name="customer_phone" value="<?= e($customerPhone) ?>">
             
             <!-- Left: Informasi Pesanan -->
-            <div>
+            <div style="display:flex;flex-direction:column;gap:24px;">
                 <!-- Info Section -->
-                <div class="checkout-card">
-                    <h2 class="checkout-card-title">Informasi Pesanan</h2>
+                <div class="checkout-card" style="margin-bottom:0;border-radius:24px;border:none;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                        <h2 class="checkout-card-title" style="margin-bottom:0;font-size:1.2rem;font-weight:800;">Alamat Pengiriman</h2>
+                        <a href="#" style="font-size:0.9rem;font-weight:700;color:var(--primary-container);">Ubah Alamat</a>
+                    </div>
                     
-                    <div style="margin-bottom:24px;">
-                        <h4 style="font-size:0.95rem;color:var(--secondary);margin-bottom:12px;">Lokasi Cabang</h4>
-                        <div class="address-box">
-                            <div class="address-icon">
-                                <i class="fa-solid fa-store"></i>
-                            </div>
-                            <div>
-                                <strong style="display:block;font-size:1rem;margin-bottom:4px;"><?= e($branch['name']) ?></strong>
-                                <span style="font-size:0.9rem;color:var(--secondary);line-height:1.5;display:block;"><?= e($branch['address'] ?? 'Cabang Lapak Chicken') ?></span>
-                            </div>
+                    <div class="address-box" style="background:transparent;border:1px solid var(--outline-variant);border-radius:16px;">
+                        <div class="address-icon" style="background:var(--surface-container-low);box-shadow:none;">
+                            <i class="fa-solid fa-location-dot"></i>
                         </div>
-                    </div>
-
-                    <div style="margin-bottom:24px;">
-                        <h4 style="font-size:0.95rem;color:var(--secondary);margin-bottom:8px;">Tipe Pesanan</h4>
-                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
-                            <label style="border:1px solid var(--outline);border-radius:var(--radius-md);padding:16px;text-align:center;cursor:pointer;position:relative;" class="order-type-label active">
-                                <input type="radio" name="order_type" value="takeaway" checked style="position:absolute;opacity:0;">
-                                <i class="fa-solid fa-bag-shopping" style="font-size:1.4rem;margin-bottom:8px;color:#B29500;"></i>
-                                <span style="display:block;font-weight:600;font-size:0.95rem;">Takeaway</span>
-                            </label>
-                            <label style="border:1px solid var(--outline);border-radius:var(--radius-md);padding:16px;text-align:center;cursor:pointer;position:relative;" class="order-type-label">
-                                <input type="radio" name="order_type" value="dine_in" style="position:absolute;opacity:0;">
-                                <i class="fa-solid fa-utensils" style="font-size:1.4rem;margin-bottom:8px;color:#B29500;"></i>
-                                <span style="display:block;font-weight:600;font-size:0.95rem;">Dine In</span>
-                            </label>
-                            <label style="border:1px solid var(--outline);border-radius:var(--radius-md);padding:16px;text-align:center;cursor:pointer;position:relative;" class="order-type-label">
-                                <input type="radio" name="order_type" value="delivery" style="position:absolute;opacity:0;">
-                                <i class="fa-solid fa-motorcycle" style="font-size:1.4rem;margin-bottom:8px;color:#B29500;"></i>
-                                <span style="display:block;font-weight:600;font-size:0.95rem;">Delivery</span>
-                            </label>
+                        <div>
+                            <strong style="display:block;font-size:1.05rem;margin-bottom:4px;"><?= e($branch['name']) ?> (Mock Delivery)</strong>
+                            <span style="font-size:0.95rem;color:var(--secondary);line-height:1.5;display:block;">Gedung Cyber 2 Tower Lantai 17, Jl. H. R. Rasuna Said Blok X-5 Kav. 13</span>
+                            <span style="display:block;font-size:0.9rem;color:var(--secondary);margin-top:8px;"><i class="fa-solid fa-circle-info" style="color:var(--primary-container);margin-right:4px;"></i> Tinggalkan di lobi, hubungi di bawah...</span>
                         </div>
-                    </div>
-
-                    <div style="margin-bottom:8px;">
-                        <h4 style="font-size:0.95rem;color:var(--secondary);margin-bottom:8px;">Catatan Tambahan (Opsional)</h4>
-                        <textarea name="notes" placeholder="Contoh: Sambal dipisah, Sendok plastik, dll." style="width:100%;min-height:80px;border-radius:12px;border:1px solid var(--outline-variant);padding:12px;font-family:inherit;font-size:0.95rem;resize:vertical;"></textarea>
                     </div>
                 </div>
 
                 <!-- Detail Item Section -->
-                <div class="checkout-card">
-                    <h2 class="checkout-card-title">Detail Pesanan</h2>
+                <div class="checkout-card" style="margin-bottom:0;border-radius:24px;border:none;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
+                    <h2 class="checkout-card-title" style="font-size:1.2rem;font-weight:800;margin-bottom:20px;">Rincian Pesanan</h2>
                     <?php foreach ($cart['items'] as $item): ?>
-                        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--surface-container);">
-                            <div style="display:flex;align-items:center;gap:12px;">
-                                <span style="font-weight:700;color:var(--primary);background:var(--primary-container);padding:2px 8px;border-radius:4px;font-size:0.85rem;"><?= (int) $item['quantity'] ?>x</span>
-                                <div>
-                                    <span style="display:block;font-weight:600;font-size:0.95rem;"><?= e($item['menu_name']) ?></span>
-                                    <span style="font-size:0.85rem;color:var(--secondary);"><?= $item['sauce_name'] ? 'Saus ' . e($item['sauce_name']) : 'Tanpa saus' ?></span>
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--surface-container);">
+                            <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
+                                <div style="width:60px;height:60px;border-radius:12px;background:var(--surface-container);display:grid;place-items:center;">
+                                    <?php if (isset($item['image_url']) && $item['image_url']): ?>
+                                        <img src="<?= e($item['image_url']) ?>" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+                                    <?php else: ?>
+                                        <span style="font-size:1.5rem;">🍗</span>
+                                    <?php endif; ?>
+                                </div>
+                                <div style="flex:1;">
+                                    <span style="display:block;font-weight:700;font-size:1.05rem;margin-bottom:4px;"><?= e($item['menu_name']) ?></span>
+                                    <span style="font-size:0.85rem;color:var(--secondary);display:block;margin-bottom:8px;"><?= $item['sauce_name'] ? 'Saus ' . e($item['sauce_name']) : 'Tanpa saus' ?></span>
+                                    
+                                    <!-- Embedded Cart Qty Controls -->
+                                    <div style="display:flex;align-items:center;gap:12px;">
+                                        <div class="qty-pill" style="display:inline-flex;align-items:center;gap:12px;background:var(--surface-container-low);padding:4px 8px;border-radius:99px;border:none;">
+                                            <button type="button" data-cart-qty="<?= max(0, (int)$item['quantity'] - 1) ?>" style="border:none;background:transparent;cursor:pointer;color:var(--secondary);"><i class="fa-solid fa-minus"></i></button>
+                                            <span style="font-weight:800;font-size:0.95rem;width:20px;text-align:center;"><?= (int) $item['quantity'] ?></span>
+                                            <button type="button" data-cart-qty="<?= (int)$item['quantity'] + 1 ?>" style="border:none;background:transparent;cursor:pointer;color:var(--primary);"><i class="fa-solid fa-plus"></i></button>
+                                        </div>
+                                        <button class="cart-btn-text" style="color:var(--error);background:transparent;border:none;cursor:pointer;font-size:1rem;" type="button" data-cart-remove>
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <span style="font-weight:700;font-size:1rem;"><?= format_rupiah((float) $item['subtotal']) ?></span>
+                            <span style="font-weight:800;font-size:1.1rem;color:var(--primary);"><?= format_rupiah((float) $item['subtotal']) ?></span>
                         </div>
                     <?php endforeach; ?>
+                    
+                    <div style="margin-top:24px;">
+                        <textarea name="notes" placeholder="Catatan untuk Restoran (Opsional)" style="width:100%;min-height:60px;border-radius:12px;border:1px solid var(--outline-variant);padding:16px;font-family:inherit;font-size:0.95rem;resize:vertical;background:var(--surface-container-low);"></textarea>
+                    </div>
                 </div>
             </div>
 
             <!-- Right: Pembayaran & Ringkasan -->
-            <div>
+            <div style="display:flex;flex-direction:column;gap:24px;">
                 <!-- Metode Pembayaran -->
-                <div class="checkout-card">
-                    <h2 class="checkout-card-title" style="border-bottom:1px dashed var(--outline);padding-bottom:16px;">Detail Pembayaran</h2>
+                <div class="checkout-card" style="margin-bottom:0;border-radius:32px;border:none;box-shadow:0 8px 32px rgba(0,0,0,0.04);background:white;padding:32px;">
+                    <h2 class="checkout-card-title" style="border-bottom:1px dashed var(--outline);padding-bottom:16px;font-size:1.3rem;font-weight:800;">Metode Pembayaran</h2>
                     
-                    <h4 style="font-size:0.95rem;color:var(--secondary);margin-bottom:12px;">E-Wallet</h4>
                     <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
-                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:var(--radius-md);cursor:pointer;" class="payment-method-label">
-                            <div style="display:flex;align-items:center;gap:12px;">
-                                <input type="radio" name="payment_method" value="Gopay" checked style="accent-color:var(--primary-container);width:18px;height:18px;">
-                                <span style="font-weight:600;font-size:1rem;">Gopay</span>
+                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:16px;cursor:pointer;transition:all 0.2s;" class="payment-method-label">
+                            <div style="display:flex;align-items:center;gap:16px;">
+                                <input type="radio" name="payment_method" value="Gopay" checked style="accent-color:var(--primary-container);width:20px;height:20px;">
+                                <div>
+                                    <span style="font-weight:700;font-size:1.05rem;display:block;">GoPay</span>
+                                    <span style="font-size:0.85rem;color:var(--secondary);">Saldo Rp145.200</span>
+                                </div>
                             </div>
-                            <i class="fa-solid fa-wallet" style="color:var(--secondary);"></i>
+                            <i class="fa-solid fa-wallet" style="color:var(--secondary);font-size:1.2rem;"></i>
                         </label>
-                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:var(--radius-md);cursor:pointer;" class="payment-method-label">
-                            <div style="display:flex;align-items:center;gap:12px;">
-                                <input type="radio" name="payment_method" value="Ovo" style="accent-color:var(--primary-container);width:18px;height:18px;">
-                                <span style="font-weight:600;font-size:1rem;">Ovo</span>
+                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:16px;cursor:pointer;transition:all 0.2s;" class="payment-method-label">
+                            <div style="display:flex;align-items:center;gap:16px;">
+                                <input type="radio" name="payment_method" value="ShopeePay" style="accent-color:var(--primary-container);width:20px;height:20px;">
+                                <div>
+                                    <span style="font-weight:700;font-size:1.05rem;display:block;">ShopeePay</span>
+                                </div>
                             </div>
-                            <i class="fa-solid fa-wallet" style="color:var(--secondary);"></i>
+                            <i class="fa-solid fa-wallet" style="color:var(--secondary);font-size:1.2rem;"></i>
                         </label>
-                    </div>
-
-                    <h4 style="font-size:0.95rem;color:var(--secondary);margin-bottom:12px;">Transfer Bank</h4>
-                    <div style="display:flex;flex-direction:column;gap:12px;">
-                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:var(--radius-md);cursor:pointer;" class="payment-method-label">
-                            <div style="display:flex;align-items:center;gap:12px;">
-                                <input type="radio" name="payment_method" value="BCA" style="accent-color:var(--primary-container);width:18px;height:18px;">
-                                <span style="font-weight:600;font-size:1rem;">BCA Virtual Account</span>
+                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:16px;cursor:pointer;transition:all 0.2s;" class="payment-method-label">
+                            <div style="display:flex;align-items:center;gap:16px;">
+                                <input type="radio" name="payment_method" value="Ovo" style="accent-color:var(--primary-container);width:20px;height:20px;">
+                                <div>
+                                    <span style="font-weight:700;font-size:1.05rem;display:block;">OVO</span>
+                                </div>
                             </div>
-                            <i class="fa-solid fa-building-columns" style="color:var(--secondary);"></i>
+                            <i class="fa-solid fa-wallet" style="color:var(--secondary);font-size:1.2rem;"></i>
                         </label>
-                        <label style="display:flex;align-items:center;justify-content:space-between;padding:16px;border:1px solid var(--outline-variant);border-radius:var(--radius-md);cursor:pointer;" class="payment-method-label">
-                            <div style="display:flex;align-items:center;gap:12px;">
-                                <input type="radio" name="payment_method" value="Mandiri" style="accent-color:var(--primary-container);width:18px;height:18px;">
-                                <span style="font-weight:600;font-size:1rem;">Mandiri Virtual Account</span>
-                            </div>
-                            <i class="fa-solid fa-building-columns" style="color:var(--secondary);"></i>
-                        </label>
+                        <a href="#" style="text-align:center;font-weight:700;color:var(--primary-container);font-size:0.95rem;margin-top:8px;">Lihat metode lainnya</a>
                     </div>
                 </div>
 
                 <!-- Ringkasan -->
-                <div class="checkout-card" style="background:var(--surface-container-low);">
-                    <h2 class="checkout-card-title" style="border-bottom:1px dashed var(--outline);padding-bottom:16px;">Ringkasan Pembayaran</h2>
+                <div class="checkout-card" style="margin-bottom:0;border-radius:32px;border:none;box-shadow:0 8px 32px rgba(0,0,0,0.04);background:var(--surface-container-low);padding:32px;">
+                    <h2 class="checkout-card-title" style="border-bottom:1px dashed var(--outline);padding-bottom:16px;font-size:1.3rem;font-weight:800;">Ringkasan Pembayaran</h2>
                     
-                    <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:0.95rem;color:var(--secondary);">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:1rem;color:var(--secondary);">
                         <span>Subtotal</span>
-                        <span style="color:var(--on-surface);font-weight:600;"><?= format_rupiah((float) $cart['subtotal']) ?></span>
+                        <span style="color:var(--on-surface);font-weight:700;"><?= format_rupiah((float) $cart['subtotal']) ?></span>
                     </div>
                     
-                    <div style="display:flex;justify-content:space-between;margin-bottom:16px;font-size:0.95rem;color:var(--secondary);">
-                        <span>Pajak (PB1 10%)</span>
-                        <span style="color:var(--on-surface);font-weight:600;"><?= format_rupiah((float) $cart['tax']) ?></span>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:1rem;color:var(--secondary);">
+                        <span>Ongkos Kirim</span>
+                        <span style="color:var(--on-surface);font-weight:700;">Rp 15.000</span>
+                    </div>
+                    
+                    <div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:1rem;color:var(--secondary);">
+                        <span>Biaya Layanan</span>
+                        <span style="color:var(--on-surface);font-weight:700;">Rp 2.000</span>
+                    </div>
+                    
+                    <div style="display:flex;justify-content:space-between;margin-bottom:16px;font-size:1rem;color:var(--secondary);">
+                        <span>Diskon Ongkir</span>
+                        <span style="color:var(--success);font-weight:700;">-Rp 10.000</span>
                     </div>
 
-                    <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px dashed var(--outline);font-size:1.2rem;font-weight:800;">
-                        <span>Total Pembayaran</span>
-                        <span><?= format_rupiah((float) $cart['total']) ?></span>
+                    <?php $totalSimCheckout = $cart['total'] + 15000 + 2000 - 10000; ?>
+
+                    <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:24px;border-top:1px dashed var(--outline);font-size:1.4rem;font-weight:900;">
+                        <span>Total Tagihan</span>
+                        <span style="color:var(--primary);"><?= format_rupiah((float) $totalSimCheckout) ?></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" style="width:100%;margin-top:24px;justify-content:center;border-radius:var(--radius-pill);padding:14px;font-size:1.05rem;" id="checkoutBtn">
-                        Bayar Sekarang
+                    <button type="submit" class="btn btn-primary" style="width:100%;margin-top:32px;justify-content:center;border-radius:16px;padding:16px;font-size:1.1rem;font-weight:800;box-shadow:0 8px 24px rgba(255,253,0,0.2);" id="checkoutBtn">
+                        Bayar Sekarang <i class="fa-solid fa-arrow-right"></i>
                     </button>
                 </div>
             </div>

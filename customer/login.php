@@ -31,17 +31,21 @@ require __DIR__ . '/../includes/header.php';
                 <form class="form-grid" data-login-form novalidate>
                     <div class="form-field">
                         <label for="login-identity">Email <span style="color:var(--error);">*</span></label>
-                        <input
-                            id="login-identity"
-                            name="identity"
-                            required
-                            placeholder="cs@lapak-chicken.com"
-                            autocomplete="username">
+                        <div class="input-with-icon">
+                            <i class="fa-regular fa-envelope input-icon"></i>
+                            <input
+                                id="login-identity"
+                                name="identity"
+                                required
+                                placeholder="cs@lapak-chicken.com"
+                                autocomplete="username">
+                        </div>
                     </div>
 
                     <div class="form-field">
                         <label for="login-password">Kata Sandi <span style="color:var(--error);">*</span></label>
                         <div style="position:relative;">
+                            <i class="fa-solid fa-lock input-icon"></i>
                             <input
                                 id="login-password"
                                 type="password"

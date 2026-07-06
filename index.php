@@ -136,26 +136,27 @@ require __DIR__ . '/includes/header.php';
         <div class="container">
             <div class="hero-tamu-inner">
                 <div class="hero-tamu-content">
-                    <div class="hero-eyebrow">
-                        Promo Spesial!
+                    <div class="hero-eyebrow" style="background:#FFF000; color:var(--on-surface); display:inline-block; font-weight:700;">
+                        Kuliner Populer Seturan 🔥
                     </div>
-                    <h1>Ayam Geprek<br><span>Paling Juicy</span> di Jogja.</h1>
-                    <p style="font-size:1.05rem;">Nikmati diskon 20% pemesanan hari ini khusus untuk pengguna Lapak Chicken. Pesan sekarang dan langsung diantar ke depan rumah kamu.</p>
+                    <h1>Ricebox<br><span style="color:var(--primary-container);font-style:italic;">Terlezat</span> di Jogja.</h1>
+                    <p style="font-size:1.05rem;">Nikmati sensasi ayam goreng renyah dengan sambal korek khas Lapak Chicken. Panas, pedas, dan langsung diantar ke depan pintu Anda.</p>
                     
-                    <form method="post" style="display:flex;gap:16px;margin-bottom:24px;">
-                        <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-                        <select name="branch_id" class="form-field" style="max-width:250px;min-height:48px;border:1px solid var(--outline);border-radius:12px;padding:0 16px;">
-                            <?php foreach ($branches as $b): ?>
-                                <option value="<?= $b['id'] ?>"><?= e($b['name']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <button type="submit" class="btn btn-primary" style="border-radius:99px;padding:0 32px;font-weight:700;">Pesan Sekarang</button>
-                    </form>
-                    
-                    <a href="#kenapa-lapak-chicken" class="btn btn-outline" style="border:none;padding-left:0;font-weight:600;"><i class="fa-solid fa-arrow-down"></i> Lihat Menu Pilihan</a>
+                    <div style="display:flex;gap:16px;margin-bottom:24px;">
+                        <a href="<?= base_url('customer/menu.php') ?>" class="btn btn-primary" style="border-radius:99px;padding:14px 32px;font-weight:800;font-size:1.05rem;">Pesan Sekarang</a>
+                        <a href="<?= base_url('customer/menu.php') ?>" class="btn btn-outline" style="border-radius:99px;padding:14px 32px;font-weight:700;font-size:1.05rem;">Lihat Menu</a>
+                    </div>
                 </div>
                 <div class="hero-tamu-image">
-                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80" alt="Ayam Geprek" style="border-radius:24px;box-shadow:0 20px 40px rgba(0,0,0,0.1);">
+                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80" alt="Ayam Geprek" style="border-radius:32px;box-shadow:0 20px 40px rgba(0,0,0,0.1);">
+                    
+                    <div class="time-badge" style="position:absolute;bottom:30px;left:-30px;background:white;padding:12px 24px;border-radius:20px;display:flex;align-items:center;gap:16px;box-shadow:0 12px 24px rgba(0,0,0,0.08);">
+                        <div style="width:48px;height:48px;background:#FFF000;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;color:var(--on-surface);"><i class="fa-solid fa-stopwatch"></i></div>
+                        <div>
+                            <div style="font-size:0.85rem;color:var(--secondary);font-weight:600;margin-bottom:2px;">Waktu Bikin</div>
+                            <div style="font-size:1.15rem;font-weight:800;color:var(--on-surface);">15-20 Menit</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -165,28 +166,47 @@ require __DIR__ . '/includes/header.php';
         <div class="container">
             <div class="section-header-row" style="margin-bottom:32px;">
                 <div>
-                    <h2 style="font-size:1.6rem;">Kenapa Lapak Chicken?</h2>
-                    <p style="color:var(--secondary);font-size:1rem;margin-top:4px;">Rahasia ayam geprek yang bikin kamu gagal move on.</p>
+                    <h2 style="font-size:2rem;font-weight:900;">Kenapa Lapak Chicken?</h2>
+                    <p style="color:var(--secondary);font-size:1.05rem;margin-top:4px;">Bukan sekadar ayam goreng biasa, ini adalah pengalaman rasa.</p>
                 </div>
-                <a href="<?= base_url('customer/login.php') ?>" class="link-see-all">Lihat Selengkapnya <i class="fa-solid fa-chevron-right" style="font-size:0.8rem;"></i></a>
+                <a href="#" class="link-see-all" style="font-weight:700;color:var(--primary-container);">Lihat Cerita Kami <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <div class="bento-grid bento-kenapa">
-                <div class="bento-card card-large" style="border-radius:24px;">
-                    <div style="max-width:300px;position:relative;z-index:2;">
-                        <h3 style="font-weight:800;">Bahan Segar Setiap Hari</h3>
-                        <p style="font-size:0.95rem;opacity:0.9;line-height:1.5;">Ayam pilihan berkualitas tinggi yang diproses dan dimasak di hari yang sama.</p>
+            <div class="bento-grid-tamu">
+                <!-- Top Left: Wide Image -->
+                <div class="bento-tamu-card bg-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%), url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80'); grid-column: 1 / span 2;">
+                    <div class="bento-tamu-content text-white" style="justify-content:flex-end;">
+                        <h3 style="font-size:1.8rem;font-weight:800;margin-bottom:8px;">Bahan Segar Setiap Hari</h3>
+                        <p style="font-size:0.95rem;opacity:0.9;max-width:80%;">Kami hanya menggunakan ayam pilihan yang diproses langsung hari ini untuk menjaga tekstur juicy dan rasa maksimal.</p>
                     </div>
                 </div>
-                <div class="bento-card card-white" style="border-radius:24px;">
-                    <div class="bento-icon-box"><i class="fa-solid fa-pepper-hot"></i></div>
-                    <h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;">Sambal Khas & Otentik</h4>
-                    <p style="font-size:0.95rem;color:var(--secondary);">Pilihan level pedas yang pas dengan rasa yang khas.</p>
+
+                <!-- Top Right: Square Gray -->
+                <div class="bento-tamu-card bg-gray">
+                    <div class="bento-icon-tamu"><i class="fa-solid fa-pepper-hot"></i></div>
+                    <div class="bento-tamu-content" style="justify-content:flex-end;">
+                        <h4 style="font-size:1.2rem;font-weight:800;margin-bottom:8px;">Sambal Korek Otentik</h4>
+                        <p style="font-size:0.95rem;color:var(--secondary);">Ulekan cabai segar dengan bawang putih rahasia yang bikin ketagihan.</p>
+                    </div>
                 </div>
-                <div class="bento-card card-yellow" style="border-radius:24px;">
-                    <div class="bento-icon-box" style="color:var(--primary-container);"><i class="fa-solid fa-wallet"></i></div>
-                    <h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;">Harga Mahasiswa</h4>
-                    <p style="font-size:0.95rem;opacity:0.9;">Pasti ngenyangin meski dompet lagi menipis.</p>
+
+                <!-- Bottom Left: Square Gray -->
+                <div class="bento-tamu-card bg-gray">
+                    <div class="bento-icon-tamu"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <div class="bento-tamu-content" style="justify-content:flex-end;">
+                        <h4 style="font-size:1.2rem;font-weight:800;margin-bottom:8px;">Harga Mahasiswa</h4>
+                        <p style="font-size:0.95rem;color:var(--secondary);">Porsi kenyang yang tidak bikin kantong bolong, pas untuk anak Seturan.</p>
+                    </div>
+                </div>
+
+                <!-- Bottom Right: Wide Yellow -->
+                <div class="bento-tamu-card bg-yellow has-right-img" style="grid-column: 2 / span 2; overflow:hidden;">
+                    <div class="bento-tamu-content" style="position:relative; z-index:2; justify-content:center; align-items:flex-start; max-width:60%;">
+                        <h3 style="font-size:1.8rem;font-weight:800;color:var(--on-surface);margin-bottom:8px;">Varian Menu Lengkap</h3>
+                        <p style="color:var(--on-surface);opacity:0.8;font-size:0.95rem;margin-bottom:20px;">Dari Original, Krispi, Chicken Katsu, Geprek Mozzarella, semua ada di sini.</p>
+                        <a href="<?= base_url('customer/menu.php') ?>" class="btn-dark-pill" style="background:var(--on-surface);color:white;padding:12px 24px;border-radius:99px;font-weight:700;font-size:0.95rem;">Cek Selengkapnya</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80" alt="Menu" class="bento-right-img" style="position:absolute;right:0;top:0;height:100%;width:50%;object-fit:cover;object-position:left;">
                 </div>
             </div>
         </div>

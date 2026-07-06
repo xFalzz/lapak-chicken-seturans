@@ -85,8 +85,8 @@
     </div>
 
     <div class="footer-bottom" style="max-width:var(--container-max);margin:40px auto 0;padding-top:24px;border-top:1px solid var(--outline-variant);display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:var(--secondary);">
-        <p>&copy; 2024 Lapak Chicken Seturan. Hak Cipta Dilindungi Undang-Undang.</p>
-        <p>Made with ❤️ in Yogyakarta</p>
+        <p>&copy; 2026 Lapak Chicken Seturan. Hak Cipta Dilindungi Undang-Undang.</p>
+        <p>Made with ❤️ by Kelompok 4</p>
     </div>
 </footer>
 
