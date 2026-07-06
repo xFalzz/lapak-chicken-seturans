@@ -19,7 +19,7 @@ require __DIR__ . '/../../includes/sidebar-admin.php';
         <div class="card"><h2>Customer</h2><p><?= e($order['customer_name'] ?? '') ?></p><p><?= e($order['customer_phone'] ?? '') ?></p><p><?= e($order['order_type'] ?? '') ?></p></div>
         <div class="card"><h2>Payment</h2><p><?= e($order['payment_method'] ?? '-') ?> - <?= e($order['payment_status'] ?? 'unpaid') ?></p><p>Paid: <?= format_rupiah((float) ($order['amount_paid'] ?? 0)) ?></p><p><?= e($order['paid_at'] ?? '-') ?></p></div>
     </div>
-    <div class="table-wrap section"><table><thead><tr><th>Item</th><th>Saus</th><th>Qty</th><th>Subtotal</th></tr></thead><tbody><?php foreach ($items->fetchAll() as $i): ?><tr><td><?= e($i['menu_name']) ?></td><td><?= e($i['sauce_name'] ?? '-') ?></td><td><?= (int) $i['quantity'] ?></td><td><?= format_rupiah((float) $i['subtotal']) ?></td></tr><?php endforeach; ?></tbody></table></div>
+    <div class="table-wrap section"><table><thead><tr><th>Item</th><th>Saus & Level</th><th>Catatan</th><th>Qty</th><th>Subtotal</th></tr></thead><tbody><?php foreach ($items->fetchAll() as $i): ?><tr><td><?= e($i['menu_name']) ?></td><td><?= e($i['sauce_name'] ?? '-') ?> <?= (isset($i['spice_level']) && $i['spice_level'] !== '' && $i['spice_level'] !== '0') ? '<span style="color:#b29500;font-weight:700;">(Lvl ' . e($i['spice_level']) . ')</span>' : '' ?></td><td style="font-style:italic;color:var(--secondary);"><?= !empty($i['notes']) ? '"' . e($i['notes']) . '"' : '-' ?></td><td><?= (int) $i['quantity'] ?></td><td><?= format_rupiah((float) $i['subtotal']) ?></td></tr><?php endforeach; ?></tbody></table></div>
     <h2>Total <?= format_rupiah((float) ($order['total'] ?? 0)) ?></h2>
 </section>
 <?php require __DIR__ . '/../../includes/footer.php'; ?>

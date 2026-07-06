@@ -19,7 +19,14 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
     <div class="card receipt">
         <h2><?= APP_NAME ?></h2><p><?= e($order['branch_name'] ?? '') ?><br><?= e($order['address'] ?? '') ?><br><?= e($order['phone'] ?? '') ?></p><hr>
         <p><?= e($order['order_code'] ?? '') ?><br><?= e($order['created_at'] ?? '') ?><br><?= e($order['order_type'] ?? '') ?></p><hr>
-        <?php foreach ($items->fetchAll() as $i): ?><p><?= e($i['menu_name']) ?> <?= $i['sauce_name'] ? '(' . e($i['sauce_name']) . ')' : '' ?><br><?= (int) $i['quantity'] ?> x <?= format_rupiah((float) $i['price'] + (float) $i['price_extra']) ?> = <?= format_rupiah((float) $i['subtotal']) ?></p><?php endforeach; ?><hr>
+        <?php foreach ($items->fetchAll() as $i): ?>
+            <p>
+                <?= e($i['menu_name']) ?> <?= $i['sauce_name'] ? '(' . e($i['sauce_name']) . ')' : '' ?>
+                <?= (isset($i['spice_level']) && $i['spice_level'] !== '' && $i['spice_level'] !== '0') ? '[Level: ' . e($i['spice_level']) . ']' : '' ?>
+                <?= !empty($i['notes']) ? '<br><em>Catatan: "' . e($i['notes']) . '"</em>' : '' ?>
+                <br><?= (int) $i['quantity'] ?> x <?= format_rupiah((float) $i['price'] + (float) $i['price_extra']) ?> = <?= format_rupiah((float) $i['subtotal']) ?>
+            </p>
+        <?php endforeach; ?><hr>
         <p>TOTAL: <strong><?= format_rupiah((float) ($order['total'] ?? 0)) ?></strong><br><?= e($order['payment_method'] ?? '') ?>: <?= format_rupiah($amountPaid) ?><br>Kembali: <?= format_rupiah($change) ?></p><hr><p>Terima kasih!</p>
     </div>
     <div class="print-actions" style="text-align:center"><button class="btn btn-primary" onclick="window.print()">Cetak Struk</button> <a class="btn btn-outline" href="index.php">Kembali ke Antrian</a></div>

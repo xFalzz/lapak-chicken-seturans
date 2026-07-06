@@ -27,7 +27,7 @@ require __DIR__ . '/../includes/header.php';
             <h1 style="font-size:1.8rem;margin:0;">Selesaikan Pesanan</h1>
         </div>
 
-        <form id="checkoutForm" class="grid grid-2" style="align-items:start;grid-template-columns:2fr 1.2fr;gap:40px;" method="post" action="<?= base_url('api/checkout.php') ?>">
+        <form id="checkoutForm" class="grid grid-2" style="align-items:start;grid-template-columns:2fr 1.2fr;gap:40px;" method="post" action="<?= base_url('api/order.php?action=create') ?>">
             <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
             <input type="hidden" name="customer_name" value="<?= e($customerName) ?>">
             <input type="hidden" name="customer_phone" value="<?= e($customerPhone) ?>">
@@ -68,7 +68,20 @@ require __DIR__ . '/../includes/header.php';
                                 </div>
                                 <div style="flex:1;">
                                     <span style="display:block;font-weight:700;font-size:1.05rem;margin-bottom:4px;"><?= e($item['menu_name']) ?></span>
-                                    <span style="font-size:0.85rem;color:var(--secondary);display:block;margin-bottom:8px;"><?= $item['sauce_name'] ? 'Saus ' . e($item['sauce_name']) : 'Tanpa saus' ?></span>
+                                    <div style="font-size:0.85rem;color:var(--secondary);margin-bottom:6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                                        <span><?= $item['sauce_name'] ? 'Saus ' . e($item['sauce_name']) : 'Tanpa saus' ?></span>
+                                        <?php if (isset($item['spice_level']) && $item['spice_level'] !== '' && $item['spice_level'] !== '0'): ?>
+                                            <span style="background:rgba(255, 214, 0, 0.15);color:#b29500;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.75rem;display:inline-flex;align-items:center;gap:4px;">
+                                                <i class="fa-solid fa-pepper-hot"></i> Level <?= e($item['spice_level']) ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <?php if (!empty($item['notes'])): ?>
+                                        <div style="background:var(--surface-container-low);padding:6px 12px;border-radius:8px;font-size:0.85rem;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px;border:1px dashed var(--outline-variant);margin-bottom:8px;">
+                                            <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                            <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
+                                        </div>
+                                    <?php endif; ?>
                                     
                                     <!-- Embedded Cart Qty Controls -->
                                     <div style="display:flex;align-items:center;gap:12px;">

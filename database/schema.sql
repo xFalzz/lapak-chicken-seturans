@@ -74,12 +74,13 @@ CREATE TABLE carts (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE cart_items (
-  id       INT AUTO_INCREMENT PRIMARY KEY,
-  cart_id  INT NOT NULL,
-  menu_id  INT NOT NULL,
-  sauce_id INT,
-  quantity INT NOT NULL DEFAULT 1,
-  notes    TEXT,
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  cart_id     INT NOT NULL,
+  menu_id     INT NOT NULL,
+  sauce_id    INT,
+  spice_level VARCHAR(20) DEFAULT '0',
+  quantity    INT NOT NULL DEFAULT 1,
+  notes       TEXT,
   FOREIGN KEY (cart_id)  REFERENCES carts(id)  ON DELETE CASCADE,
   FOREIGN KEY (menu_id)  REFERENCES menus(id)  ON DELETE CASCADE,
   FOREIGN KEY (sauce_id) REFERENCES sauces(id) ON DELETE SET NULL
@@ -101,12 +102,14 @@ CREATE TABLE orders (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE order_details (
-  id       INT AUTO_INCREMENT PRIMARY KEY,
-  order_id INT NOT NULL,
-  menu_id  INT NOT NULL,
-  sauce_id INT,
-  quantity INT NOT NULL DEFAULT 1,
-  subtotal DECIMAL(10,2) NOT NULL,
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  order_id    INT NOT NULL,
+  menu_id     INT NOT NULL,
+  sauce_id    INT,
+  spice_level VARCHAR(20) DEFAULT '0',
+  quantity    INT NOT NULL DEFAULT 1,
+  subtotal    DECIMAL(10,2) NOT NULL,
+  notes       TEXT,
   FOREIGN KEY (order_id)  REFERENCES orders(id)  ON DELETE CASCADE,
   FOREIGN KEY (menu_id)   REFERENCES menus(id)   ON DELETE RESTRICT,
   FOREIGN KEY (sauce_id)  REFERENCES sauces(id)  ON DELETE SET NULL

@@ -18,7 +18,17 @@ function beep() {
 function renderKdsCard(order) {
   const urgent = order.status === "cooking" && order.elapsed_minutes >= 10;
   const items = order.items.map((item) => `
-    <div class="kds-item"><span>${item.menu_name}${item.sauce_name ? ` - ${item.sauce_name}` : ""}</span><span class="kds-qty">x${item.quantity}</span></div>
+    <div class="kds-item" style="flex-direction:column;align-items:flex-start;margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed var(--outline-variant);">
+      <div style="display:flex;justify-content:space-between;width:100%;">
+        <span style="font-weight:700;">${item.menu_name}</span>
+        <span class="kds-qty">x${item.quantity}</span>
+      </div>
+      <div style="font-size:0.85rem;color:var(--secondary);display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;">
+        ${item.sauce_name ? `<span>Saus ${item.sauce_name}</span>` : ""}
+        ${item.spice_level && item.spice_level !== '0' ? `<span style="color:#b29500;font-weight:700;">[Lvl ${item.spice_level}]</span>` : ""}
+      </div>
+      ${item.notes ? `<div style="font-size:0.8rem;color:var(--error);font-style:italic;margin-top:2px;">Catatan: "${item.notes}"</div>` : ""}
+    </div>
   `).join("");
   return `
     <article class="kds-card ${order.status === "cooking" ? "cooking" : ""} ${urgent ? "urgent" : ""}" data-kds-card="${order.id}">

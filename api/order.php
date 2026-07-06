@@ -70,9 +70,9 @@ try {
                 $total,
             ]);
             $orderId = (int) $db->lastInsertId();
-            $detail = $db->prepare('INSERT INTO order_details (order_id, menu_id, sauce_id, quantity, subtotal) VALUES (?, ?, ?, ?, ?)');
+            $detail = $db->prepare('INSERT INTO order_details (order_id, menu_id, sauce_id, spice_level, quantity, subtotal, notes) VALUES (?, ?, ?, ?, ?, ?, ?)');
             foreach ($cart['items'] as $item) {
-                $detail->execute([$orderId, $item['menu_id'], $item['sauce_id'], $item['quantity'], $item['subtotal']]);
+                $detail->execute([$orderId, $item['menu_id'], $item['sauce_id'], $item['spice_level'] ?? '0', $item['quantity'], $item['subtotal'], $item['notes'] ?? '']);
             }
             $payment = $db->prepare('INSERT INTO payments (order_id, payment_method, payment_status, amount_paid) VALUES (?, ?, "unpaid", 0)');
             $payment->execute([$orderId, sanitize($data['payment_method'] ?? 'Cash')]);

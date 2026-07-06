@@ -16,7 +16,18 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
 <section class="content-with-sidebar">
     <div class="page-title"><h1><?= e($order['order_code'] ?? '') ?></h1><span class="payment-total"><?= format_rupiah((float) ($order['total'] ?? 0)) ?></span></div>
     <div class="grid grid-2">
-        <div class="card"><h2>Detail</h2><p><?= e($order['branch_name'] ?? '') ?> - <?= e($order['customer_name'] ?? '') ?></p><?php foreach ($items->fetchAll() as $i): ?><p><?= (int) $i['quantity'] ?>x <?= e($i['menu_name']) ?> <?= $i['sauce_name'] ? '(' . e($i['sauce_name']) . ')' : '' ?> <strong><?= format_rupiah((float) $i['subtotal']) ?></strong></p><?php endforeach; ?></div>
+        <div class="card">
+            <h2>Detail</h2>
+            <p><?= e($order['branch_name'] ?? '') ?> - <?= e($order['customer_name'] ?? '') ?></p>
+            <?php foreach ($items->fetchAll() as $i): ?>
+                <p style="margin-bottom:8px;">
+                    <?= (int) $i['quantity'] ?>x <strong><?= e($i['menu_name']) ?></strong> <?= $i['sauce_name'] ? '(' . e($i['sauce_name']) . ')' : '' ?>
+                    <?= (isset($i['spice_level']) && $i['spice_level'] !== '' && $i['spice_level'] !== '0') ? '<span style="color:#b29500;font-weight:700;">[Lvl ' . e($i['spice_level']) . ']</span>' : '' ?>
+                    <?= !empty($i['notes']) ? '<br><em style="color:var(--secondary);font-size:0.85rem;">Catatan: "' . e($i['notes']) . '"</em>' : '' ?>
+                    <br><strong><?= format_rupiah((float) $i['subtotal']) ?></strong>
+                </p>
+            <?php endforeach; ?>
+        </div>
         <form class="card form-grid" data-pay-form><input type="hidden" name="order_id" value="<?= $id ?>"><h2>Pembayaran</h2><?php foreach (['Cash','QRIS','Transfer Bank','COD'] as $m): ?><label><input type="radio" name="payment_method" value="<?= e($m) ?>" <?= $m === 'Cash' ? 'checked' : '' ?>> <i class="fa-solid fa-money-bill-wave"></i> <?= e($m) ?></label><?php endforeach; ?><div class="form-field"><label>Uang diterima</label><input type="number" name="amount_paid" data-cash-input data-total="<?= e($order['total'] ?? 0) ?>" value="<?= e($order['total'] ?? 0) ?>"></div><div class="form-field"><label>Reference no</label><input name="reference_no"></div><p>Kembalian: <strong data-change>Rp 0</strong></p><button class="btn btn-primary">Konfirmasi Pembayaran</button></form>
     </div>
 </section>

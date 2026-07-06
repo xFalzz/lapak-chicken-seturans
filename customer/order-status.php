@@ -63,8 +63,21 @@ require __DIR__ . '/../includes/header.php';
                                     <span style="font-weight:700;color:var(--primary);"><?= (int)$item['quantity'] ?>x</span>
                                     <div>
                                         <span style="display:block;font-weight:600;font-size:0.95rem;"><?= e($item['menu_name']) ?></span>
-                                        <?php if($item['sauce_name']): ?>
-                                            <span style="font-size:0.85rem;color:var(--secondary);">Saus <?= e($item['sauce_name']) ?></span>
+                                        <div style="font-size:0.85rem;color:var(--secondary);display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+                                            <?php if($item['sauce_name']): ?>
+                                                <span>Saus <?= e($item['sauce_name']) ?></span>
+                                            <?php endif; ?>
+                                            <?php if (isset($item['spice_level']) && $item['spice_level'] !== '' && $item['spice_level'] !== '0'): ?>
+                                                <span style="background:rgba(255, 214, 0, 0.15);color:#b29500;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.75rem;">
+                                                    <i class="fa-solid fa-pepper-hot"></i> Level <?= e($item['spice_level']) ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php if (!empty($item['notes'])): ?>
+                                            <div style="background:var(--surface-container-low);padding:4px 8px;border-radius:6px;font-size:0.8rem;color:var(--on-surface-variant);margin-top:4px;border:1px dashed var(--outline-variant);">
+                                                <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                                <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 </div>

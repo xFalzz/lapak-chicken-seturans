@@ -145,9 +145,16 @@ function get_or_create_cart(PDO $db): int
 
 function get_cart(PDO $db): array
 {
+    static $upgraded = false;
+    if (!$upgraded) {
+        $upgraded = true;
+        try { $db->exec("ALTER TABLE cart_items ADD COLUMN spice_level VARCHAR(20) DEFAULT '0'"); } catch (Exception $e) {}
+        try { $db->exec("ALTER TABLE order_details ADD COLUMN spice_level VARCHAR(20) DEFAULT '0'"); } catch (Exception $e) {}
+        try { $db->exec("ALTER TABLE order_details ADD COLUMN notes TEXT"); } catch (Exception $e) {}
+    }
     $cartId = get_or_create_cart($db);
     $stmt = $db->prepare(
-        'SELECT ci.id, ci.menu_id, ci.sauce_id, ci.quantity, ci.notes, m.name menu_name, m.price,
+        'SELECT ci.id, ci.menu_id, ci.sauce_id, ci.spice_level, ci.quantity, ci.notes, m.name menu_name, m.price, m.image_url,
                 s.name sauce_name, COALESCE(s.price_extra, 0) price_extra,
                 ((m.price + COALESCE(s.price_extra, 0)) * ci.quantity) subtotal
          FROM cart_items ci

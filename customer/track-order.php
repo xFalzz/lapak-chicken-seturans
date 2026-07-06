@@ -143,8 +143,26 @@ require __DIR__ . '/../includes/header.php';
                 <div class="checkout-card" style="margin-top:24px;">
                     <h2 class="checkout-card-title">Detail Pesanan</h2>
                     <?php foreach ($orderItems as $item): ?>
-                        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--surface-container);">
-                            <span style="color:var(--secondary);"><?= (int)$item['quantity'] ?>x <?= e($item['menu_name']) ?></span>
+                        <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--surface-container);">
+                            <div>
+                                <span style="color:var(--on-surface);font-weight:700;"><?= (int)$item['quantity'] ?>x <?= e($item['menu_name']) ?></span>
+                                <div style="font-size:0.85rem;color:var(--secondary);display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:2px;">
+                                    <?php if(!empty($item['sauce_name'])): ?>
+                                        <span>Saus <?= e($item['sauce_name']) ?></span>
+                                    <?php endif; ?>
+                                    <?php if (isset($item['spice_level']) && $item['spice_level'] !== '' && $item['spice_level'] !== '0'): ?>
+                                        <span style="background:rgba(255, 214, 0, 0.15);color:#b29500;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.75rem;">
+                                            <i class="fa-solid fa-pepper-hot"></i> Level <?= e($item['spice_level']) ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                                <?php if (!empty($item['notes'])): ?>
+                                    <div style="background:var(--surface-container-low);padding:4px 8px;border-radius:6px;font-size:0.8rem;color:var(--on-surface-variant);margin-top:4px;border:1px dashed var(--outline-variant);display:inline-flex;align-items:center;gap:4px;">
+                                        <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                        <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                             <span style="font-weight:600;"><?= format_rupiah((float)$item['subtotal']) ?></span>
                         </div>
                     <?php endforeach; ?>

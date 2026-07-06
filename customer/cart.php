@@ -45,9 +45,20 @@ require __DIR__ . '/../includes/header.php';
                                 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
                                     <div>
                                         <h4 class="cart-item-title" style="font-weight:800;font-size:1.1rem;margin-bottom:4px;"><?= e($item['menu_name']) ?></h4>
-                                        <div class="cart-item-variant" style="font-size:0.85rem;color:var(--secondary);margin-bottom:4px;">
-                                            <?= $item['sauce_name'] ? 'Saus ' . e($item['sauce_name']) : 'Tanpa saus' ?>
+                                        <div class="cart-item-variant" style="font-size:0.85rem;color:var(--secondary);margin-bottom:6px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                                            <span><?= $item['sauce_name'] ? 'Saus ' . e($item['sauce_name']) : 'Tanpa saus' ?></span>
+                                            <?php if (isset($item['spice_level']) && $item['spice_level'] !== '' && $item['spice_level'] !== '0'): ?>
+                                                <span style="background:rgba(255, 214, 0, 0.15);color:#b29500;padding:2px 8px;border-radius:6px;font-weight:700;font-size:0.75rem;display:inline-flex;align-items:center;gap:4px;">
+                                                    <i class="fa-solid fa-pepper-hot"></i> Level <?= e($item['spice_level']) ?>
+                                                </span>
+                                            <?php endif; ?>
                                         </div>
+                                        <?php if (!empty($item['notes'])): ?>
+                                            <div style="background:var(--surface-container-low);padding:6px 12px;border-radius:8px;font-size:0.85rem;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px;border:1px dashed var(--outline-variant);margin-bottom:6px;">
+                                                <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                                <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="cart-item-price" style="font-weight:800;font-size:1.1rem;color:var(--primary);"><?= format_rupiah((float) $item['subtotal']) ?></div>
                                 </div>

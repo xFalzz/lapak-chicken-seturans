@@ -31,6 +31,7 @@ try {
     if ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $menuId = (int) ($data['menu_id'] ?? 0);
         $sauceId = !empty($data['sauce_id']) ? (int) $data['sauce_id'] : null;
+        $spiceLevel = sanitize($data['spice_level'] ?? '0');
         $quantity = max(1, (int) ($data['quantity'] ?? 1));
         $notes = sanitize($data['notes'] ?? '');
 
@@ -49,15 +50,15 @@ try {
             }
         }
 
-        $stmt = $db->prepare('SELECT id FROM cart_items WHERE cart_id = ? AND menu_id = ? AND (sauce_id <=> ?) AND COALESCE(notes, "") = ?');
-        $stmt->execute([$cartId, $menuId, $sauceId, $notes]);
+        $stmt = $db->prepare('SELECT id FROM cart_items WHERE cart_id = ? AND menu_id = ? AND (sauce_id <=> ?) AND COALESCE(spice_level, "0") = ? AND COALESCE(notes, "") = ?');
+        $stmt->execute([$cartId, $menuId, $sauceId, $spiceLevel, $notes]);
         $existing = $stmt->fetchColumn();
         if ($existing) {
             $update = $db->prepare('UPDATE cart_items SET quantity = quantity + ? WHERE id = ?');
             $update->execute([$quantity, $existing]);
         } else {
-            $insert = $db->prepare('INSERT INTO cart_items (cart_id, menu_id, sauce_id, quantity, notes) VALUES (?, ?, ?, ?, ?)');
-            $insert->execute([$cartId, $menuId, $sauceId, $quantity, $notes]);
+            $insert = $db->prepare('INSERT INTO cart_items (cart_id, menu_id, sauce_id, spice_level, quantity, notes) VALUES (?, ?, ?, ?, ?, ?)');
+            $insert->execute([$cartId, $menuId, $sauceId, $spiceLevel, $quantity, $notes]);
         }
         json_response(true, get_cart($db), 'Item ditambahkan');
     }
