@@ -86,7 +86,7 @@ require __DIR__ . '/../includes/header.php';
                                 <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=100&q=80" style="width:60px;height:60px;border-radius:12px;object-fit:cover;">
                                 <div style="flex:1;">
                                     <h5 style="font-weight:700;font-size:0.9rem;margin-bottom:4px;">Kulit Ayam Crispy</h5>
-                                    <div style="font-weight:800;color:var(--primary);font-size:0.9rem;margin-bottom:8px;">+Rp 12.000</div>
+                                    <div style="font-weight:800;color:var(--on-surface);font-size:0.9rem;margin-bottom:8px;">+Rp 12.000</div>
                                     <button type="button" class="btn btn-outline" style="width:100%;padding:4px;font-size:0.8rem;border-radius:8px;">Tambah</button>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ require __DIR__ . '/../includes/header.php';
                                 <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=100&q=80" style="width:60px;height:60px;border-radius:12px;object-fit:cover;">
                                 <div style="flex:1;">
                                     <h5 style="font-weight:700;font-size:0.9rem;margin-bottom:4px;">Sambal Korek Extra</h5>
-                                    <div style="font-weight:800;color:var(--primary);font-size:0.9rem;margin-bottom:8px;">+Rp 3.000</div>
+                                    <div style="font-weight:800;color:var(--on-surface);font-size:0.9rem;margin-bottom:8px;">+Rp 3.000</div>
                                     <button type="button" class="btn btn-outline" style="width:100%;padding:4px;font-size:0.8rem;border-radius:8px;">Tambah</button>
                                 </div>
                             </div>
@@ -122,7 +122,7 @@ require __DIR__ . '/../includes/header.php';
 
                     <div style="margin-top:24px;margin-bottom:24px;">
                         <div style="display:flex;align-items:center;background:var(--surface-container-low);border-radius:12px;padding:8px 8px 8px 16px;">
-                            <i class="fa-solid fa-ticket" style="color:var(--primary);font-size:1.2rem;margin-right:12px;"></i>
+                            <i class="fa-solid fa-ticket" style="color:var(--on-surface-variant);font-size:1.2rem;margin-right:12px;"></i>
                             <input type="text" placeholder="Masukkan Kode Promo" style="border:none;background:transparent;flex:1;font-weight:600;font-size:0.95rem;outline:none;">
                             <button class="btn btn-primary" style="padding:8px 16px;border-radius:8px;font-weight:700;">Pakai</button>
                         </div>
@@ -132,7 +132,7 @@ require __DIR__ . '/../includes/header.php';
 
                     <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:24px;border-top:1px dashed var(--outline);font-size:1.4rem;font-weight:900;">
                         <span>Total Bayar</span>
-                        <span style="color:var(--primary);"><?= format_rupiah((float) $totalSim) ?></span>
+                        <span style="color:var(--on-surface);"><?= format_rupiah((float) $totalSim) ?></span>
                     </div>
 
                     <a href="<?= base_url('customer/checkout.php') ?>" class="btn btn-primary" style="width:100%;margin-top:32px;justify-content:center;border-radius:16px;padding:16px;font-size:1.1rem;font-weight:800;box-shadow:0 8px 24px rgba(255,253,0,0.2);">
@@ -141,8 +141,8 @@ require __DIR__ . '/../includes/header.php';
 
                     <div style="margin-top:32px;background:var(--surface-container-low);border-radius:16px;padding:20px;">
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                            <h4 style="font-size:0.95rem;font-weight:700;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-location-dot" style="color:var(--primary);"></i> Alamat Pengiriman</h4>
-                            <a href="#" style="font-size:0.85rem;font-weight:700;color:var(--primary-container);">Ubah</a>
+                            <h4 style="font-size:0.95rem;font-weight:700;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-location-dot" style="color:#000000;"></i> Alamat Pengiriman</h4>
+                            <a href="#" style="font-size:0.85rem;font-weight:700;color:var(--on-surface);text-decoration:underline;">Ubah</a>
                         </div>
                         <p style="font-size:0.9rem;color:var(--secondary);line-height:1.5;margin:0;">
                             <strong style="color:var(--on-surface);">Kantor Utama</strong><br>

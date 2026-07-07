@@ -10,7 +10,7 @@
                 <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo Lapak Chicken" class="brand-icon" style="object-fit:cover;width:34px;height:34px;border-radius:8px;">
                 Lapak Chicken
             </div>
-            <p style="color:var(--secondary);font-size:0.95rem;line-height:1.6;max-width:300px;">Pelopor Ayam Geprek paling juicy di Yogyakarta. Lezat, Kenyang, Hemat. Melayani dine-in, takeaway, dan delivery.</p>
+            <p style="color:var(--secondary);font-size:0.95rem;line-height:1.6;max-width:300px;">Lapak Chicken hadir sebagai pelopor rice box di Kota Surakarta sejak tahun 2017. Dengan menu yang menarik khususnya olahan ayam tanpa tulang yang dibalut dengan tepung berkualitas yang kaya akan rempah dan dibaluri dengen berbagai macam pilihan saus dan sambal.</p>
 
             <div style="display:flex;gap:12px;margin-top:20px;">
                 <a href="#" style="width:36px;height:36px;background:var(--on-surface);color:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:0.9rem;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>

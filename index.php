@@ -121,7 +121,7 @@ require __DIR__ . '/includes/header.php';
                     </div>
                 </div>
                 <div class="bento-card card-yellow">
-                    <div class="bento-icon-box" style="color:var(--primary-container);"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="bento-icon-box" style="color:#000000;"><i class="fa-solid fa-bolt"></i></div>
                     <h4 style="font-size:1.1rem;margin-bottom:8px;font-weight:700;">Delivery Kilat</h4>
                     <p style="font-size:0.9rem;opacity:0.9;">Pesanan tiba sebelum 30 menit atau gratis ongkir!</p>
                 </div>
@@ -143,7 +143,7 @@ require __DIR__ . '/includes/header.php';
                     <div class="hero-eyebrow" style="background:#FFF000; color:var(--on-surface); display:inline-block; font-weight:700;">
                         Kuliner Populer Seturan 🔥
                     </div>
-                    <h1>Ricebox<br><span style="color:var(--primary-container);font-style:italic;">Terlezat</span> di Jogja.</h1>
+                    <h1>Ricebox<br><span style="color:#000000;font-style:italic;">Terlezat</span> di Jogja.</h1>
                     <p style="font-size:1.05rem;">Nikmati sensasi ayam goreng renyah dengan sambal korek khas Lapak Chicken. Panas, pedas, dan langsung diantar ke depan pintu Anda.</p>
                     
                     <div style="display:flex;gap:16px;margin-bottom:24px;">
@@ -173,7 +173,7 @@ require __DIR__ . '/includes/header.php';
                     <h2 style="font-size:2rem;font-weight:900;">Kenapa Lapak Chicken?</h2>
                     <p style="color:var(--secondary);font-size:1.05rem;margin-top:4px;">Bukan sekadar ayam goreng biasa, ini adalah pengalaman rasa.</p>
                 </div>
-                <a href="#" class="link-see-all" style="font-weight:700;color:var(--primary-container);">Lihat Cerita Kami <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="link-see-all" style="font-weight:700;color:var(--on-surface);text-decoration:underline;">Lihat Cerita Kami <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
             <div class="bento-grid-tamu">
