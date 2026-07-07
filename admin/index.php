@@ -39,7 +39,7 @@ require __DIR__ . '/../includes/sidebar-admin.php';
     <!-- Welcome Header -->
     <div class="admin-welcome">
         <h1>Selamat Datang, <?= e(current_user()['name']) ?>! 👋</h1>
-        <p>Berikut ringkasan bisnis Anda hari ini — <?= strftime('%A, %d %B %Y') ?: date('l, d F Y') ?></p>
+        <p>Berikut ringkasan bisnis Anda hari ini — <?= format_date_id() ?></p>
     </div>
 
     <!-- Branch Filter -->

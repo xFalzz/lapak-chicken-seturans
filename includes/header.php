@@ -33,17 +33,17 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- App Styles -->
-    <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>?v=3.0">
-    <link rel="stylesheet" href="<?= base_url('assets/css/components.css') ?>?v=3.0">
+    <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>?v=<?= time() ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/components.css') ?>?v=<?= time() ?>">
 
     <?php if ($isCustomerPage): ?>
-        <link rel="stylesheet" href="<?= base_url('assets/css/customer.css') ?>?v=3.0">
+        <link rel="stylesheet" href="<?= base_url('assets/css/customer.css') ?>?v=<?= time() ?>">
     <?php elseif ($bodyClass === 'admin-layout'): ?>
-        <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>?v=3.0">
+        <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>?v=<?= time() ?>">
     <?php elseif ($bodyClass === 'kasir-layout'): ?>
-        <link rel="stylesheet" href="<?= base_url('assets/css/kasir.css') ?>?v=3.0">
+        <link rel="stylesheet" href="<?= base_url('assets/css/kasir.css') ?>?v=<?= time() ?>">
     <?php elseif ($bodyClass === 'dapur-layout'): ?>
-        <link rel="stylesheet" href="<?= base_url('assets/css/dapur.css') ?>?v=3.0">
+        <link rel="stylesheet" href="<?= base_url('assets/css/dapur.css') ?>?v=<?= time() ?>">
     <?php endif; ?>
 
     <script>window.APP = { baseUrl: "<?= BASE_URL ?>", csrf: "<?= csrf_token() ?>" };</script>

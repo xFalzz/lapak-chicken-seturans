@@ -259,3 +259,12 @@ function clear_rate_limit(string $action): void
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
     $db->prepare('DELETE FROM rate_limits WHERE ip = ? AND action = ?')->execute([$ip, $action]);
 }
+
+function format_date_id(?string $date = null): string
+{
+    $timestamp = $date ? strtotime($date) : time();
+    $days = ['Sunday' => 'Minggu', 'Monday' => 'Senin', 'Tuesday' => 'Selasa', 'Wednesday' => 'Rabu', 'Thursday' => 'Kamis', 'Friday' => 'Jumat', 'Saturday' => 'Sabtu'];
+    $months = [1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    return $days[date('l', $timestamp)] . ', ' . date('d', $timestamp) . ' ' . $months[(int) date('n', $timestamp)] . ' ' . date('Y', $timestamp);
+}
+

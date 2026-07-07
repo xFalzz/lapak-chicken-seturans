@@ -13,7 +13,7 @@ foreach ($branches as $b) {
     if ((int) $b['id'] === $branchId) { $branchName = $b['name']; break; }
 }
 $pageTitle = 'Kitchen Display';
-$bodyClass = 'dapur-body';
+$bodyClass = 'dapur-layout';
 require __DIR__ . '/../includes/header.php';
 ?>
 <section class="kds">
