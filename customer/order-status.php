@@ -58,7 +58,7 @@ require __DIR__ . '/../includes/header.php';
                             <?php foreach($items->fetchAll() as $item): ?>
                             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
                                 <div style="display:flex;gap:12px;">
-                                    <span style="font-weight:700;color:var(--primary);"><?= (int)$item['quantity'] ?>x</span>
+                                    <span style="font-weight:700;color:var(--on-surface);"><?= (int)$item['quantity'] ?>x</span>
                                     <div>
                                         <span style="display:block;font-weight:600;font-size:0.95rem;"><?= e($item['menu_name']) ?></span>
                                         <div style="font-size:0.85rem;color:var(--secondary);display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
@@ -73,7 +73,7 @@ require __DIR__ . '/../includes/header.php';
                                         </div>
                                         <?php if (!empty($item['notes'])): ?>
                                             <div style="background:var(--surface-container-low);padding:4px 8px;border-radius:6px;font-size:0.8rem;color:var(--on-surface-variant);margin-top:4px;border:1px dashed var(--outline-variant);">
-                                                <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                                <i class="fa-regular fa-note-sticky" style="color:var(--on-surface-variant);"></i>
                                                 <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
                                             </div>
                                         <?php endif; ?>
@@ -87,7 +87,7 @@ require __DIR__ . '/../includes/header.php';
 
                     <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px dashed var(--outline);">
                         <span style="color:var(--secondary);font-size:1.1rem;font-weight:600;">Total Dibayar</span>
-                        <strong style="color:var(--primary);font-size:1.6rem;font-weight:900;"><?= format_rupiah((float) $order['total']) ?></strong>
+                        <strong style="color:var(--on-surface);font-size:1.6rem;font-weight:900;"><?= format_rupiah((float) $order['total']) ?></strong>
                     </div>
                 </div>
             </div>

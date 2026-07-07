@@ -188,8 +188,10 @@
   background: var(--surface-container-low);
 }
 .menu-sidebar-link.active {
-  background: rgba(255, 253, 0, 0.15) !important; 
-  color: #8C7500 !important; 
+  background: var(--primary) !important; 
+  color: #000000 !important; 
+  font-weight: 800 !important;
+  box-shadow: 0 4px 12px rgba(255, 253, 0, 0.3);
 }
 .menu-sidebar-link i {
   font-size: 1.1rem;
@@ -197,7 +199,7 @@
   text-align: center;
 }
 .menu-sidebar-link.active i {
-  color: #8C7500;
+  color: #000000 !important;
 }
 
 .cart-item-card {
@@ -610,7 +612,11 @@
     color: var(--on-surface);
 }
 .hero-tamu h1 span {
-    color: var(--primary-container);
+    background: var(--primary-container);
+    color: #000000;
+    padding: 2px 12px;
+    border-radius: 12px;
+    display: inline-block;
 }
 .hero-tamu p {
     font-size: 1.1rem;
@@ -800,8 +806,14 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 .auth-feature-card i {
-    color: var(--primary-container);
-    font-size: 1.5rem;
+    background: var(--primary-container);
+    color: #000000;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 1.3rem;
     margin-bottom: 12px;
 }
 .auth-feature-card h4 {

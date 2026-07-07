@@ -54,19 +54,19 @@ require __DIR__ . '/../includes/header.php';
                                         </div>
                                         <?php if (!empty($item['notes'])): ?>
                                             <div style="background:var(--surface-container-low);padding:6px 12px;border-radius:8px;font-size:0.85rem;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px;border:1px dashed var(--outline-variant);margin-bottom:6px;">
-                                                <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                                <i class="fa-regular fa-note-sticky" style="color:var(--on-surface-variant);"></i>
                                                 <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
                                             </div>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="cart-item-price" style="font-weight:800;font-size:1.1rem;color:var(--primary);"><?= format_rupiah((float) $item['subtotal']) ?></div>
+                                    <div class="cart-item-price" style="font-weight:800;font-size:1.1rem;color:var(--on-surface);"><?= format_rupiah((float) $item['subtotal']) ?></div>
                                 </div>
                                 
                                 <div class="cart-item-actions" style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
                                     <div class="qty-pill" style="display:flex;align-items:center;gap:16px;background:var(--surface-container-low);padding:6px 12px;border-radius:99px;">
                                         <button type="button" data-cart-qty="<?= max(0, (int)$item['quantity'] - 1) ?>" style="border:none;background:transparent;cursor:pointer;color:var(--secondary);"><i class="fa-solid fa-minus"></i></button>
                                         <span style="font-weight:800;font-size:1rem;"><?= (int) $item['quantity'] ?></span>
-                                        <button type="button" data-cart-qty="<?= (int)$item['quantity'] + 1 ?>" style="border:none;background:transparent;cursor:pointer;color:var(--primary);"><i class="fa-solid fa-plus"></i></button>
+                                        <button type="button" data-cart-qty="<?= (int)$item['quantity'] + 1 ?>" style="border:none;background:transparent;cursor:pointer;color:#000000;font-weight:800;"><i class="fa-solid fa-plus"></i></button>
                                     </div>
                                     <button class="cart-btn-text" style="color:var(--error);background:transparent;border:none;cursor:pointer;font-size:1.2rem;" type="button" data-cart-remove>
                                         <i class="fa-regular fa-trash-can"></i>

@@ -150,7 +150,7 @@ require __DIR__ . '/../includes/header.php';
                                 </div>
                                 <?php if (!empty($item['notes'])): ?>
                                     <div style="background:var(--surface-container-low);padding:4px 8px;border-radius:6px;font-size:0.8rem;color:var(--on-surface-variant);margin-top:4px;border:1px dashed var(--outline-variant);display:inline-flex;align-items:center;gap:4px;">
-                                        <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                        <i class="fa-regular fa-note-sticky" style="color:var(--on-surface-variant);"></i>
                                         <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
                                     </div>
                                 <?php endif; ?>

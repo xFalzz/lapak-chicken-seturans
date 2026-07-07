@@ -100,7 +100,7 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
                             <?php else: ?>
                                 <div style="width: 100%; height: 120px; background: var(--surface-container); border-radius: 8px; margin-bottom: 12px; display: grid; place-items: center; color: var(--secondary);"><i class="fa-solid fa-utensils fa-2x"></i></div>
                             <?php endif; ?>
-                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase;"><?= e($m['category_name'] ?? 'Menu') ?></span>
+                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--on-surface-variant); text-transform: uppercase;"><?= e($m['category_name'] ?? 'Menu') ?></span>
                             <h3 style="font-size: 1rem; font-weight: 700; color: var(--on-surface); margin: 4px 0 8px; line-height: 1.3;"><?= e($m['name']) ?></h3>
                         </div>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--outline-variant);">

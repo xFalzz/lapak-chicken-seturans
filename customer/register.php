@@ -9,8 +9,9 @@ require __DIR__ . '/../includes/header.php';
         <div class="auth-split-register">
 
             <div class="auth-text-panel">
-                <div style="font-weight:800;font-size:1.8rem;color:var(--on-surface);margin-bottom:48px;">
-                    <span style="color:var(--primary-container);">Lapak</span> Chicken
+                <div style="display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.8rem;color:var(--on-surface);margin-bottom:48px;">
+                    <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo Lapak Chicken" class="brand-icon" style="object-fit:cover;width:36px;height:36px;border-radius:8px;">
+                    Lapak Chicken
                 </div>
                 <h2>Gabung dengan <span>MakanGes</span> &<br>Nikmati Ayam Krispi Terbaik!</h2>
                 <p>Nikmati diskon langsung sebesar Rp 20.000 untuk pesanan pertamamu, dapatkan penawaran eksklusif setiap harinya hanya di MakanGes Lapak Chicken.</p>

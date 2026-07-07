@@ -186,7 +186,7 @@ try {
 
         <?php if (isset($_SESSION['branch_name'])): ?>
             <div style="padding: 10px 14px; background: var(--brand-yellow-light); border-radius: var(--radius-md); font-weight: 700; font-size: 0.88rem; color: var(--on-primary-container); margin-bottom: 8px; display:flex; align-items:center; gap:8px;">
-                <i class="fa-solid fa-location-dot" style="color:var(--primary);"></i>
+                <i class="fa-solid fa-location-dot" style="color:#000000;"></i>
                 <?= e($_SESSION['branch_name']) ?>
             </div>
         <?php endif; ?>
@@ -209,10 +209,10 @@ try {
             <a href="<?= base_url('customer/help.php') ?>"><i class="fa-solid fa-circle-question"></i> Pusat Bantuan</a>
             <?php $role = user_role(); ?>
             <?php if ($role === 'admin'): ?>
-                <a href="<?= base_url('admin/index.php') ?>" style="color:var(--primary);"><i class="fa-solid fa-gear"></i> Portal Admin</a>
+                <a href="<?= base_url('admin/index.php') ?>" style="color:var(--on-surface);font-weight:700;"><i class="fa-solid fa-gear"></i> Portal Admin</a>
             <?php endif; ?>
             <?php if (in_array($role, ['admin', 'kasir'])): ?>
-                <a href="<?= base_url('kasir/index.php') ?>" style="color:var(--primary);"><i class="fa-solid fa-cash-register"></i> Portal Kasir</a>
+                <a href="<?= base_url('kasir/index.php') ?>" style="color:var(--on-surface);font-weight:700;"><i class="fa-solid fa-cash-register"></i> Portal Kasir</a>
             <?php endif; ?>
             <button class="btn btn-outline" style="margin-top:auto; width:100%; justify-content:center;" type="button" data-logout>
                 <i class="fa-solid fa-right-from-bracket"></i> Keluar

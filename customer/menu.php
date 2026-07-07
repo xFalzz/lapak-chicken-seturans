@@ -111,7 +111,7 @@ require __DIR__ . '/../includes/header.php';
                                 <p style="font-size:0.85rem;color:var(--secondary);display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px;">Ayam goreng renyah dengan sambal spesial yang diproses dengan bumbu rahasia.</p>
                                 
                                 <div class="menu-card-footer" style="display:flex;align-items:center;justify-content:space-between;">
-                                    <span class="price" style="font-weight:800;font-size:1.15rem;color:var(--primary);"><?= format_rupiah((float) $menu['price']) ?></span>
+                                    <span class="price" style="font-weight:800;font-size:1.15rem;color:var(--on-surface);"><?= format_rupiah((float) $menu['price']) ?></span>
                                     <?php if ($isAvailable): ?>
                                         <button type="button" style="width:40px;height:40px;border-radius:50%;background:var(--primary-container);color:var(--on-surface);border:none;display:grid;place-items:center;cursor:pointer;font-size:1.1rem;transition:transform 0.2s;">
                                             <i class="fa-solid fa-plus"></i>
@@ -385,7 +385,7 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                         <div style="text-align:right;">
                             <div style="text-decoration:line-through; color:var(--secondary); font-size:1.05rem; margin-bottom:2px;" id="modalPriceOriginal"></div>
-                            <div id="modalPrice" style="font-size:1.85rem; font-weight:900; color:var(--primary);">Rp0</div>
+                            <div id="modalPrice" style="font-size:1.85rem; font-weight:900; color:var(--on-surface);">Rp0</div>
                         </div>
                     </div>
 
@@ -404,7 +404,7 @@ require __DIR__ . '/../includes/header.php';
                                 <h4 style="font-size:1.15rem; font-weight:800; color:var(--on-surface);">Pelengkap Sempurna</h4>
                                 <p style="font-size:0.9rem; color:var(--secondary);">Cobain menu lainnya yang nggak kalah hits!</p>
                             </div>
-                            <span style="font-size:0.9rem; font-weight:700; color:var(--primary); cursor:pointer; display:flex; align-items:center; gap:4px;">Lihat Semua <i class="fa-solid fa-arrow-right"></i></span>
+                            <span style="font-size:0.9rem; font-weight:700; color:var(--on-surface); cursor:pointer; display:flex; align-items:center; gap:4px;">Lihat Semua <i class="fa-solid fa-arrow-right"></i></span>
                         </div>
                         
                         <div style="display:flex; gap:16px; overflow-x:auto; padding-bottom:12px;" class="hide-scrollbar">
@@ -415,7 +415,7 @@ require __DIR__ . '/../includes/header.php';
                                 <div style="padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
                                     <div>
                                         <h5 style="font-weight:700; font-size:0.95rem; margin-bottom:4px; color:var(--on-surface);">Iced Lemon Tea</h5>
-                                        <div style="font-weight:800; color:var(--primary); font-size:0.95rem; margin-bottom:12px;">Rp 12.000</div>
+                                        <div style="font-weight:800; color:var(--on-surface); font-size:0.95rem; margin-bottom:12px;">Rp 12.000</div>
                                     </div>
                                     <button type="button" class="btn" style="width:100%; padding:8px; font-size:0.85rem; font-weight:700; border-radius:10px; background:var(--surface-container); color:var(--on-surface); border:none; cursor:pointer;">+ Add</button>
                                 </div>
@@ -427,7 +427,7 @@ require __DIR__ . '/../includes/header.php';
                                 <div style="padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
                                     <div>
                                         <h5 style="font-weight:700; font-size:0.95rem; margin-bottom:4px; color:var(--on-surface);">French Fries Large</h5>
-                                        <div style="font-weight:800; color:var(--primary); font-size:0.95rem; margin-bottom:12px;">Rp 18.500</div>
+                                        <div style="font-weight:800; color:var(--on-surface); font-size:0.95rem; margin-bottom:12px;">Rp 18.500</div>
                                     </div>
                                     <button type="button" class="btn" style="width:100%; padding:8px; font-size:0.85rem; font-weight:700; border-radius:10px; background:var(--surface-container); color:var(--on-surface); border:none; cursor:pointer;">+ Add</button>
                                 </div>
@@ -480,7 +480,7 @@ require __DIR__ . '/../includes/header.php';
                         <div class="qty-pill" style="display:flex; align-items:center; gap:14px; background:var(--surface-container-high); padding:6px 14px; border-radius:99px; border:1px solid rgba(202, 200, 170, 0.6);">
                             <button type="button" class="btn-qty" id="btnMinus" style="border:none; background:white; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1rem; color:var(--on-surface); display:grid; place-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.06); transition:all 0.2s;"><i class="fa-solid fa-minus"></i></button>
                             <span id="qtyDisplay" style="font-size:1.15rem; font-weight:800; width:24px; text-align:center; color:var(--on-surface);">1</span>
-                            <button type="button" class="btn-qty" id="btnPlus" style="border:none; background:white; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1rem; color:var(--primary); display:grid; place-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.06); transition:all 0.2s;"><i class="fa-solid fa-plus"></i></button>
+                            <button type="button" class="btn-qty" id="btnPlus" style="border:none; background:white; width:36px; height:36px; border-radius:50%; cursor:pointer; font-size:1rem; color:#000000; font-weight:800; display:grid; place-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.06); transition:all 0.2s;"><i class="fa-solid fa-plus"></i></button>
                             <input type="hidden" name="quantity" id="qtyInput" value="1">
                         </div>
 

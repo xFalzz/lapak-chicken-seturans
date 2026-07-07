@@ -37,7 +37,7 @@ require __DIR__ . '/../includes/header.php';
                 <div class="checkout-card" style="margin-bottom:0;border-radius:24px;border:none;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
                         <h2 class="checkout-card-title" style="margin-bottom:0;font-size:1.2rem;font-weight:800;">Alamat Pengiriman</h2>
-                        <a href="#" style="font-size:0.9rem;font-weight:700;color:var(--primary-container);">Ubah Alamat</a>
+                        <a href="#" style="font-size:0.9rem;font-weight:700;color:var(--on-surface);text-decoration:underline;">Ubah Alamat</a>
                     </div>
                     
                     <div class="address-box" style="background:transparent;border:1px solid var(--outline-variant);border-radius:16px;">
@@ -47,7 +47,7 @@ require __DIR__ . '/../includes/header.php';
                         <div>
                             <strong style="display:block;font-size:1.05rem;margin-bottom:4px;"><?= e($branch['name']) ?> (Mock Delivery)</strong>
                             <span style="font-size:0.95rem;color:var(--secondary);line-height:1.5;display:block;">Gedung Cyber 2 Tower Lantai 17, Jl. H. R. Rasuna Said Blok X-5 Kav. 13</span>
-                            <span style="display:block;font-size:0.9rem;color:var(--secondary);margin-top:8px;"><i class="fa-solid fa-circle-info" style="color:var(--primary-container);margin-right:4px;"></i> Tinggalkan di lobi, hubungi di bawah...</span>
+                            <span style="display:block;font-size:0.9rem;color:var(--secondary);margin-top:8px;"><i class="fa-solid fa-circle-info" style="color:var(--on-surface-variant);margin-right:4px;"></i> Tinggalkan di lobi, hubungi di bawah...</span>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ require __DIR__ . '/../includes/header.php';
                                     </div>
                                     <?php if (!empty($item['notes'])): ?>
                                         <div style="background:var(--surface-container-low);padding:6px 12px;border-radius:8px;font-size:0.85rem;color:var(--on-surface-variant);display:inline-flex;align-items:center;gap:6px;border:1px dashed var(--outline-variant);margin-bottom:8px;">
-                                            <i class="fa-regular fa-note-sticky" style="color:var(--primary);"></i>
+                                            <i class="fa-regular fa-note-sticky" style="color:var(--on-surface-variant);"></i>
                                             <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
                                         </div>
                                     <?php endif; ?>
@@ -85,7 +85,7 @@ require __DIR__ . '/../includes/header.php';
                                         <div class="qty-pill" style="display:inline-flex;align-items:center;gap:12px;background:var(--surface-container-low);padding:4px 8px;border-radius:99px;border:none;">
                                             <button type="button" data-cart-qty="<?= max(0, (int)$item['quantity'] - 1) ?>" style="border:none;background:transparent;cursor:pointer;color:var(--secondary);"><i class="fa-solid fa-minus"></i></button>
                                             <span style="font-weight:800;font-size:0.95rem;width:20px;text-align:center;"><?= (int) $item['quantity'] ?></span>
-                                            <button type="button" data-cart-qty="<?= (int)$item['quantity'] + 1 ?>" style="border:none;background:transparent;cursor:pointer;color:var(--primary);"><i class="fa-solid fa-plus"></i></button>
+                                            <button type="button" data-cart-qty="<?= (int)$item['quantity'] + 1 ?>" style="border:none;background:transparent;cursor:pointer;color:#000000;font-weight:800;"><i class="fa-solid fa-plus"></i></button>
                                         </div>
                                         <button class="cart-btn-text" style="color:var(--error);background:transparent;border:none;cursor:pointer;font-size:1rem;" type="button" data-cart-remove>
                                             <i class="fa-regular fa-trash-can"></i>
@@ -93,7 +93,7 @@ require __DIR__ . '/../includes/header.php';
                                     </div>
                                 </div>
                             </div>
-                            <span style="font-weight:800;font-size:1.1rem;color:var(--primary);"><?= format_rupiah((float) $item['subtotal']) ?></span>
+                            <span style="font-weight:800;font-size:1.1rem;color:var(--on-surface);"><?= format_rupiah((float) $item['subtotal']) ?></span>
                         </div>
                     <?php endforeach; ?>
                     
@@ -137,7 +137,7 @@ require __DIR__ . '/../includes/header.php';
                             </div>
                             <i class="fa-solid fa-wallet" style="color:var(--secondary);font-size:1.2rem;"></i>
                         </label>
-                        <a href="#" style="text-align:center;font-weight:700;color:var(--primary-container);font-size:0.95rem;margin-top:8px;">Lihat metode lainnya</a>
+                        <a href="#" style="text-align:center;font-weight:700;color:var(--on-surface);text-decoration:underline;font-size:0.95rem;margin-top:8px;">Lihat metode lainnya</a>
                     </div>
                 </div>
 
@@ -168,7 +168,7 @@ require __DIR__ . '/../includes/header.php';
 
                     <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:24px;border-top:1px dashed var(--outline);font-size:1.4rem;font-weight:900;">
                         <span>Total Tagihan</span>
-                        <span style="color:var(--primary);"><?= format_rupiah((float) $totalSimCheckout) ?></span>
+                        <span style="color:var(--on-surface);"><?= format_rupiah((float) $totalSimCheckout) ?></span>
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="width:100%;margin-top:32px;justify-content:center;border-radius:16px;padding:16px;font-size:1.1rem;font-weight:800;box-shadow:0 8px 24px rgba(255,253,0,0.2);" id="checkoutBtn">
