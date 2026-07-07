@@ -30,7 +30,7 @@
 }
 .hero-eyebrow {
   display: inline-flex;
-  background: rgba(255, 193, 7, 0.15);
+  background: rgba(255, 253, 0, 0.15);
   border: 1px solid var(--primary-container);
   color: var(--primary-container);
   padding: 6px 16px;
@@ -166,7 +166,7 @@
   transition: background 0.2s;
 }
 .btn-add-pill:hover {
-  background: #FFB300;
+  background: #FFFD00;
 }
 
 .menu-sidebar-link {
@@ -188,8 +188,8 @@
   background: var(--surface-container-low);
 }
 .menu-sidebar-link.active {
-  background: rgba(255, 193, 7, 0.15) !important; 
-  color: #B38600 !important; 
+  background: rgba(255, 253, 0, 0.15) !important; 
+  color: #8C7500 !important; 
 }
 .menu-sidebar-link i {
   font-size: 1.1rem;
@@ -197,7 +197,7 @@
   text-align: center;
 }
 .menu-sidebar-link.active i {
-  color: #B38600;
+  color: #8C7500;
 }
 
 .cart-item-card {
@@ -897,7 +897,7 @@
 
 .sauce-card-label:has(input:checked) {
     border-color: var(--primary-container) !important;
-    background: rgba(255, 193, 7, 0.08);
+    background: rgba(255, 253, 0, 0.05);
 }
 
 .spice-level-label:has(input:checked) {

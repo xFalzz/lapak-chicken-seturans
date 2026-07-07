@@ -4,9 +4,10 @@
 
 :root {
   
-  --primary:            #FFB300; 
-  --primary-container:  #FFC107; 
+  --primary:            #FFFD00; 
+  --primary-container:  #FFFD00; 
   --on-primary-container: #000000;
+  --brand-yellow-light: rgba(255, 253, 0, 0.15);
   
   --on-surface:         #111111;
   --on-surface-variant: #444444;
