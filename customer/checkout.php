@@ -59,7 +59,7 @@ require __DIR__ . '/../includes/header.php';
                             <div style="display:flex;align-items:flex-start;gap:16px;flex:1;">
                                 <div style="width:60px;height:60px;border-radius:12px;background:var(--surface-container);display:grid;place-items:center;">
                                     <?php if (isset($item['image_url']) && $item['image_url']): ?>
-                                        <img src="<?= e($item['image_url']) ?>" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
+                                        <img src="<?= e(base_url($item['image_url'])) ?>" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
                                     <?php else: ?>
                                         <span style="font-size:1.5rem;">🍗</span>
                                     <?php endif; ?>

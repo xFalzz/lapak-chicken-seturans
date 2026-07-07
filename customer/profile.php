@@ -126,7 +126,7 @@ require __DIR__ . '/../includes/header.php';
                         <div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--outline-variant);">
                             <div style="width:56px;height:56px;border-radius:12px;background:var(--surface-container);display:grid;place-items:center;overflow:hidden;flex-shrink:0;">
                                 <?php if ($fav['image_url']): ?>
-                                    <img src="<?= e($fav['image_url']) ?>" style="width:100%;height:100%;object-fit:cover;">
+                                    <img src="<?= e(base_url($fav['image_url'])) ?>" style="width:100%;height:100%;object-fit:cover;">
                                 <?php else: ?>
                                     <span style="font-size:1.5rem;">🍗</span>
                                 <?php endif; ?>

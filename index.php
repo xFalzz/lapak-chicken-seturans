@@ -92,7 +92,7 @@ require __DIR__ . '/includes/header.php';
                     <article class="menu-card">
                         <div class="menu-img-wrap">
                             <?php if (!empty($menu['image_url'])): ?>
-                                <img src="<?= e($menu['image_url']) ?>" alt="<?= e($menu['name']) ?>" loading="lazy">
+                                <img src="<?= e(base_url($menu['image_url'])) ?>" alt="<?= e($menu['name']) ?>" loading="lazy">
                             <?php else: ?>
                                 <div style="width:100%;height:100%;display:grid;place-items:center;font-size:3rem;color:var(--outline);">🍗</div>
                             <?php endif; ?>

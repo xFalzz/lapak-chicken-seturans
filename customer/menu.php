@@ -90,7 +90,7 @@ require __DIR__ . '/../includes/header.php';
 
                             <div class="menu-img-wrap" style="position:relative;height:180px;">
                                 <?php if ($hasImage): ?>
-                                    <img src="<?= e($menu['image_url']) ?>" alt="<?= e($menu['name']) ?>" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                                    <img src="<?= e(base_url($menu['image_url'])) ?>" alt="<?= e($menu['name']) ?>" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
                                 <?php else: ?>
                                     <div class="placeholder-img" style="width:100%;height:100%;background:var(--surface-container);display:grid;place-items:center;"><i class="fa-solid fa-utensils"></i></div>
                                 <?php endif; ?>
@@ -542,7 +542,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-const menus = <?= json_encode($menus) ?>;
+<?php
+$jsMenus = array_map(function($m) {
+    if (!empty($m['image_url'])) $m['image_url'] = base_url($m['image_url']);
+    return $m;
+}, $menus);
+?>
+const menus = <?= json_encode($jsMenus) ?>;
 const modal = document.getElementById('menuModal');
 const qtyInput = document.getElementById('qtyInput');
 const qtyDisplay = document.getElementById('qtyDisplay');

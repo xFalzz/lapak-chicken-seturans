@@ -31,28 +31,28 @@ INSERT INTO sauces (id, name, price_extra, is_active) VALUES
 (10, 'Salted Egg Sauce', 0, 1);
 
 INSERT INTO menus (id, category_id, name, slug, description, price, image_url, is_active, stock) VALUES
-(1, 1, 'Chicken Katsu', 'chicken-katsu', 'Ayam katsu renyah khas Lapak Chicken dengan pilihan saus favoritmu (+4k UP).', 17000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1, 50),
-(2, 1, 'Chicken Pokpok', 'chicken-pokpok', 'Potongan ayam crispy tanpa tulang, renyah di luar lembut di dalam (+3k UP).', 19000, 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80', 1, 50),
-(3, 1, 'Crispy Chicken Steak', 'crispy-chicken-steak', 'Steak ayam renyah disajikan dengan saus pilihan khas Lapak Chicken.', 23000, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80', 1, 40),
-(4, 1, 'Chicken Pokpok Sambal Matah', 'chicken-pokpok-sambal-matah', 'Chicken pokpok renyah berpadu dengan kesegaran sambal matah khas Bali.', 20000, 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80', 1, 35),
-(5, 1, 'Chicken Pokpok Geprek Bawang', 'chicken-pokpok-geprek-bawang', 'Chicken pokpok digeprek dengan sambal bawang pedas gurih nampol.', 19000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1, 35),
-(6, 2, 'Chicken Cordon Bleu', 'chicken-cordon-bleu', 'NEW! Ayam gulung isi keju lumer dan smoked beef yang renyah dan gurih.', 32000, 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80', 1, 25),
-(7, 2, 'Salted Egg Chicken', 'salted-egg-chicken', 'BEST SELLER! Chicken pokpok disiram saus telur asin gurih creamy + telur ceplok (+3k UP).', 22000, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80', 1, 30),
-(8, 3, 'Lapchick 1 (Katsu Medium)', 'lapchick-1-katsu-medium', 'Paket Hemat: Nasi + Salad + 1 Slice Chicken Katsu + Pilihan Saus + Es Teh.', 20000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1, 50),
-(9, 3, 'Lapchick 2 (Chicken Katsu)', 'lapchick-2-chicken-katsu', 'Paket Lengkap: Nasi + Salad + Chicken Katsu + Pilihan Saus + Es Teh.', 21000, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80', 1, 50),
-(10, 3, 'Lapchick 3 (Chicken Pokpok)', 'lapchick-3-chicken-pokpok', 'Paket Favorit: Nasi + Salad + Chicken Pokpok + Pilihan Saus + Es Teh.', 22000, 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80', 1, 50),
-(11, 3, 'Lapchick 4 (Pokpok Matah)', 'lapchick-4-pokpok-matah', 'Paket Pedas Segar: Nasi + Salad + Chicken Pokpok Sambal Matah + Es Teh.', 23000, 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80', 1, 40),
-(12, 3, 'Lapchick 5 (Pokpok Bawang)', 'lapchick-5-pokpok-bawang', 'Paket Geprek: Nasi + Salad + Chicken Pokpok Sambal Bawang (Lvl 1-5) + Es Teh.', 22000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1, 40),
-(13, 3, 'Lapchick 6 (Crispy Steak)', 'lapchick-6-crispy-steak', 'Paket Steak: Hotplate Crispy Chicken Steak + Salad + Telur + Saus + Es Teh.', 26000, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80', 1, 30),
-(14, 3, 'Lapchick 7 (Salted Egg)', 'lapchick-7-salted-egg', 'Paket Creamy: Nasi + Salad + Telur + Chicken Pokpok Saus Salted Egg + Es Teh.', 25000, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80', 1, 30),
-(15, 3, 'Lapchick 8 (Cordon Bleu)', 'lapchick-8-cordon-bleu', 'Paket Premium: Nasi / French Fries + Salad + 2 Chicken Cordon Bleu + Es Teh.', 35000, 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=600&q=80', 1, 20),
-(16, 4, 'Crispy Chicken Skin', 'crispy-chicken-skin', 'Kulit ayam goreng super renyah dengan bumbu Hot & Spicy yang gurih.', 10000, 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80', 1, 40),
-(17, 4, 'French Fries', 'french-fries', 'Kentang goreng renyah disajikan dengan saus Spicy & Mayo.', 12000, 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80', 1, 40),
-(18, 4, '1 Slice Chicken Katsu', '1-slice-chicken-katsu', 'Tambahan 1 potong chicken katsu renyah berbumbu Hot & Spicy.', 10000, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80', 1, 40),
-(19, 4, 'Egg (Telur)', 'egg-telur', 'Tambahan telur ceplok atau dadar untuk pelengkap hidanganmu.', 5000, 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80', 1, 100),
-(20, 5, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar alami.', 5000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80', 1, 100),
-(21, 5, 'Lemon Tea', 'lemon-tea', 'Teh lemon dingin yang segar dan kaya vitamin C.', 8000, 'https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=600&q=80', 1, 80),
-(22, 5, 'Air Mineral', 'air-mineral', 'Air mineral botol segar dan higienis.', 4000, 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=600&q=80', 1, 100);
+(1, 1, 'Chicken Katsu', 'chicken-katsu', 'Ayam katsu renyah khas Lapak Chicken dengan pilihan saus favoritmu (+4k UP).', 17000, 'img/Menu/Katsu.jpeg', 1, 50),
+(2, 1, 'Chicken Pokpok', 'chicken-pokpok', 'Potongan ayam crispy tanpa tulang, renyah di luar lembut di dalam (+3k UP).', 19000, 'img/Menu/Chicken Pok Pok.jpeg', 1, 50),
+(3, 1, 'Crispy Chicken Steak', 'crispy-chicken-steak', 'Steak ayam renyah disajikan dengan saus pilihan khas Lapak Chicken.', 23000, 'img/Menu/Crispy Chicken Steak.jpeg', 1, 40),
+(4, 1, 'Chicken Pokpok Sambal Matah', 'chicken-pokpok-sambal-matah', 'Chicken pokpok renyah berpadu dengan kesegaran sambal matah khas Bali.', 20000, 'img/Menu/Pok Pok Sambal Matah.jpeg', 1, 35),
+(5, 1, 'Chicken Pokpok Geprek Bawang', 'chicken-pokpok-geprek-bawang', 'Chicken pokpok digeprek dengan sambal bawang pedas gurih nampol.', 19000, 'img/Menu/Ayam Geprek.jpeg', 1, 35),
+(6, 2, 'Chicken Cordon Bleu', 'chicken-cordon-bleu', 'NEW! Ayam gulung isi keju lumer dan smoked beef yang renyah dan gurih.', 32000, 'img/Menu/Cordon Blue.jpeg', 1, 25),
+(7, 2, 'Salted Egg Chicken', 'salted-egg-chicken', 'BEST SELLER! Chicken pokpok disiram saus telur asin gurih creamy + telur ceplok (+3k UP).', 22000, 'img/Menu/Salted Egg.jpeg', 1, 30),
+(8, 3, 'Lapchick 1 (Katsu Medium)', 'lapchick-1-katsu-medium', 'Paket Hemat: Nasi + Salad + 1 Slice Chicken Katsu + Pilihan Saus + Es Teh.', 20000, 'img/Menu/Katsu.jpeg', 1, 50),
+(9, 3, 'Lapchick 2 (Chicken Katsu)', 'lapchick-2-chicken-katsu', 'Paket Lengkap: Nasi + Salad + Chicken Katsu + Pilihan Saus + Es Teh.', 21000, 'img/Menu/Katsu.jpeg', 1, 50),
+(10, 3, 'Lapchick 3 (Chicken Pokpok)', 'lapchick-3-chicken-pokpok', 'Paket Favorit: Nasi + Salad + Chicken Pokpok + Pilihan Saus + Es Teh.', 22000, 'img/Menu/Chicken Pok Pok.jpeg', 1, 50),
+(11, 3, 'Lapchick 4 (Pokpok Matah)', 'lapchick-4-pokpok-matah', 'Paket Pedas Segar: Nasi + Salad + Chicken Pokpok Sambal Matah + Es Teh.', 23000, 'img/Menu/Pok Pok Sambal Matah.jpeg', 1, 40),
+(12, 3, 'Lapchick 5 (Pokpok Bawang)', 'lapchick-5-pokpok-bawang', 'Paket Geprek: Nasi + Salad + Chicken Pokpok Sambal Bawang (Lvl 1-5) + Es Teh.', 22000, 'img/Menu/Ayam Geprek.jpeg', 1, 40),
+(13, 3, 'Lapchick 6 (Crispy Steak)', 'lapchick-6-crispy-steak', 'Paket Steak: Hotplate Crispy Chicken Steak + Salad + Telur + Saus + Es Teh.', 26000, 'img/Menu/Crispy Chicken Steak.jpeg', 1, 30),
+(14, 3, 'Lapchick 7 (Salted Egg)', 'lapchick-7-salted-egg', 'Paket Creamy: Nasi + Salad + Telur + Chicken Pokpok Saus Salted Egg + Es Teh.', 25000, 'img/Menu/Salted Egg.jpeg', 1, 30),
+(15, 3, 'Lapchick 8 (Cordon Bleu)', 'lapchick-8-cordon-bleu', 'Paket Premium: Nasi / French Fries + Salad + 2 Chicken Cordon Bleu + Es Teh.', 35000, 'img/Menu/Cordon Blue.jpeg', 1, 20),
+(16, 4, 'Crispy Chicken Skin', 'crispy-chicken-skin', 'Kulit ayam goreng super renyah dengan bumbu Hot & Spicy yang gurih.', 10000, 'img/Menu/Crispy Chicken Skin.jpeg', 1, 40),
+(17, 4, 'French Fries', 'french-fries', 'Kentang goreng renyah disajikan dengan saus Spicy & Mayo.', 12000, '', 1, 40),
+(18, 4, '1 Slice Chicken Katsu', '1-slice-chicken-katsu', 'Tambahan 1 potong chicken katsu renyah berbumbu Hot & Spicy.', 10000, '', 1, 40),
+(19, 4, 'Egg (Telur)', 'egg-telur', 'Tambahan telur ceplok atau dadar untuk pelengkap hidanganmu.', 5000, '', 1, 100),
+(20, 5, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar alami.', 5000, '', 1, 100),
+(21, 5, 'Lemon Tea', 'lemon-tea', 'Teh lemon dingin yang segar dan kaya vitamin C.', 8000, '', 1, 80),
+(22, 5, 'Air Mineral', 'air-mineral', 'Air mineral botol segar dan higienis.', 4000, '', 1, 100);
 
 INSERT INTO operating_hours (branch_id, day_of_week, open_time, close_time, is_closed)
 SELECT b.id, d.day, '10:00:00', '22:00:00', 0
@@ -66,10 +66,10 @@ INSERT INTO settings (branch_id, `key`, `value`) VALUES
 (2, 'tax_rate', '0.10'), (2, 'min_order', '15000'), (2, 'whatsapp', '081234567891');
 
 INSERT INTO banners (branch_id, title, image, is_active) VALUES
-(1, 'Promo Salted Egg Best Seller', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80', 1),
-(1, 'Paket Lapchick Hemat & Lengkap', 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=1200&q=80', 1),
-(2, 'Crispy Chicken Steak Spesial', 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=1200&q=80', 1),
-(2, 'New Chicken Cordon Bleu', 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=1200&q=80', 1);
+(1, 'Promo Salted Egg Best Seller', 'img/Menu/Salted Egg.jpeg', 1),
+(1, 'Paket Lapchick Hemat & Lengkap', 'img/Menu/Katsu.jpeg', 1),
+(2, 'Crispy Chicken Steak Spesial', 'img/Menu/Crispy Chicken Steak.jpeg', 1),
+(2, 'New Chicken Cordon Bleu', 'img/Menu/Cordon Blue.jpeg', 1);
 
 INSERT INTO orders (id, branch_id, user_id, order_code, customer_name, customer_phone, order_type, status, total, created_at) VALUES
 (1, 1, 4, 'LCS1-20250601-0001', 'Nabila Customer', '084444444444', 'takeaway', 'completed', 43000, NOW() - INTERVAL 2 DAY),

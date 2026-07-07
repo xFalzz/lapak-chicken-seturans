@@ -35,7 +35,7 @@ require __DIR__ . '/../includes/header.php';
                     <?php foreach ($cart['items'] as $item): ?>
                         <div class="cart-item-card" data-cart-row="<?= (int) $item['id'] ?>" style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--surface-container);align-items:center;">
                             <?php if (isset($item['image_url']) && $item['image_url']): ?>
-                                <img src="<?= e($item['image_url']) ?>" class="cart-item-img" style="width:100px;height:100px;border-radius:16px;object-fit:cover;">
+                                <img src="<?= e(base_url($item['image_url'])) ?>" class="cart-item-img" style="width:100px;height:100px;border-radius:16px;object-fit:cover;">
                             <?php else: ?>
                                 <div class="cart-item-img" style="width:100px;height:100px;border-radius:16px;background:var(--surface-container);display:grid;place-items:center;font-size:2rem;">🍗</div>
                             <?php endif; ?>

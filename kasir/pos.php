@@ -92,7 +92,7 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
                         "id" => (int) $m["id"],
                         "name" => $m["name"],
                         "price" => (float) $m["price"],
-                        "image" => $m["image_url"] ?? ""
+                        "image" => !empty($m["image_url"]) ? base_url($m["image_url"]) : ""
                     ]) ?>)'>
                         <div>
                             <?php if (!empty($m['image_url'])): ?>

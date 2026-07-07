@@ -16,5 +16,8 @@ date_default_timezone_set('Asia/Jakarta');
 
 function base_url(string $path = ''): string
 {
+    if (strpos($path, 'http://') === 0 || strpos($path, 'https://') === 0 || strpos($path, 'data:') === 0) {
+        return $path;
+    }
     return rtrim(BASE_URL, '/') . '/' . ltrim($path, '/');
 }
