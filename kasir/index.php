@@ -20,8 +20,6 @@ require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar-kasir.php';
 ?>
 <section class="content-with-sidebar" data-kasir-refresh data-branch-id="<?= $branchId ?>">
-
-    <!-- Branch Selector -->
     <form class="admin-toolbar" method="post">
         <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
         <div class="form-field">
@@ -34,7 +32,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
         </div>
     </form>
 
-    <!-- Page Header -->
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
         <div>
             <h1 style="font-size:1.6rem;font-weight:800;margin-bottom:4px;">💳 Antrian Kasir</h1>
@@ -46,7 +43,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
         </span>
     </div>
 
-    <!-- Ready to Pay -->
     <div class="queue-section">
         <div class="queue-header">
             <h2>✅ Siap Dibayar</h2>
@@ -76,7 +72,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
         </div>
     </div>
 
-    <!-- Active Orders -->
     <div class="queue-section">
         <div class="queue-header">
             <h2>🔥 Sedang Diproses</h2>
@@ -102,7 +97,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
             <?php endif; ?>
         </div>
     </div>
-
 </section>
 <script src="<?= base_url('assets/js/kasir.js') ?>"></script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

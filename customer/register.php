@@ -7,8 +7,7 @@ require __DIR__ . '/../includes/header.php';
 <section class="auth-section bg-light">
     <div class="container" style="padding: 0 var(--container-pad);">
         <div class="auth-split-register">
-            
-            <!-- Brand Panel (kiri) -->
+
             <div class="auth-text-panel">
                 <div style="font-weight:800;font-size:1.8rem;color:var(--on-surface);margin-bottom:48px;">
                     <span style="color:var(--primary-container);">Lapak</span> Chicken
@@ -30,7 +29,6 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            <!-- Form Panel (kanan) -->
             <div class="auth-form-panel">
                 <div style="text-align:center;margin-bottom:24px;">
                     <h1>Buat Akun Baru</h1>
@@ -122,7 +120,6 @@ require __DIR__ . '/../includes/header.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // === Toggle Password Visibility ===
     const toggleBtn = document.getElementById('toggleRegPwd');
     const pwdInput  = document.getElementById('reg-password');
     if (toggleBtn && pwdInput) {
@@ -132,8 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.querySelector('i').className = isHidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
         });
     }
-
-    // === Register Form Submit ===
     let registerAttempts = 0;
     let lockUntil = 0;
 

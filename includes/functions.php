@@ -112,7 +112,6 @@ function time_ago(string $datetime): string
 
 function get_or_create_cart(PDO $db): int
 {
-    // Garbage collection for guest or expired carts (older than 7 days)
     if (mt_rand(1, 100) === 1) {
         $db->query('DELETE FROM carts WHERE updated_at < DATE_SUB(NOW(), INTERVAL 7 DAY)');
     }
@@ -223,12 +222,8 @@ function check_rate_limit(string $action, int $max_attempts = 5, int $decay_seco
 {
     $db = db();
     $ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
-    
-    // Clean up expired rate limits
     $expired = time() - $decay_seconds;
     $db->prepare('DELETE FROM rate_limits WHERE last_attempt < ?')->execute([$expired]);
-    
-    // Check current attempts
     $stmt = $db->prepare('SELECT attempts, last_attempt FROM rate_limits WHERE ip = ? AND action = ? LIMIT 1');
     $stmt->execute([$ip, $action]);
     $limit = $stmt->fetch();

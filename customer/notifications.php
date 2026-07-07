@@ -3,8 +3,6 @@ require_once __DIR__ . '/../includes/functions.php';
 require_login();
 $db = db();
 $user = current_user();
-
-// Simulated notifications
 $notifications = [
     [
         'type' => 'order',
@@ -75,7 +73,6 @@ require __DIR__ . '/../includes/header.php';
             </button>
         </div>
 
-        <!-- Filter Tabs -->
         <div style="display:flex;gap:12px;margin-bottom:32px;">
             <button class="chip-icon active" style="padding:10px 20px;">
                 <i class="fa-solid fa-inbox"></i> Semua
@@ -88,7 +85,6 @@ require __DIR__ . '/../includes/header.php';
             </button>
         </div>
 
-        <!-- Notification List -->
         <div style="display:flex;flex-direction:column;gap:8px;">
             <?php foreach ($notifications as $notif): ?>
                 <div class="checkout-card" style="padding:20px 24px;<?= $notif['unread'] ? 'border-left:3px solid #B29500;' : '' ?>">

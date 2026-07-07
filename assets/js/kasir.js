@@ -69,18 +69,12 @@ async function refreshKasirQueue() {
     const activeQueue = qs("[data-queue-active]");
     
     if (!readyQueue || !activeQueue) return;
-    
-    // Group orders
     const readyOrders = orders.filter(o => o.status === 'ready');
     const activeOrders = orders.filter(o => ['confirmed', 'cooking'].includes(o.status));
-    
-    // Update count badges
     const readyCountEl = qs("[data-ready-count]");
     const activeCountEl = qs("[data-active-count]");
     if (readyCountEl) readyCountEl.textContent = readyOrders.length;
     if (activeCountEl) activeCountEl.textContent = activeOrders.length;
-    
-    // Render ready orders
     if (readyOrders.length === 0) {
       readyQueue.innerHTML = `
         <div class="empty-state">
@@ -103,8 +97,6 @@ async function refreshKasirQueue() {
         </article>
       `).join('');
     }
-    
-    // Render active orders
     if (activeOrders.length === 0) {
       activeQueue.innerHTML = `
         <div class="empty-state">

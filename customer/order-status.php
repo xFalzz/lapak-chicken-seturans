@@ -18,8 +18,7 @@ require __DIR__ . '/../includes/header.php';
 <section class="section" style="background:var(--surface);padding-top:60px;min-height:70vh;">
     <div class="container" style="max-width:1000px;">
         <div style="display:flex;gap:48px;align-items:center;">
-            
-            <!-- Left: Success Message -->
+
             <div style="flex:1;">
                 <div style="width:120px;height:120px;background:var(--primary-container);color:var(--on-primary-container);border-radius:50%;display:grid;place-items:center;font-size:3.5rem;margin-bottom:32px;box-shadow:0 12px 32px rgba(255,253,0,0.3);">
                     <i class="fa-solid fa-check"></i>
@@ -40,7 +39,6 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            <!-- Right: Order Card -->
             <div style="flex:1;">
                 <div class="success-card" style="border-radius:32px;padding:40px;box-shadow:0 24px 64px rgba(0,0,0,0.06);border:1px solid var(--outline-variant);background:white;">
                     <div style="text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px dashed var(--outline);">

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-require_role(['dapur', 'admin']);
+require_role(['dapur', 'admin', 'kasir']);
 $db = db();
 $branches = branch_options($db);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && csrf_verify()) {
@@ -17,7 +17,6 @@ $bodyClass = 'dapur-layout';
 require __DIR__ . '/../includes/header.php';
 ?>
 <section class="kds">
-    <!-- KDS Header -->
     <div class="kds-header">
         <div class="kds-header-left">
             <h1>
@@ -43,12 +42,10 @@ require __DIR__ . '/../includes/header.php';
         </div>
     </div>
 
-    <!-- KDS Grid -->
     <div class="kds-grid" data-kds data-branch-id="<?= $branchId ?>"></div>
 </section>
 
 <script>
-// Live Clock
 function updateClock() {
     const now = new Date();
     const h = String(now.getHours()).padStart(2, '0');

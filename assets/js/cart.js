@@ -11,12 +11,8 @@ document.addEventListener("submit", async (event) => {
   try {
     await apiFetch("api/cart.php?action=add", { method: "POST", body: JSON.stringify(data) });
     await refreshCartCount();
-    
-    // Reset form
     form.reset();
     if (submitBtn) submitBtn.classList.remove('loading');
-    
-    // Add success state to button briefly
     if (submitBtn) {
         const originalHtml = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Berhasil';
@@ -46,8 +42,6 @@ document.addEventListener("click", async (event) => {
   
   const row = event.target.closest("[data-cart-row]");
   const id = row?.dataset.cartRow;
-  
-  // Disable all buttons in row while processing
   if (row) {
       row.style.opacity = '0.5';
       row.style.pointerEvents = 'none';

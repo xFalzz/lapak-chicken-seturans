@@ -22,8 +22,6 @@ async function pollOrderStatus() {
   
   try {
     const order = await apiFetch(`api/order.php?action=status&code=${encodeURIComponent(root.dataset.orderCode)}`);
-    
-    // Check if cancelled
     if (order.status === 'cancelled') {
         const progressLine = qs('[data-stepper-progress]');
         if (progressLine) {
@@ -45,15 +43,11 @@ async function pollOrderStatus() {
     
     const currentIndex = order.progress_index;
     const totalSteps = qsa("[data-step]").length;
-    
-    // Update progress line
     const progressLine = qs('[data-stepper-progress]');
     if (progressLine) {
         progressLine.style.background = 'var(--primary)';
         progressLine.style.width = `${(currentIndex / (totalSteps - 1)) * 100}%`;
     }
-    
-    // Update step icons
     qsa("[data-step]").forEach((step) => {
         const stepIndex = parseInt(step.dataset.stepIndex);
         if (order.status === 'completed' || stepIndex < currentIndex) {
@@ -64,8 +58,6 @@ async function pollOrderStatus() {
             step.className = 'step';
         }
     });
-    
-    // Update badge
     const badge = qs("[data-live-status]");
     if (badge) {
         badge.textContent = order.status_label;
@@ -73,8 +65,6 @@ async function pollOrderStatus() {
         else if (order.status === 'ready') badge.className = 'badge badge-orange';
         else badge.className = 'badge badge-black';
     }
-    
-    // Refresh page if status is completed so review form shows up if not already showing
     if (order.status === 'completed' && !qs('form[action*="review"]')) {
         setTimeout(() => window.location.reload(), 2000);
     }

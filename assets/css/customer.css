@@ -1,15 +1,11 @@
-/* =============================================
-   CUSTOMER.CSS — MakanGes Customer Experience
-   Stitch Match — 100% Pixel Perfect Tweaks
-   ============================================= */
 
-/* ============ HERO LOGGED IN ============ */
+
 .hero-logged-in {
   padding: 40px 0;
   background: var(--surface);
 }
 .hero-logged-in-inner {
-  background: #2D301E; /* Darker olive to match exact Stitch shade */
+  background: #2D301E; 
   border-radius: 24px;
   display: flex;
   overflow: hidden;
@@ -46,7 +42,7 @@
 }
 .hero-logged-in h1 {
   font-size: 3rem;
-  color: #FFFFFF; /* The text is white in screenshot, not yellow */
+  color: #FFFFFF; 
   line-height: 1.2;
   margin-bottom: 16px;
   font-weight: 800;
@@ -63,7 +59,6 @@
   gap: 16px;
 }
 
-/* ============ CATEGORY CHIPS (Icon + Text) ============ */
 .chip-row-icons {
   display: flex;
   gap: 16px;
@@ -105,7 +100,6 @@
   color: #FFFFFF;
 }
 
-/* ============ MENU CARD ============ */
 .menu-card {
   background: var(--surface);
   border: 1px solid var(--outline-variant);
@@ -147,7 +141,7 @@
   margin-bottom: 12px;
 }
 .menu-rating i {
-  color: #FFB800; /* Star color */
+  color: #FFB800; 
 }
 .menu-card-footer {
   display: flex;
@@ -175,7 +169,6 @@
   background: #e6e400;
 }
 
-/* ============ MENU SIDEBAR (Pencarian Menu) ============ */
 .menu-sidebar-link {
   width: 100%;
   text-align: left;
@@ -195,8 +188,8 @@
   background: var(--surface-container-low);
 }
 .menu-sidebar-link.active {
-  background: rgba(255, 253, 0, 0.15) !important; /* Light yellow bg */
-  color: #8C7500 !important; /* Dark yellow text */
+  background: rgba(255, 253, 0, 0.15) !important; 
+  color: #8C7500 !important; 
 }
 .menu-sidebar-link i {
   font-size: 1.1rem;
@@ -207,7 +200,6 @@
   color: #8C7500;
 }
 
-/* ============ KERANJANG ITEMS ============ */
 .cart-item-card {
   display: flex;
   gap: 20px;
@@ -289,7 +281,6 @@
   color: var(--on-surface);
 }
 
-/* ============ CHECKOUT CARDS ============ */
 .checkout-card {
   background: var(--surface);
   border: 1px solid var(--outline-variant);
@@ -323,7 +314,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* ============ PESANAN BERHASIL ============ */
 .success-page-icon {
   width: 90px;
   height: 90px;
@@ -346,7 +336,6 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-/* ============ DETAIL MENU MODAL ============ */
 .detail-modal-img {
   width: 100%;
   height: 300px;
@@ -366,7 +355,6 @@
   border-radius: 0 0 24px 24px;
 }
 
-/* ============ STUNNING HEADER ALIGNMENT & DESIGN ============ */
 .topbar {
   height: 76px !important;
   padding: 0 40px !important;
@@ -451,7 +439,6 @@
   opacity: 0.85;
 }
 
-/* ============ PREMIUM MODAL WITH BLURRED BACKDROP ============ */
 .modal {
   position: fixed;
   inset: 0;
@@ -487,16 +474,11 @@
   transform: translateY(0) scale(1);
 }
 
-
-
-
-/* ============ BENTO GRIDS ============ */
 .bento-grid {
   display: grid;
   gap: 24px;
 }
 
-/* Bento Promo (Logged In) */
 .bento-promo {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -561,7 +543,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Bento Kenapa (Tamu) */
 .bento-kenapa {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -606,8 +587,6 @@
   .bento-promo, .bento-kenapa { grid-template-columns: 1fr; grid-template-rows: auto; }
 }
 
-
-/* HERO TAMU */
 .hero-tamu {
     padding-top: 80px;
     padding-bottom: 60px;
@@ -660,8 +639,6 @@
     }
 }
 
-
-/* BENTO GRID TAMU */
 .bento-grid-tamu {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -727,14 +704,12 @@
     }
 }
 
-
-/* AUTH PAGES (LOGIN/REGISTER) */
 .auth-section {
     min-height: calc(100vh - var(--header-height));
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1a1a1a; /* Dark background for login like screenshot */
+    background-color: #1a1a1a; 
     padding: 40px 0;
     background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
@@ -917,7 +892,6 @@
     }
 }
 
-/* NEW MODAL STYLES */
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 

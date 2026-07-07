@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../includes/functions.php';
-require_role(['admin']);
+require_role(['admin', 'kasir']);
 $db = db();
 $id = (int) ($_GET['id'] ?? 0);
 $stmt = $db->prepare('SELECT o.*, b.name branch_name, b.address branch_address, p.payment_method, COALESCE(p.payment_status,"unpaid") payment_status, p.amount_paid, p.paid_at FROM orders o JOIN branches b ON b.id=o.branch_id LEFT JOIN payments p ON p.order_id=o.id WHERE o.id=?');
@@ -9,9 +9,13 @@ $order = $stmt->fetch();
 $items = $db->prepare('SELECT od.*, m.name menu_name, s.name sauce_name FROM order_details od JOIN menus m ON m.id=od.menu_id LEFT JOIN sauces s ON s.id=od.sauce_id WHERE od.order_id=?');
 $items->execute([$id]);
 $pageTitle = 'Detail Pesanan';
-$bodyClass = 'admin-layout';
+$bodyClass = user_role() === 'kasir' ? 'kasir-layout' : 'admin-layout';
 require __DIR__ . '/../../includes/header.php';
-require __DIR__ . '/../../includes/sidebar-admin.php';
+if (user_role() === 'kasir') {
+    require __DIR__ . '/../../includes/sidebar-kasir.php';
+} else {
+    require __DIR__ . '/../../includes/sidebar-admin.php';
+}
 ?>
 <section class="content-with-sidebar">
     <div class="page-title"><h1><?= e($order['order_code'] ?? 'Pesanan') ?></h1><span class="badge <?= get_status_color($order['status'] ?? '') ?>"><?= get_status_label($order['status'] ?? '') ?></span></div>

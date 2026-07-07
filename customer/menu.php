@@ -22,9 +22,9 @@ require __DIR__ . '/../includes/header.php';
     <div class="container">
         
         <div style="display:flex;gap:40px;">
-            <!-- Left Sidebar: Categories -->
+            
             <aside style="width: 280px; flex-shrink:0;" class="hide-mobile">
-                <!-- Promo Spesial Checkbox -->
+                
                 <label style="display:flex;align-items:center;gap:12px;padding:16px;background:white;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.03);margin-bottom:32px;cursor:pointer;">
                     <div style="width:32px;height:32px;background:var(--primary-container);border-radius:50%;display:grid;place-items:center;color:var(--on-surface);">
                         <i class="fa-solid fa-percent"></i>
@@ -59,10 +59,8 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </aside>
 
-            <!-- Right Content: Search & Menu Grid -->
             <div style="flex:1;">
-                
-                <!-- Search Bar -->
+
                 <div style="margin-bottom:32px;position:relative;display:flex;align-items:center;background:white;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,0.04);padding:8px;border:1px solid var(--outline-variant);">
                     <i class="fa-solid fa-magnifying-glass" style="margin-left:24px;color:var(--secondary);font-size:1.1rem;"></i>
                     <input 
@@ -78,7 +76,6 @@ require __DIR__ . '/../includes/header.php';
                     <span id="searchResultCount" style="color:var(--secondary);font-weight:600;font-size:0.95rem;"></span>
                 </div>
 
-                <!-- Menu Grid -->
                 <div class="grid grid-3" data-menu-grid id="menuGrid">
                     <?php foreach ($menus as $menu):
                         $isAvailable = $menu['is_active'] && ($menu['stock'] === null || $menu['stock'] > 0);
@@ -144,7 +141,6 @@ require __DIR__ . '/../includes/header.php';
     </div>
 </section>
 
-<!-- Mobile Categories (Visible only on mobile) -->
 <style>
 .hide-mobile { display: block; }
 .mobile-cats { display: none; }
@@ -161,7 +157,6 @@ require __DIR__ . '/../includes/header.php';
     .grid-3 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 }
 
-/* ============ PREMIUM RESPONSIVE DETAIL MENU MODAL ============ */
 .modal {
   position: fixed !important;
   top: 0 !important;
@@ -244,7 +239,6 @@ require __DIR__ . '/../includes/header.php';
   flex-shrink: 0 !important;
 }
 
-/* Scrollbar styling */
 .detail-modal-left::-webkit-scrollbar,
 .detail-modal-right-scroll::-webkit-scrollbar,
 #addToCartForm::-webkit-scrollbar {
@@ -257,7 +251,6 @@ require __DIR__ . '/../includes/header.php';
   border-radius: 99px;
 }
 
-/* Interactive Sauce Cards */
 .sauce-card-label {
   border: 1px solid var(--outline-variant);
   border-radius: 16px;
@@ -280,7 +273,6 @@ require __DIR__ . '/../includes/header.php';
   box-shadow: 0 4px 12px rgba(98, 97, 0, 0.08);
 }
 
-/* Interactive Spice Level Buttons */
 .spice-level-label {
   flex: 1;
   min-width: 44px;
@@ -308,7 +300,6 @@ require __DIR__ . '/../includes/header.php';
   transform: scale(1.05);
 }
 
-/* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
   #menuModal {
     padding: 0 !important;
@@ -356,12 +347,10 @@ require __DIR__ . '/../includes/header.php';
     <?php endforeach; ?>
 </div>
 
-<!-- Modal Detail Menu -->
 <div class="modal" id="menuModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content" style="border:none; height:100%; display:flex; flex-direction:column; overflow:hidden; width:100%;">
-            
-            <!-- Header Breadcrumb & Close -->
+
             <div style="display:flex; justify-content:space-between; align-items:center; padding:20px 32px; border-bottom:1px solid var(--outline-variant); background:var(--surface); flex-shrink:0;">
                 <div style="font-size:0.95rem; font-weight:600; color:var(--secondary);">
                     Beranda <span style="margin:0 8px;">/</span> Menu <span style="margin:0 8px;">/</span> <span id="modalBreadcrumb" style="color:var(--on-surface); font-weight:700;">Menu</span>
@@ -373,11 +362,9 @@ require __DIR__ . '/../includes/header.php';
 
             <form id="addToCartForm">
                 <input type="hidden" name="menu_id" id="modalMenuId">
-                
-                <!-- Left Column: Image & Details -->
+
                 <div class="detail-modal-left">
-                    
-                    <!-- Image Area -->
+
                     <div style="position:relative; border-radius:24px; overflow:hidden; margin-bottom:28px; height:340px; background:var(--surface-container);">
                         <img id="modalImg" src="" alt="Menu" style="width:100%; height:100%; object-fit:cover; display:none;">
                         <div style="position:absolute;top:16px;left:16px;background:var(--primary-container);color:var(--on-primary-container, #1d1d00);padding:6px 16px;border-radius:99px;font-size:0.85rem;font-weight:800;display:flex;align-items:center;gap:6px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
@@ -385,7 +372,6 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    <!-- Title & Price -->
                     <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:20px; gap:16px; flex-wrap:wrap;">
                         <div style="flex:1; min-width:200px;">
                             <h2 id="modalTitle" style="font-size:2.2rem; font-weight:900; margin-bottom:8px; line-height:1.2; color:var(--on-surface); letter-spacing:-0.02em;">Nama Menu</h2>
@@ -403,7 +389,6 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    <!-- Description Card -->
                     <div style="background:var(--surface-container-low); padding:24px; border-radius:20px; margin-bottom:24px; border:1px solid rgba(202, 200, 170, 0.4);">
                         <h4 style="font-size:1.05rem; font-weight:800; margin-bottom:8px; color:var(--on-surface);">Deskripsi</h4>
                         <p id="modalDesc" style="color:var(--secondary); font-size:0.95rem; line-height:1.6; margin-bottom:16px;">Deskripsi menu</p>
@@ -413,7 +398,6 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    <!-- Cross-sell (Upsell Bento Style) -->
                     <div>
                         <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:16px;">
                             <div>
@@ -451,12 +435,11 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
                 </div>
-                
-                <!-- Right Column: Form Options -->
+
                 <div class="detail-modal-right">
                     
                     <div class="detail-modal-right-scroll">
-                        <!-- Sauce Selection -->
+                        
                         <div id="sauceSelection" style="margin-bottom:28px;">
                             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
                                 <h4 style="font-size:1.1rem; font-weight:800; color:var(--on-surface);">Pilih Saus</h4>
@@ -474,7 +457,6 @@ require __DIR__ . '/../includes/header.php';
                             </div>
                         </div>
 
-                        <!-- Level Pedas -->
                         <div id="spiceSelection" style="margin-bottom:28px;">
                             <h4 style="font-size:1.1rem; font-weight:800; color:var(--on-surface); margin-bottom:14px;">Level Pedas</h4>
                             <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -487,14 +469,12 @@ require __DIR__ . '/../includes/header.php';
                             </div>
                         </div>
 
-                        <!-- Notes -->
                         <div style="margin-bottom:8px;">
                             <h4 style="font-size:1.1rem; font-weight:800; color:var(--on-surface); margin-bottom:14px;">Catatan Tambahan</h4>
                             <textarea name="notes" placeholder="Contoh: Pisahkan sausnya ya..." style="width:100%; min-height:80px; border-radius:16px; border:1px solid var(--outline-variant); padding:16px; font-family:inherit; font-size:0.95rem; resize:vertical; background:var(--surface-container-low); outline:none; transition:all 0.2s;"></textarea>
                         </div>
                     </div>
 
-                    <!-- Bottom Bar -->
                     <div class="detail-bottom-bar">
                         
                         <div class="qty-pill" style="display:flex; align-items:center; gap:14px; background:var(--surface-container-high); padding:6px 14px; border-radius:99px; border:1px solid rgba(202, 200, 170, 0.6);">
@@ -518,9 +498,7 @@ require __DIR__ . '/../includes/header.php';
     </div>
 </div>
 
-
 <script>
-// Search & Filter Logic
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('[data-menu-search]');
     const catLinks    = document.querySelectorAll('[data-filter-category]');
@@ -557,8 +535,6 @@ document.addEventListener('DOMContentLoaded', () => {
     catLinks.forEach(link => {
         link.addEventListener('click', () => {
             currentCat = link.dataset.filterCategory;
-            
-            // Update active states
             catLinks.forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`[data-filter-category="${currentCat}"]`).forEach(el => el.classList.add('active'));
             
@@ -566,8 +542,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// Modal Logic
 const menus = <?= json_encode($menus) ?>;
 const modal = document.getElementById('menuModal');
 const qtyInput = document.getElementById('qtyInput');
@@ -579,17 +553,9 @@ let currentMenuPrice = 0;
 function updateModalTotal() {
     let qty = parseInt(qtyInput.value) || 1;
     let saucePrice = 0;
-    
-    // Find selected sauce price
     const selectedSauce = document.querySelector('input[name="sauce_id"]:checked');
     if (selectedSauce) {
-        // Find the label's price text or we could just use a data attribute if we added it,
-        // but since we know it's in the DOM, let's just find the menu sauce by id from PHP?
-        // Actually, simpler: we can just find it in the DOM text, but let's just use JS to find it from sauces array if available.
-        // For now, let's pass sauces to JS or just extract it from the DOM element.
     }
-    
-    // Since sauces are rendered server-side, it's easiest to just pass them to JS.
     const sauces = <?= json_encode($sauces) ?>;
     if(selectedSauce) {
         const s = sauces.find(x => x.id == selectedSauce.value);
@@ -611,8 +577,6 @@ function openMenuModal(id) {
     document.getElementById('modalBreadcrumb').textContent = menu.name;
     document.getElementById('modalDesc').textContent = menu.description || 'Deskripsi menu belum tersedia.';
     document.getElementById('modalPrice').textContent = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(menu.price);
-    
-    // Original Price (Mocking a higher original price)
     const origPrice = currentMenuPrice + 10000;
     document.getElementById('modalPriceOriginal').textContent = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(origPrice);
     
@@ -623,8 +587,6 @@ function openMenuModal(id) {
     } else {
         img.style.display = 'none';
     }
-
-    // Reset sauce and qty
     document.getElementById('sauceSelection').style.display = (menu.category_name && menu.category_name.toLowerCase().includes('ayam')) ? 'block' : 'none';
     document.querySelectorAll('input[name="sauce_id"]').forEach(r => r.checked = false);
     
@@ -634,8 +596,6 @@ function openMenuModal(id) {
 
     modal.classList.add('show');
 }
-
-// Add event listener to sauce radios to recalculate total
 document.querySelectorAll('input[name="sauce_id"]').forEach(radio => {
     radio.addEventListener('change', updateModalTotal);
 });

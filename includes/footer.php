@@ -1,19 +1,17 @@
 <?php
-// includes/footer.php
 ?>
 </main>
 
 <footer class="footer" style="background:#F9FAFB;border-top:1px solid var(--outline-variant);color:var(--on-surface);padding:60px 40px 30px;">
     <div class="footer-inner" style="max-width:var(--container-max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;">
-        <!-- Brand -->
+        
         <div class="footer-brand">
             <div style="font-size:1.4rem;font-weight:800;color:var(--on-surface);display:flex;align-items:center;gap:10px;margin-bottom:16px;">
                 <span class="brand-icon" style="background:var(--primary-container);color:var(--on-primary-container);width:34px;height:34px;font-size:0.85rem;display:grid;place-items:center;border-radius:8px;">LC</span>
                 Lapak Chicken
             </div>
             <p style="color:var(--secondary);font-size:0.95rem;line-height:1.6;max-width:300px;">Pelopor Ayam Geprek paling juicy di Yogyakarta. Lezat, Kenyang, Hemat. Melayani dine-in, takeaway, dan delivery.</p>
-            
-            <!-- Social Media -->
+
             <div style="display:flex;gap:12px;margin-top:20px;">
                 <a href="#" style="width:36px;height:36px;background:var(--on-surface);color:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:0.9rem;" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" style="width:36px;height:36px;background:var(--on-surface);color:var(--surface);border-radius:50%;display:grid;place-items:center;font-size:0.9rem;" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -22,7 +20,6 @@
             </div>
         </div>
 
-        <!-- Menu -->
         <div class="footer-col">
             <h5 style="font-size:1rem;margin-bottom:20px;font-weight:700;">Menu</h5>
             <div style="display:flex;flex-direction:column;gap:12px;">
@@ -38,7 +35,6 @@
             </div>
         </div>
 
-        <!-- Bantuan -->
         <div class="footer-col">
             <h5 style="font-size:1rem;margin-bottom:20px;font-weight:700;">Bantuan</h5>
             <div style="display:flex;flex-direction:column;gap:12px;">
@@ -49,7 +45,6 @@
             </div>
         </div>
 
-        <!-- Hubungi Kami -->
         <div class="footer-col">
             <h5 style="font-size:1rem;margin-bottom:20px;font-weight:700;">Hubungi Kami</h5>
             <div style="display:flex;flex-direction:column;gap:16px;">
@@ -94,7 +89,6 @@
 <script src="<?= base_url('assets/js/main.js') ?>?v=3.0"></script>
 
 <script>
-// === Header scroll effect ===
 (function() {
     const header = document.getElementById('mainTopbar');
     if (!header) return;
@@ -108,8 +102,6 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 })();
-
-// === Mobile menu button visibility ===
 (function() {
     const btn = document.getElementById('mobileMenuBtn');
     if (btn) {
@@ -120,8 +112,6 @@
         window.addEventListener('resize', checkWidth, { passive: true });
     }
 })();
-
-// === User Dropdown Toggle ===
 (function() {
     const btn = document.getElementById('userDropdownBtn');
     const menu = document.getElementById('userDropdownMenu');
@@ -132,8 +122,6 @@
         const isOpen = menu.style.display === 'block';
         menu.style.display = isOpen ? 'none' : 'block';
     });
-
-    // Hover effect for dropdown items
     menu.querySelectorAll('a, button').forEach(item => {
         item.addEventListener('mouseenter', () => {
             item.style.background = 'var(--surface-container-low)';
@@ -142,8 +130,6 @@
             item.style.background = 'transparent';
         });
     });
-
-    // Close on click outside
     document.addEventListener('click', () => {
         menu.style.display = 'none';
     });

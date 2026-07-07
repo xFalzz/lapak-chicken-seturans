@@ -21,18 +21,14 @@ try {
     <meta name="theme-color" content="#FFFD00">
     <title><?= e($pageTitle) ?> — <?= APP_NAME ?></title>
 
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍗</text></svg>">
 
-    <!-- Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- App Styles -->
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/components.css') ?>?v=<?= time() ?>">
 
@@ -42,6 +38,9 @@ try {
         <link rel="stylesheet" href="<?= base_url('assets/css/admin.css') ?>?v=<?= time() ?>">
     <?php elseif ($bodyClass === 'kasir-layout'): ?>
         <link rel="stylesheet" href="<?= base_url('assets/css/kasir.css') ?>?v=<?= time() ?>">
+        <?php if (basename($_SERVER['PHP_SELF']) === 'dapur.php'): ?>
+            <link rel="stylesheet" href="<?= base_url('assets/css/dapur.css') ?>?v=<?= time() ?>">
+        <?php endif; ?>
     <?php elseif ($bodyClass === 'dapur-layout'): ?>
         <link rel="stylesheet" href="<?= base_url('assets/css/dapur.css') ?>?v=<?= time() ?>">
     <?php endif; ?>
@@ -51,14 +50,14 @@ try {
 <body class="<?= e($bodyClass) ?>">
 
 <header class="topbar" id="mainTopbar">
-    <!-- Brand -->
+    
     <a class="brand" href="<?= base_url('index.php') ?>">
         <span class="brand-icon">LC</span>
         Lapak <span style="background:var(--primary-container);color:var(--on-primary-container);padding:2px 8px;border-radius:6px;margin-left:2px;">Chicken</span>
     </a>
 
     <?php if ($isCustomerPage): ?>
-        <!-- Customer Nav -->
+        
         <button class="icon-btn mobile-menu" id="mobileMenuBtn" type="button" data-toggle-drawer aria-label="Buka Menu" style="display:none;">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -71,20 +70,19 @@ try {
             </div>
 
             <div class="topnav-actions">
-                <!-- Notification Bell -->
+                
                 <a href="<?= base_url('customer/notifications.php') ?>" style="color:var(--on-surface);font-size:1.2rem;position:relative;" aria-label="Notifikasi">
                     <i class="fa-regular fa-bell"></i>
                     <span style="position:absolute;top:-2px;right:-2px;width:8px;height:8px;background:var(--error);border-radius:50%;border:1.5px solid var(--surface);"></span>
                 </a>
 
-                <!-- Cart -->
                 <a href="<?= base_url('customer/cart.php') ?>" style="color:var(--on-surface);font-size:1.2rem;position:relative;" aria-label="Keranjang">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span style="position:absolute;top:-4px;right:-8px;background:var(--primary-container);color:var(--on-primary-container);font-size:0.65rem;font-weight:800;padding:2px 6px;border-radius:10px;border:1.5px solid var(--surface);line-height:1;" data-cart-count><?= (int) $cartCount ?></span>
                 </a>
 
                 <?php if (is_logged_in()): ?>
-                    <!-- User Profile Dropdown -->
+                    
                     <div class="user-dropdown-wrapper" style="position:relative;margin-left:12px;">
                         <button type="button" id="userDropdownBtn" style="display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:none;padding:0;">
                             <img src="https://ui-avatars.com/api/?name=<?= urlencode(current_user()['name']) ?>&background=FFFD00&color=111&bold=true" alt="Avatar" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
@@ -95,7 +93,6 @@ try {
                             <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;color:var(--secondary);"></i>
                         </button>
 
-                        <!-- Dropdown Menu -->
                         <div class="user-dropdown-menu" id="userDropdownMenu" style="display:none;position:absolute;top:calc(100% + 12px);right:0;background:var(--surface);border:1px solid var(--outline-variant);border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,0.12);min-width:240px;z-index:999;overflow:hidden;">
                             <div style="padding:16px 20px;border-bottom:1px solid var(--outline-variant);display:flex;align-items:center;gap:12px;">
                                 <img src="https://ui-avatars.com/api/?name=<?= urlencode(current_user()['name']) ?>&background=FFFD00&color=111&bold=true" alt="Avatar" style="width:40px;height:40px;border-radius:50%;">
@@ -145,7 +142,7 @@ try {
         </nav>
 
     <?php else: ?>
-        <!-- Admin/Kasir/Dapur Premium Nav -->
+        
         <button class="icon-btn mobile-menu" type="button" data-toggle-sidebar aria-label="Menu Sidebar" style="background:var(--surface-container);border:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;cursor:pointer;font-size:1.1rem;">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -173,7 +170,7 @@ try {
 </header>
 
 <?php if ($isCustomerPage): ?>
-<!-- Mobile Drawer -->
+
 <nav class="mobile-drawer" id="mobileDrawer">
     <div class="mobile-drawer-overlay" data-toggle-drawer></div>
     <div class="mobile-drawer-content">

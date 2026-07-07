@@ -1,14 +1,9 @@
-/* =============================================
-   ADMIN.CSS — MakanGes Admin Dashboard
-   Synchronized with Customer Design System
-   ============================================= */
 
-/* ============ ADMIN LAYOUT ============ */
+
 .admin-layout {
   background: var(--surface-container-low);
 }
 
-/* ============ SIDEBAR ============ */
 .sidebar {
   position: fixed;
   top: 0;
@@ -127,27 +122,23 @@
   background: rgba(255,255,255,0.04);
 }
 
-/* ============ CONTENT WITH SIDEBAR ============ */
 .content-with-sidebar {
   margin-left: 260px;
   padding: 32px 40px;
   min-height: calc(100vh - var(--header-height));
 }
 
-/* Hide footer in admin/kasir layout */
 .admin-layout .footer,
 .kasir-layout .footer {
   display: none;
 }
 
-/* Hide main topbar in admin (sidebar has brand) */
 .admin-layout .topbar {
   margin-left: 260px;
   border-bottom: 1px solid var(--outline-variant);
   background: var(--surface);
 }
 
-/* ============ STAT CARDS ============ */
 .stat-card {
   display: flex;
   flex-direction: column;
@@ -190,7 +181,6 @@
   line-height: 1.1;
 }
 
-/* ============ ADMIN TOOLBAR ============ */
 .admin-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -224,7 +214,6 @@
   flex-shrink: 0;
 }
 
-/* ============ CHART ============ */
 .chart {
   display: flex;
   align-items: flex-end;
@@ -251,7 +240,6 @@
   opacity: 0.85;
 }
 
-/* ============ PREMIUM TABLE ============ */
 .table-wrap {
   overflow-x: auto;
   border-radius: var(--radius-lg);
@@ -299,7 +287,6 @@
   cursor: pointer;
 }
 
-/* ============ CRUD ACTIONS ============ */
 .crud-actions {
   display: flex;
   gap: 6px;
@@ -321,7 +308,6 @@
   background: #FFCDD2;
 }
 
-/* ============ SECTION HEADERS ============ */
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -333,7 +319,6 @@
   font-weight: 800;
 }
 
-/* ============ WELCOME HEADER ============ */
 .admin-welcome {
   margin-bottom: 32px;
 }
@@ -347,7 +332,6 @@
   font-size: 0.95rem;
 }
 
-/* ============ QUICK INFO CARD ============ */
 .info-item {
   display: flex;
   align-items: center;
@@ -370,7 +354,6 @@
   flex-shrink: 0;
 }
 
-/* ============ BADGE EXTRAS ============ */
 .badge-gray {
   background: var(--surface-container);
   color: var(--secondary);
@@ -384,7 +367,6 @@
   color: #FFFFFF;
 }
 
-/* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(-100%);

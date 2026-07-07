@@ -3,13 +3,9 @@ require_once __DIR__ . '/../includes/functions.php';
 require_login();
 $db = db();
 $user = current_user();
-
-// Tab filter
 $statusFilter = sanitize($_GET['status'] ?? 'all');
 $validStatuses = ['all', 'pending', 'confirmed', 'cooking', 'ready', 'completed', 'cancelled'];
 if (!in_array($statusFilter, $validStatuses)) $statusFilter = 'all';
-
-// Get orders
 $sql = 'SELECT o.*, b.name branch_name, COALESCE(p.payment_method, "-") payment_method FROM orders o JOIN branches b ON b.id = o.branch_id LEFT JOIN payments p ON p.order_id = o.id WHERE o.user_id = ?';
 $params = [$user['id']];
 if ($statusFilter !== 'all') {
@@ -33,7 +29,6 @@ require __DIR__ . '/../includes/header.php';
             <p style="color:var(--secondary);font-size:1rem;">Lihat semua riwayat pesanan Anda di Lapak Chicken.</p>
         </div>
 
-        <!-- Status Tabs -->
         <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:12px;margin-bottom:32px;border-bottom:1px solid var(--outline-variant);">
             <?php
             $tabs = [
@@ -67,7 +62,6 @@ require __DIR__ . '/../includes/header.php';
         <?php else: ?>
             <div style="display:flex;flex-direction:column;gap:16px;">
                 <?php foreach ($orders as $order): 
-                    // Get items for this order
                     $itemStmt = $db->prepare('SELECT od.*, m.name menu_name FROM order_details od JOIN menus m ON m.id = od.menu_id WHERE od.order_id = ? LIMIT 3');
                     $itemStmt->execute([$order['id']]);
                     $orderItems = $itemStmt->fetchAll();
@@ -88,7 +82,6 @@ require __DIR__ . '/../includes/header.php';
                             </div>
                         </div>
 
-                        <!-- Items preview -->
                         <?php foreach ($orderItems as $item): ?>
                             <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:0.95rem;">
                                 <span style="color:var(--secondary);"><?= (int)$item['quantity'] ?>x <?= e($item['menu_name']) ?></span>

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../includes/functions.php';
-require_role(['admin']);
+require_role(['admin', 'kasir']);
 $db = db();
 $branches = branch_options($db);
 $where = ['1=1'];
@@ -36,9 +36,13 @@ $stmt = $db->prepare($sql);
 $stmt->execute($params);
 $orders = $stmt->fetchAll();
 $pageTitle = 'Pesanan';
-$bodyClass = 'admin-layout';
+$bodyClass = user_role() === 'kasir' ? 'kasir-layout' : 'admin-layout';
 require __DIR__ . '/../../includes/header.php';
-require __DIR__ . '/../../includes/sidebar-admin.php';
+if (user_role() === 'kasir') {
+    require __DIR__ . '/../../includes/sidebar-kasir.php';
+} else {
+    require __DIR__ . '/../../includes/sidebar-admin.php';
+}
 ?>
 <section class="content-with-sidebar">
     <div class="page-title"><h1>Pesanan</h1><a class="btn btn-primary" href="?<?= e(http_build_query([...$_GET, 'export' => 1])) ?>"><i class="fa-solid fa-file-csv"></i>Export CSV</a></div>

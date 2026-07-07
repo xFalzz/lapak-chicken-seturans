@@ -34,7 +34,6 @@ $faqs = [
 <section class="section" style="background:var(--surface);padding-top:40px;">
     <div class="container" style="max-width:900px;">
 
-        <!-- Hero -->
         <div style="text-align:center;margin-bottom:48px;">
             <div style="width:64px;height:64px;background:var(--primary-container);color:var(--on-primary-container);border-radius:50%;display:grid;place-items:center;font-size:1.6rem;margin:0 auto 20px;">
                 <i class="fa-solid fa-headset"></i>
@@ -43,13 +42,11 @@ $faqs = [
             <p style="color:var(--secondary);font-size:1.05rem;max-width:500px;margin:0 auto;">Ada yang bisa kami bantu? Temukan jawaban dari pertanyaan yang sering diajukan.</p>
         </div>
 
-        <!-- Search -->
         <div style="position:relative;margin-bottom:48px;">
             <i class="fa-solid fa-magnifying-glass" style="position:absolute;left:24px;top:50%;transform:translateY(-50%);color:var(--secondary);font-size:1.1rem;"></i>
             <input type="search" placeholder="Cari pertanyaan atau topik..." style="width:100%;padding:18px 24px 18px 56px;border-radius:99px;border:1px solid var(--outline-variant);background:var(--surface);font-size:1.05rem;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
         </div>
 
-        <!-- Quick Links -->
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;">
             <a href="#faq" class="checkout-card" style="text-align:center;padding:32px 20px;cursor:pointer;">
                 <div style="font-size:1.8rem;color:#B29500;margin-bottom:12px;"><i class="fa-solid fa-circle-question"></i></div>
@@ -68,7 +65,6 @@ $faqs = [
             </a>
         </div>
 
-        <!-- FAQ -->
         <div id="faq">
             <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:24px;">Pertanyaan yang Sering Diajukan</h2>
             
@@ -89,7 +85,6 @@ $faqs = [
             </div>
         </div>
 
-        <!-- Still need help -->
         <div style="text-align:center;margin-top:64px;padding:48px;background:var(--surface-container-low);border-radius:24px;">
             <h3 style="font-size:1.3rem;margin-bottom:12px;">Masih butuh bantuan?</h3>
             <p style="color:var(--secondary);margin-bottom:24px;">Tim kami siap membantu Anda kapan saja.</p>
@@ -106,8 +101,6 @@ function toggleFaq(btn) {
     const answer = btn.nextElementSibling;
     const chevron = btn.querySelector('.faq-chevron');
     const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-    
-    // Close all other FAQs
     document.querySelectorAll('.faq-answer').forEach(a => { a.style.maxHeight = '0px'; });
     document.querySelectorAll('.faq-chevron').forEach(c => { c.style.transform = 'rotate(0deg)'; });
     

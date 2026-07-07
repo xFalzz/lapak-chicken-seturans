@@ -7,8 +7,7 @@ require __DIR__ . '/../includes/header.php';
 <section class="auth-section">
     <div class="container" style="padding: 0 var(--container-pad);">
         <div class="auth-split">
-            
-            <!-- Brand Panel (kiri) -->
+
             <div class="auth-image-panel">
                 <div class="auth-image-content">
                     <div class="auth-image-title">FRESH YOUR<br>DAY!</div>
@@ -17,7 +16,6 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            <!-- Form Panel (kanan) -->
             <div class="auth-form-panel">
                 <div style="text-align:center;margin-bottom:32px;">
                     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.4rem;color:var(--on-surface);margin-bottom:16px;">
@@ -90,7 +88,6 @@ require __DIR__ . '/../includes/header.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // === Toggle Password Visibility ===
     const toggleBtn = document.getElementById('toggleLoginPwd');
     const pwdInput  = document.getElementById('login-password');
     if (toggleBtn && pwdInput) {
@@ -100,8 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.querySelector('i').className = isHidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
         });
     }
-
-    // === Login Form Submit ===
     let loginAttempts = 0;
     let lockUntil = 0;
 

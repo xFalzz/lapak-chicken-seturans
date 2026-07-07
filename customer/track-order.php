@@ -38,11 +38,9 @@ require __DIR__ . '/../includes/header.php';
         </a>
         <h1 style="font-size:1.8rem;margin-bottom:32px;font-weight:800;">Lacak Pesanan <?= e($order['order_code']) ?></h1>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+        <div class="grid grid-2" style="gap:32px;align-items:start;">
             
-            <!-- Left: Map Placeholder + Status -->
             <div>
-                <!-- Map placeholder -->
                 <div class="checkout-card" style="padding:0;overflow:hidden;margin-bottom:24px;">
                     <div style="height:300px;background:#e8e8e8;display:flex;align-items:center;justify-content:center;position:relative;">
                         <iframe 
@@ -65,7 +63,6 @@ require __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <!-- Estimasi waktu -->
                 <div class="checkout-card" style="text-align:center;padding:32px;">
                     <div style="font-size:2.5rem;font-weight:800;color:var(--on-surface);margin-bottom:8px;">
                         <?php 
@@ -84,7 +81,6 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            <!-- Right: Tracking Timeline -->
             <div>
                 <div class="checkout-card">
                     <h2 class="checkout-card-title">Status Pesanan</h2>
@@ -104,13 +100,11 @@ require __DIR__ . '/../includes/header.php';
                                 $isPending = !$isCompleted && !$isActive;
                             ?>
                                 <div style="display:flex;gap:20px;position:relative;padding-bottom:32px;">
-                                    <!-- Timeline line -->
                                     <?php if ($stepIndex < count($steps) - 1): ?>
                                         <div style="position:absolute;left:19px;top:40px;width:2px;height:calc(100% - 20px);
                                             background:<?= $isCompleted ? '#B29500' : 'var(--outline-variant)' ?>;"></div>
                                     <?php endif; ?>
                                     
-                                    <!-- Circle -->
                                     <div style="width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:1rem;z-index:1;
                                         <?php if ($isCompleted || $isActive): ?>
                                             background:var(--primary-container);color:var(--on-primary-container);
@@ -120,7 +114,6 @@ require __DIR__ . '/../includes/header.php';
                                         <i class="fa-solid <?= $isCompleted ? 'fa-check' : $step['icon'] ?>"></i>
                                     </div>
 
-                                    <!-- Content -->
                                     <div style="padding-top:4px;">
                                         <strong style="display:block;font-size:1rem;margin-bottom:4px;
                                             color:<?= ($isCompleted || $isActive) ? 'var(--on-surface)' : 'var(--outline)' ?>;">
@@ -139,7 +132,6 @@ require __DIR__ . '/../includes/header.php';
                     <?php endif; ?>
                 </div>
 
-                <!-- Detail Pesanan -->
                 <div class="checkout-card" style="margin-top:24px;">
                     <h2 class="checkout-card-title">Detail Pesanan</h2>
                     <?php foreach ($orderItems as $item): ?>

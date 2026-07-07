@@ -3,8 +3,6 @@ require_once __DIR__ . '/../includes/functions.php';
 require_login();
 $db = db();
 $user = current_user();
-
-// Get order stats
 $orderCount = $db->prepare('SELECT COUNT(*) FROM orders WHERE user_id = ?');
 $orderCount->execute([$user['id']]);
 $orderCount = (int) $orderCount->fetchColumn();
@@ -12,16 +10,10 @@ $orderCount = (int) $orderCount->fetchColumn();
 $totalSpent = $db->prepare('SELECT COALESCE(SUM(total), 0) FROM orders WHERE user_id = ? AND status != "cancelled"');
 $totalSpent->execute([$user['id']]);
 $totalSpent = (float) $totalSpent->fetchColumn();
-
-// Points = total spent / 1000
 $points = (int) ($totalSpent / 1000);
-
-// Recent orders
 $recentOrders = $db->prepare('SELECT o.*, b.name branch_name FROM orders o JOIN branches b ON b.id = o.branch_id WHERE o.user_id = ? ORDER BY o.created_at DESC LIMIT 3');
 $recentOrders->execute([$user['id']]);
 $recentOrders = $recentOrders->fetchAll();
-
-// Favorite menus (most ordered)
 $favorites = $db->prepare('
     SELECT m.id, m.name, m.price, m.image_url, COUNT(*) as order_count
     FROM order_details od
@@ -42,7 +34,6 @@ require __DIR__ . '/../includes/header.php';
 <section class="section" style="background:var(--surface);padding-top:40px;">
     <div class="container">
 
-        <!-- Profile Header Card -->
         <div class="checkout-card" style="margin-bottom:32px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;">
                 <div style="display:flex;align-items:center;gap:24px;">
@@ -62,7 +53,6 @@ require __DIR__ . '/../includes/header.php';
                 </a>
             </div>
 
-            <!-- Stats Row -->
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px;padding-top:24px;border-top:1px solid var(--outline-variant);">
                 <div style="text-align:center;">
                     <div style="font-size:2rem;font-weight:800;color:var(--on-surface);"><?= $orderCount ?></div>
@@ -79,7 +69,6 @@ require __DIR__ . '/../includes/header.php';
             </div>
         </div>
 
-        <!-- Informasi Pribadi -->
         <div class="checkout-card" style="margin-bottom:24px;">
             <h2 class="checkout-card-title">Informasi Pribadi</h2>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
@@ -103,7 +92,7 @@ require __DIR__ . '/../includes/header.php';
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;">
-            <!-- Pesanan Terakhir -->
+            
             <div class="checkout-card">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
                     <h2 class="checkout-card-title" style="margin-bottom:0;">Pesanan Terakhir</h2>
@@ -128,7 +117,6 @@ require __DIR__ . '/../includes/header.php';
                 <?php endif; ?>
             </div>
 
-            <!-- Menu Favorit -->
             <div class="checkout-card">
                 <h2 class="checkout-card-title">Menu Favorit</h2>
                 <?php if (empty($favorites)): ?>

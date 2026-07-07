@@ -85,8 +85,6 @@ async function refreshKds() {
       }
       return;
     }
-    
-    // Remove empty state if exists
     const emptyEl = qs('.kds-empty');
     if (emptyEl) emptyEl.remove();
     

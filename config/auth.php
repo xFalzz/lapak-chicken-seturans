@@ -60,7 +60,6 @@ function require_login(): void
     }
 }
 
-
 function require_json_role(array $roles): void
 {
     if (!is_logged_in() || !in_array(user_role(), $roles, true)) {

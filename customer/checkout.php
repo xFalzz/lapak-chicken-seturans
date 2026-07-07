@@ -31,10 +31,9 @@ require __DIR__ . '/../includes/header.php';
             <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
             <input type="hidden" name="customer_name" value="<?= e($customerName) ?>">
             <input type="hidden" name="customer_phone" value="<?= e($customerPhone) ?>">
-            
-            <!-- Left: Informasi Pesanan -->
+
             <div style="display:flex;flex-direction:column;gap:24px;">
-                <!-- Info Section -->
+                
                 <div class="checkout-card" style="margin-bottom:0;border-radius:24px;border:none;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
                         <h2 class="checkout-card-title" style="margin-bottom:0;font-size:1.2rem;font-weight:800;">Alamat Pengiriman</h2>
@@ -53,7 +52,6 @@ require __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <!-- Detail Item Section -->
                 <div class="checkout-card" style="margin-bottom:0;border-radius:24px;border:none;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
                     <h2 class="checkout-card-title" style="font-size:1.2rem;font-weight:800;margin-bottom:20px;">Rincian Pesanan</h2>
                     <?php foreach ($cart['items'] as $item): ?>
@@ -82,8 +80,7 @@ require __DIR__ . '/../includes/header.php';
                                             <span style="font-style:italic;">"<?= e($item['notes']) ?>"</span>
                                         </div>
                                     <?php endif; ?>
-                                    
-                                    <!-- Embedded Cart Qty Controls -->
+
                                     <div style="display:flex;align-items:center;gap:12px;">
                                         <div class="qty-pill" style="display:inline-flex;align-items:center;gap:12px;background:var(--surface-container-low);padding:4px 8px;border-radius:99px;border:none;">
                                             <button type="button" data-cart-qty="<?= max(0, (int)$item['quantity'] - 1) ?>" style="border:none;background:transparent;cursor:pointer;color:var(--secondary);"><i class="fa-solid fa-minus"></i></button>
@@ -106,9 +103,8 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </div>
 
-            <!-- Right: Pembayaran & Ringkasan -->
             <div style="display:flex;flex-direction:column;gap:24px;">
-                <!-- Metode Pembayaran -->
+                
                 <div class="checkout-card" style="margin-bottom:0;border-radius:32px;border:none;box-shadow:0 8px 32px rgba(0,0,0,0.04);background:white;padding:32px;">
                     <h2 class="checkout-card-title" style="border-bottom:1px dashed var(--outline);padding-bottom:16px;font-size:1.3rem;font-weight:800;">Metode Pembayaran</h2>
                     
@@ -145,7 +141,6 @@ require __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <!-- Ringkasan -->
                 <div class="checkout-card" style="margin-bottom:0;border-radius:32px;border:none;box-shadow:0 8px 32px rgba(0,0,0,0.04);background:var(--surface-container-low);padding:32px;">
                     <h2 class="checkout-card-title" style="border-bottom:1px dashed var(--outline);padding-bottom:16px;font-size:1.3rem;font-weight:800;">Ringkasan Pembayaran</h2>
                     
@@ -186,7 +181,7 @@ require __DIR__ . '/../includes/header.php';
 </section>
 
 <style>
-/* Checkout custom styles */
+
 .order-type-label.active {
     border-color: #B29500 !important;
     background: rgba(255, 214, 0, 0.05);
@@ -210,8 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Handle form submit
     const form = document.getElementById('checkoutForm');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

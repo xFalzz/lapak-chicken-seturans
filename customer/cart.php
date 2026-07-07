@@ -24,8 +24,7 @@ require __DIR__ . '/../includes/header.php';
             </div>
         <?php else: ?>
             <div class="grid grid-2" style="align-items:start;grid-template-columns:2fr 1.2fr;gap:40px;">
-                
-                <!-- Left: Items -->
+
                 <div class="card" style="padding:24px;border:none;border-radius:24px;background:transparent;box-shadow:none;">
                     
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
@@ -77,8 +76,7 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                     <?php endforeach; ?>
                     </div>
-                    
-                    <!-- Upsell Section -->
+
                     <div style="background:white;border-radius:24px;padding:24px;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
                             <h3 style="font-size:1.1rem;font-weight:800;">Tambah Pelengkap?</h3>
@@ -104,7 +102,6 @@ require __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <!-- Right: Summary -->
                 <div class="summary-box card" style="padding:32px;border:1px solid var(--outline-variant);border-radius:32px;background:white;box-shadow:0 8px 32px rgba(0,0,0,0.04);">
                     <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:24px;border-bottom:1px dashed var(--outline);padding-bottom:16px;">Ringkasan Pesanan</h2>
                     
@@ -131,7 +128,6 @@ require __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
 
-                    <!-- Total simulation (subtotal + tax + 2000 biaya layanan) -->
                     <?php $totalSim = $cart['total'] + 2000; ?>
 
                     <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:24px;border-top:1px dashed var(--outline);font-size:1.4rem;font-weight:900;">
@@ -143,7 +139,6 @@ require __DIR__ . '/../includes/header.php';
                         Checkout Now <i class="fa-solid fa-arrow-right"></i>
                     </a>
 
-                    <!-- Delivery Address Mock -->
                     <div style="margin-top:32px;background:var(--surface-container-low);border-radius:16px;padding:20px;">
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
                             <h4 style="font-size:0.95rem;font-weight:700;display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-location-dot" style="color:var(--primary);"></i> Alamat Pengiriman</h4>
@@ -162,7 +157,6 @@ require __DIR__ . '/../includes/header.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Handling cart updates (Qty + / - and Remove)
     document.querySelectorAll('[data-cart-qty], [data-cart-remove]').forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const row = e.currentTarget.closest('.cart-item-card');

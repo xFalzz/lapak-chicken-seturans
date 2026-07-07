@@ -32,7 +32,7 @@ require __DIR__ . '/includes/header.php';
 ?>
 
 <?php if (is_logged_in()): ?>
-    <!-- BERANDA LOGGED IN -->
+    
     <section class="hero-logged-in">
         <div class="container">
             <div class="hero-logged-in-inner">
@@ -135,7 +135,7 @@ require __DIR__ . '/includes/header.php';
     </section>
 
 <?php else: ?>
-    <!-- BERANDA TAMU -->
+    
     <section class="hero-tamu">
         <div class="container">
             <div class="hero-tamu-inner">
@@ -177,7 +177,7 @@ require __DIR__ . '/includes/header.php';
             </div>
 
             <div class="bento-grid-tamu">
-                <!-- Top Left: Wide Image -->
+                
                 <div class="bento-tamu-card bg-img" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%), url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80'); grid-column: 1 / span 2;">
                     <div class="bento-tamu-content text-white" style="justify-content:flex-end;">
                         <h3 style="font-size:1.8rem;font-weight:800;margin-bottom:8px;">Bahan Segar Setiap Hari</h3>
@@ -185,7 +185,6 @@ require __DIR__ . '/includes/header.php';
                     </div>
                 </div>
 
-                <!-- Top Right: Square Gray -->
                 <div class="bento-tamu-card bg-gray">
                     <div class="bento-icon-tamu"><i class="fa-solid fa-pepper-hot"></i></div>
                     <div class="bento-tamu-content" style="justify-content:flex-end;">
@@ -194,7 +193,6 @@ require __DIR__ . '/includes/header.php';
                     </div>
                 </div>
 
-                <!-- Bottom Left: Square Gray -->
                 <div class="bento-tamu-card bg-gray">
                     <div class="bento-icon-tamu"><i class="fa-solid fa-piggy-bank"></i></div>
                     <div class="bento-tamu-content" style="justify-content:flex-end;">
@@ -203,7 +201,6 @@ require __DIR__ . '/includes/header.php';
                     </div>
                 </div>
 
-                <!-- Bottom Right: Wide Yellow -->
                 <div class="bento-tamu-card bg-yellow has-right-img" style="grid-column: 2 / span 2; overflow:hidden;">
                     <div class="bento-tamu-content" style="position:relative; z-index:2; justify-content:center; align-items:flex-start; max-width:60%;">
                         <h3 style="font-size:1.8rem;font-weight:800;color:var(--on-surface);margin-bottom:8px;">Varian Menu Lengkap</h3>

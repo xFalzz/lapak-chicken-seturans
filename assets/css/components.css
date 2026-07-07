@@ -1,9 +1,5 @@
-/* =============================================
-   COMPONENTS.CSS — MakanGes Design System
-   Stitch Match
-   ============================================= */
 
-/* ============ BUTTONS ============ */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -21,16 +17,14 @@
 .btn:active:not(:disabled) { transform: scale(0.97); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* Primary CTA — Stitch Yellow */
 .btn-primary {
   background: var(--primary-container);
   color: var(--on-primary-container);
 }
 .btn-primary:hover:not(:disabled) {
-  background: #E6C200; /* Slightly darker yellow for hover */
+  background: #E6C200; 
 }
 
-/* Secondary / Outline */
 .btn-outline {
   background: transparent;
   color: var(--on-surface);
@@ -48,7 +42,6 @@
   background: #333333;
 }
 
-/* ============ CARDS ============ */
 .card {
   background: var(--surface);
   border: 1px solid var(--outline-variant);
@@ -57,7 +50,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* ============ FORMS ============ */
 .form-grid { display: grid; gap: 20px; }
 .form-field { display: grid; gap: 8px; }
 .form-field label {
@@ -80,7 +72,6 @@
   border-color: var(--primary-container);
 }
 
-/* ============ BADGES ============ */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -94,7 +85,6 @@
 .badge-red { background: #FFEBEE; color: var(--error); }
 .badge-yellow { background: var(--primary-container); color: var(--on-primary-container); }
 
-/* ============ PILLS ============ */
 .branch-pill, .role-pill {
   display: inline-flex;
   align-items: center;
@@ -108,7 +98,6 @@
   border: 1px solid var(--outline-variant);
 }
 
-/* ============ CHIPS (For Menu) ============ */
 .chip-row {
   display: flex;
   gap: 12px;
@@ -132,7 +121,6 @@
   color: var(--on-primary-container);
 }
 
-/* ============ SHARED SIDEBAR SYSTEM (Admin & Kasir) ============ */
 .sidebar {
   position: fixed;
   top: 0;

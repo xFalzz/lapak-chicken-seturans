@@ -17,9 +17,7 @@ require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar-kasir.php';
 ?>
 <section class="content-with-sidebar">
-    <!-- Receipt Card -->
     <div class="receipt">
-        <!-- Header -->
         <div class="receipt-header">
             <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;">
                 <span style="width:36px;height:36px;background:var(--primary-container);color:var(--on-primary-container);border-radius:10px;display:grid;place-items:center;font-size:0.85rem;font-weight:800;">LC</span>
@@ -32,7 +30,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
             </p>
         </div>
 
-        <!-- Order Info -->
         <div class="receipt-info">
             <p><strong><?= e($order['order_code'] ?? '') ?></strong></p>
             <p><?= e($order['created_at'] ?? '') ?></p>
@@ -40,7 +37,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
             <p>Customer: <strong><?= e($order['customer_name'] ?? '') ?></strong></p>
         </div>
 
-        <!-- Items -->
         <?php foreach ($orderItems as $i): ?>
         <div class="receipt-item">
             <div class="receipt-item-name">
@@ -60,7 +56,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
         </div>
         <?php endforeach; ?>
 
-        <!-- Total -->
         <div class="receipt-total">
             <div class="receipt-total-row main">
                 <span>TOTAL</span>
@@ -76,14 +71,12 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="receipt-footer">
             <p style="font-weight:700;margin-bottom:4px;">Terima kasih telah memesan! 🍗</p>
             <p>Semoga makanannya memuaskan</p>
         </div>
     </div>
 
-    <!-- Print Actions -->
     <div class="print-actions" style="text-align:center;margin-top:24px;display:flex;gap:12px;justify-content:center;">
         <button class="btn btn-primary" onclick="window.print()" style="border-radius:var(--radius-md);padding:12px 32px;">
             <i class="fa-solid fa-print"></i> Cetak Struk

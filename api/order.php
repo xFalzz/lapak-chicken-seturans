@@ -39,7 +39,6 @@ try {
 
         $db->beginTransaction();
         try {
-            // Check and decrement stock with SELECT FOR UPDATE
             foreach ($cart['items'] as $item) {
                 $menuStmt = $db->prepare('SELECT name, stock, is_active FROM menus WHERE id = ? FOR UPDATE');
                 $menuStmt->execute([$item['menu_id']]);
@@ -51,7 +50,6 @@ try {
                     if ($item['quantity'] > (int)$menuItem['stock']) {
                         throw new Exception('Stok ' . $menuItem['name'] . ' tidak mencukupi (Tersisa: ' . $menuItem['stock'] . ')');
                     }
-                    // Decrement stock
                     $updateStock = $db->prepare('UPDATE menus SET stock = stock - ? WHERE id = ?');
                     $updateStock->execute([$item['quantity'], $item['menu_id']]);
                 }

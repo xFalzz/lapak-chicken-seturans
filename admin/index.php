@@ -36,13 +36,12 @@ require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar-admin.php';
 ?>
 <section class="content-with-sidebar">
-    <!-- Welcome Header -->
+    
     <div class="admin-welcome">
         <h1>Selamat Datang, <?= e(current_user()['name']) ?>! 👋</h1>
         <p>Berikut ringkasan bisnis Anda hari ini — <?= format_date_id() ?></p>
     </div>
 
-    <!-- Branch Filter -->
     <form class="admin-toolbar">
         <div class="form-field">
             <label>Filter Cabang</label>
@@ -55,7 +54,6 @@ require __DIR__ . '/../includes/sidebar-admin.php';
         </div>
     </form>
 
-    <!-- Stat Cards -->
     <div class="grid grid-4" style="margin-bottom:32px;">
         <div class="card stat-card">
             <div class="stat-icon yellow"><i class="fa-solid fa-bag-shopping"></i></div>
@@ -79,7 +77,6 @@ require __DIR__ . '/../includes/sidebar-admin.php';
         </div>
     </div>
 
-    <!-- Chart & Quick Info -->
     <div class="grid grid-2" style="margin-bottom:32px;">
         <div class="card" style="border-radius:var(--radius-lg);padding:28px;">
             <h2 style="margin-bottom:20px;font-size:1.1rem;font-weight:800;">📊 Revenue 7 Hari Terakhir</h2>
@@ -120,7 +117,6 @@ require __DIR__ . '/../includes/sidebar-admin.php';
         </div>
     </div>
 
-    <!-- Recent Orders Table -->
     <div class="section-header">
         <h2>📋 Pesanan Terbaru</h2>
     </div>

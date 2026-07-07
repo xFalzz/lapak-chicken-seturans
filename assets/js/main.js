@@ -57,8 +57,6 @@ async function refreshCartCount() {
     } catch (_) {}
   });
 }
-
-// Banner Carousel Logic
 function initBannerCarousel() {
     const track = qs('#bannerTrack');
     const navs = qsa('.banner-dot');
@@ -95,11 +93,8 @@ function initBannerCarousel() {
 }
 
 document.addEventListener("click", async (event) => {
-  // Admin/Kasir Sidebar
   const sidebarBtn = event.target.closest("[data-toggle-sidebar]");
   if (sidebarBtn) qs(".sidebar")?.classList.toggle("open");
-
-  // Mobile Drawer
   const drawerBtn = event.target.closest("[data-toggle-drawer]");
   if (drawerBtn) qs("#mobileDrawer")?.classList.toggle("open");
 
@@ -112,8 +107,6 @@ document.addEventListener("click", async (event) => {
 
 document.addEventListener("DOMContentLoaded", () => {
     initBannerCarousel();
-    
-    // Process server-side toasts to have the new DOM structure
     qsa(".server-toast").forEach((el) => {
         const msg = el.textContent;
         const variant = el.classList.contains('success') ? 'success' : 'error';

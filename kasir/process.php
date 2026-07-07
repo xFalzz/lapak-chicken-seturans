@@ -15,7 +15,6 @@ require __DIR__ . '/../includes/header.php';
 require __DIR__ . '/../includes/sidebar-kasir.php';
 ?>
 <section class="content-with-sidebar">
-    <!-- Header -->
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:16px;">
         <div>
             <a href="index.php" style="font-size:0.85rem;color:var(--secondary);display:flex;align-items:center;gap:6px;margin-bottom:8px;font-weight:600;">
@@ -27,7 +26,6 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
     </div>
 
     <div class="grid grid-2">
-        <!-- Order Detail -->
         <div class="order-detail-card">
             <h2><i class="fa-solid fa-receipt" style="margin-right:8px;color:var(--secondary);"></i> Detail Pesanan</h2>
             
@@ -58,14 +56,12 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
             <?php endforeach; ?>
         </div>
 
-        <!-- Payment Form -->
         <div class="order-detail-card">
             <form data-pay-form>
                 <input type="hidden" name="order_id" value="<?= $id ?>">
                 
                 <h2><i class="fa-solid fa-credit-card" style="margin-right:8px;color:var(--secondary);"></i> Pembayaran</h2>
 
-                <!-- Payment Methods -->
                 <div style="margin-bottom:20px;">
                     <label style="font-size:0.8rem;font-weight:700;color:var(--secondary);text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:10px;">Metode Pembayaran</label>
                     <div class="payment-methods">
@@ -86,19 +82,16 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
                     </div>
                 </div>
 
-                <!-- Amount -->
                 <div class="form-field" style="margin-bottom:16px;">
                     <label>Uang Diterima</label>
                     <input type="number" name="amount_paid" data-cash-input data-total="<?= e($order['total'] ?? 0) ?>" value="<?= e($order['total'] ?? 0) ?>" style="font-size:1.1rem;font-weight:700;">
                 </div>
 
-                <!-- Reference -->
                 <div class="form-field" style="margin-bottom:16px;">
                     <label>Reference No (Opsional)</label>
                     <input name="reference_no" placeholder="Contoh: TRF-123456">
                 </div>
 
-                <!-- Change -->
                 <div class="change-display">
                     <label>Kembalian</label>
                     <strong data-change>Rp 0</strong>

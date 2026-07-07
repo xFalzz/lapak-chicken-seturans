@@ -50,8 +50,6 @@ try {
             increment_rate_limit('register');
             json_response(false, null, 'Nama, phone, dan password minimal 6 karakter wajib diisi', 422);
         }
-
-        // Check duplicate email or phone
         $checkStmt = $db->prepare('SELECT COUNT(*) FROM users WHERE (email IS NOT NULL AND email = ?) OR phone = ?');
         $checkStmt->execute([$email, $phone]);
         if ($checkStmt->fetchColumn() > 0) {
