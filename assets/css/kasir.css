@@ -1,13 +1,351 @@
-.kasir-layout { background: #fff8df; }
-.order-queue { display: grid; gap: 16px; }
-.order-ticket { border-left: 8px solid var(--primary); }
-.order-ticket .code { font-size: 1.6rem; font-weight: 800; }
-.payment-total { font-size: 2rem; font-weight: 800; }
-.receipt { max-width: 420px; margin: 24px auto; background: var(--white); color: #111; font-family: 'Courier New', monospace; }
-.receipt hr { border: 0; border-top: 1px dashed #111; }
+/* =============================================
+   KASIR.CSS — MakanGes Cashier Dashboard
+   Synchronized with Customer Design System
+   ============================================= */
+
+/* ============ KASIR LAYOUT ============ */
+.kasir-layout {
+  background: var(--surface-container-low);
+}
+.kasir-layout .footer {
+  display: none;
+}
+.kasir-layout .topbar {
+  margin-left: 260px;
+}
+
+/* ============ QUEUE SECTION ============ */
+.queue-section {
+  margin-bottom: 32px;
+}
+.queue-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.queue-header h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+.queue-count {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 99px;
+  min-width: 24px;
+  text-align: center;
+}
+
+.order-queue {
+  display: grid;
+  gap: 16px;
+}
+
+/* ============ ORDER TICKET CARD ============ */
+.order-ticket {
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.order-ticket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-container);
+  border-radius: 4px 0 0 4px;
+}
+.order-ticket:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.order-ticket .code {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--on-surface);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.order-ticket .ticket-meta {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.order-ticket .ticket-meta i {
+  width: 16px;
+  font-size: 0.8rem;
+}
+.order-ticket .ticket-total {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--on-surface);
+  margin: 16px 0;
+  padding-top: 12px;
+  border-top: 1px dashed var(--outline-variant);
+}
+
+/* ============ PAYMENT TOTAL ============ */
+.payment-total {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--on-surface);
+  background: var(--primary-container);
+  padding: 8px 20px;
+  border-radius: var(--radius-lg);
+}
+
+/* ============ PAYMENT METHOD CARDS ============ */
+.payment-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.payment-method-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 2px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--on-surface);
+  transition: all 0.2s ease;
+  background: var(--surface);
+}
+.payment-method-label:hover {
+  border-color: var(--primary);
+}
+.payment-method-label:has(input:checked) {
+  border-color: var(--primary-container);
+  background: rgba(255, 253, 0, 0.08);
+  box-shadow: 0 0 0 1px var(--primary-container);
+}
+.payment-method-label input {
+  display: none;
+}
+.payment-method-label i {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+  color: var(--secondary);
+}
+.payment-method-label:has(input:checked) i {
+  color: #8C7500;
+}
+
+/* ============ CHANGE DISPLAY ============ */
+.change-display {
+  background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.change-display label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+.change-display strong {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--success);
+}
+
+/* ============ ORDER DETAIL CARD ============ */
+.order-detail-card {
+  background: var(--surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.order-detail-card h2 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--outline-variant);
+}
+.order-item {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--outline-variant);
+}
+.order-item:last-child {
+  border-bottom: none;
+}
+.order-item-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+.order-item-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--on-surface);
+}
+.order-item-subtotal {
+  font-weight: 800;
+  color: var(--on-surface);
+}
+.order-item-extras {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.order-item-note {
+  font-size: 0.8rem;
+  color: var(--error);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ============ RECEIPT ============ */
+.receipt {
+  max-width: 420px;
+  margin: 24px auto;
+  background: var(--surface);
+  color: var(--on-surface);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-lg);
+}
+.receipt-header {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 2px dashed var(--outline-variant);
+  margin-bottom: 20px;
+}
+.receipt-header h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.receipt-header p {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+.receipt-info {
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--outline-variant);
+  margin-bottom: 12px;
+}
+.receipt-info p {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  margin-bottom: 4px;
+}
+.receipt-info strong {
+  color: var(--on-surface);
+}
+.receipt-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.receipt-item:last-of-type {
+  border-bottom: none;
+}
+.receipt-item-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+.receipt-item-calc {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+.receipt-total {
+  border-top: 2px dashed var(--outline-variant);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+.receipt-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+.receipt-total-row.main {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+.receipt-footer {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--outline-variant);
+  color: var(--secondary);
+  font-size: 0.85rem;
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 20px;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--outline);
+}
+.empty-state i {
+  font-size: 2.5rem;
+  color: var(--outline);
+  margin-bottom: 12px;
+}
+.empty-state h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 4px;
+}
+.empty-state p {
+  font-size: 0.9rem;
+  color: var(--outline);
+}
+
+/* ============ PRINT STYLES ============ */
 @media print {
   .topbar, .footer, .sidebar, .print-actions { display: none !important; }
-  body { background: white; }
-  .content-with-sidebar { margin: 0; padding: 0; }
-  .receipt { box-shadow: none; margin: 0; max-width: none; }
+  body { background: white !important; }
+  .content-with-sidebar { margin: 0 !important; padding: 0 !important; }
+  .receipt { box-shadow: none !important; border: none !important; margin: 0 !important; max-width: none !important; }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .kasir-layout .topbar {
+    margin-left: 0;
+  }
+  .payment-methods {
+    grid-template-columns: 1fr;
+  }
 }

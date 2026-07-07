@@ -145,16 +145,28 @@ try {
         </nav>
 
     <?php else: ?>
-        <!-- Admin/Kasir/Dapur Nav -->
-        <button class="icon-btn mobile-menu" type="button" data-toggle-sidebar aria-label="Menu Sidebar">
+        <!-- Admin/Kasir/Dapur Premium Nav -->
+        <button class="icon-btn mobile-menu" type="button" data-toggle-sidebar aria-label="Menu Sidebar" style="background:var(--surface-container);border:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;cursor:pointer;font-size:1.1rem;">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <nav class="topnav">
+        <nav class="topnav" style="gap:16px;">
             <?php if (is_logged_in()): ?>
-                <span class="role-pill"><?= e(user_role()) ?></span>
-                <button class="btn btn-outline btn-sm" type="button" data-logout>
-                    <i class="fa-solid fa-right-from-bracket"></i> Keluar
-                </button>
+                <div style="display:flex;align-items:center;gap:16px;">
+                    <span class="role-pill" style="background:var(--primary-container);color:var(--on-primary-container);font-weight:700;padding:6px 16px;border-radius:99px;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">
+                        <i class="fa-solid fa-shield-halved" style="margin-right:4px;"></i>
+                        <?= e(user_role()) ?>
+                    </span>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <img src="https://ui-avatars.com/api/?name=<?= urlencode(current_user()['name']) ?>&background=111111&color=FFFFFF&bold=true&size=36" alt="Avatar" style="width:34px;height:34px;border-radius:50%;border:2px solid var(--outline-variant);">
+                        <div style="line-height:1.2;">
+                            <div style="font-size:0.85rem;font-weight:700;color:var(--on-surface);"><?= e(current_user()['name']) ?></div>
+                            <div style="font-size:0.7rem;color:var(--secondary);">Online</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" type="button" data-logout style="min-height:36px;padding:6px 16px;font-size:0.85rem;border-radius:10px;gap:6px;">
+                        <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                    </button>
+                </div>
             <?php endif; ?>
         </nav>
     <?php endif; ?>

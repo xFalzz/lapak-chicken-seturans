@@ -11,63 +11,25 @@ document.addEventListener("submit", async (event) => {
   const form = event.target.closest("[data-pay-form]");
   if (!form) return;
   event.preventDefault();
+  
+  const submitBtn = form.querySelector('button[type="submit"], button:not([type])');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses...';
+  }
+  
   const data = Object.fromEntries(new FormData(form).entries());
   try {
     const result = await apiFetch("api/status.php?action=pay", { method: "POST", body: JSON.stringify(data) });
     window.location.href = `${window.APP.baseUrl}/kasir/receipt.php?order_id=${result.order_id}`;
   } catch (error) {
-    toast(error.message, "error");
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fa-solid fa-check-circle"></i> Konfirmasi Pembayaran';
+    }
+    toast(error.message || "Gagal memproses pembayaran", "error");
   }
 });
-
-async function refreshKasirQueue() {
-  const container = qs("[data-kasir-refresh]");
-  if (!container) return;
-  const branchId = container.dataset.branchId;
-  try {
-    const orders = await apiFetch(`api/order.php?action=list&branch_id=${branchId}`);
-    
-    const readyQueue = qs("[data-queue-ready]");
-    const activeQueue = qs("[data-queue-active]");
-    
-    if (!readyQueue || !activeQueue) return;
-    
-    // Group orders
-    const readyOrders = orders.filter(o => o.status === 'ready');
-    const activeOrders = orders.filter(o => ['confirmed', 'cooking'].includes(o.status));
-    
-    // Render ready orders
-    if (readyOrders.length === 0) {
-      readyQueue.innerHTML = '<p class="muted" style="grid-column: 1/-1; text-align: center; padding: 24px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-border);">Tidak ada antrean siap dibayar.</p>';
-    } else {
-      readyQueue.innerHTML = readyOrders.map(o => `
-        <article class="card order-ticket" data-order-ticket-id="${o.id}">
-          <div class="code">${escapeHtml(o.order_code)}</div>
-          <p>${escapeHtml(o.customer_name)} - ${escapeHtml(o.order_type)}</p>
-          <p>${escapeHtml(o.items_count || '0')} item - ${timeAgo(o.created_at)}</p>
-          <h3>${rupiah(Number(o.total))}</h3>
-          <a class="btn btn-primary" href="process.php?order_id=${o.id}">Proses Pembayaran</a>
-        </article>
-      `).join('');
-    }
-    
-    // Render active orders
-    if (activeOrders.length === 0) {
-      activeQueue.innerHTML = '<p class="muted" style="grid-column: 1/-1; text-align: center; padding: 24px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-border);">Tidak ada antrean sedang diproses.</p>';
-    } else {
-      activeQueue.innerHTML = activeOrders.map(o => `
-        <article class="card order-ticket" data-order-ticket-id="${o.id}">
-          <div class="code">${escapeHtml(o.order_code)}</div>
-          <p>${escapeHtml(o.customer_name)} - ${getStatusLabel(o.status)}</p>
-          <p>${escapeHtml(o.items_count || '0')} item - ${timeAgo(o.created_at)}</p>
-          <h3>${rupiah(Number(o.total))}</h3>
-        </article>
-      `).join('');
-    }
-  } catch (err) {
-    console.error("Failed to refresh cashier queue:", err);
-  }
-}
 
 function escapeHtml(str) {
   if (!str) return '';
@@ -75,6 +37,7 @@ function escapeHtml(str) {
 }
 
 function timeAgo(dateStr) {
+  if (!dateStr) return '';
   const seconds = Math.max(0, Math.floor((new Date() - new Date(dateStr.replace(/-/g, "/"))) / 1000));
   if (seconds < 60) return `${seconds} detik lalu`;
   const minutes = Math.floor(seconds / 60);
@@ -93,6 +56,77 @@ function getStatusLabel(status) {
     'completed': 'Selesai',
     'cancelled': 'Batal'
   }[status] || status;
+}
+
+async function refreshKasirQueue() {
+  const container = qs("[data-kasir-refresh]");
+  if (!container) return;
+  const branchId = container.dataset.branchId;
+  try {
+    const orders = await apiFetch(`api/order.php?action=list&branch_id=${branchId}`);
+    
+    const readyQueue = qs("[data-queue-ready]");
+    const activeQueue = qs("[data-queue-active]");
+    
+    if (!readyQueue || !activeQueue) return;
+    
+    // Group orders
+    const readyOrders = orders.filter(o => o.status === 'ready');
+    const activeOrders = orders.filter(o => ['confirmed', 'cooking'].includes(o.status));
+    
+    // Update count badges
+    const readyCountEl = qs("[data-ready-count]");
+    const activeCountEl = qs("[data-active-count]");
+    if (readyCountEl) readyCountEl.textContent = readyOrders.length;
+    if (activeCountEl) activeCountEl.textContent = activeOrders.length;
+    
+    // Render ready orders
+    if (readyOrders.length === 0) {
+      readyQueue.innerHTML = `
+        <div class="empty-state">
+          <i class="fa-solid fa-inbox"></i>
+          <h3>Belum ada pesanan siap bayar</h3>
+          <p>Pesanan akan muncul setelah dapur menyelesaikan masakan</p>
+        </div>
+      `;
+    } else {
+      readyQueue.innerHTML = readyOrders.map(o => `
+        <article class="card order-ticket" data-order-ticket-id="${o.id}">
+          <div class="code">${escapeHtml(o.order_code)}</div>
+          <p class="ticket-meta"><i class="fa-solid fa-user"></i> ${escapeHtml(o.customer_name)}</p>
+          <p class="ticket-meta"><i class="fa-solid fa-tag"></i> ${escapeHtml(o.order_type)} • ${escapeHtml(String(o.items_count || '0'))} item</p>
+          <p class="ticket-meta"><i class="fa-regular fa-clock"></i> ${timeAgo(o.created_at)}</p>
+          <div class="ticket-total">${rupiah(Number(o.total))}</div>
+          <a class="btn btn-primary" href="process.php?order_id=${o.id}" style="width:100%;justify-content:center;border-radius:var(--radius-md);margin-top:4px;">
+            <i class="fa-solid fa-credit-card"></i> Proses Pembayaran
+          </a>
+        </article>
+      `).join('');
+    }
+    
+    // Render active orders
+    if (activeOrders.length === 0) {
+      activeQueue.innerHTML = `
+        <div class="empty-state">
+          <i class="fa-solid fa-fire-flame-curved"></i>
+          <h3>Tidak ada pesanan diproses</h3>
+          <p>Pesanan yang dikonfirmasi atau sedang dimasak akan muncul di sini</p>
+        </div>
+      `;
+    } else {
+      activeQueue.innerHTML = activeOrders.map(o => `
+        <article class="card order-ticket" data-order-ticket-id="${o.id}">
+          <div class="code">${escapeHtml(o.order_code)}</div>
+          <p class="ticket-meta"><i class="fa-solid fa-user"></i> ${escapeHtml(o.customer_name)}</p>
+          <p class="ticket-meta"><i class="fa-solid fa-spinner fa-spin"></i> ${getStatusLabel(o.status)}</p>
+          <p class="ticket-meta"><i class="fa-regular fa-clock"></i> ${timeAgo(o.created_at)}</p>
+          <div class="ticket-total">${rupiah(Number(o.total))}</div>
+        </article>
+      `).join('');
+    }
+  } catch (err) {
+    console.error("Failed to refresh cashier queue:", err);
+  }
 }
 
 if (qs("[data-kasir-refresh]")) {
