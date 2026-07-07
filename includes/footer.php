@@ -7,7 +7,7 @@
         
         <div class="footer-brand">
             <div style="font-size:1.4rem;font-weight:800;color:var(--on-surface);display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-                <span class="brand-icon" style="background:var(--primary-container);color:var(--on-primary-container);width:34px;height:34px;font-size:0.85rem;display:grid;place-items:center;border-radius:8px;">LC</span>
+                <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo Lapak Chicken" class="brand-icon" style="object-fit:cover;width:34px;height:34px;border-radius:8px;">
                 Lapak Chicken
             </div>
             <p style="color:var(--secondary);font-size:0.95rem;line-height:1.6;max-width:300px;">Pelopor Ayam Geprek paling juicy di Yogyakarta. Lezat, Kenyang, Hemat. Melayani dine-in, takeaway, dan delivery.</p>

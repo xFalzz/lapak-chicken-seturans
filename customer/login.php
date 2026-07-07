@@ -19,7 +19,7 @@ require __DIR__ . '/../includes/header.php';
             <div class="auth-form-panel">
                 <div style="text-align:center;margin-bottom:32px;">
                     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.4rem;color:var(--on-surface);margin-bottom:16px;">
-                        <span class="brand-icon" style="width:32px;height:32px;background:var(--primary-container);color:var(--on-primary-container);display:grid;place-items:center;border-radius:8px;font-size:0.9rem;">LC</span>
+                        <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo Lapak Chicken" class="brand-icon" style="object-fit:cover;width:36px;height:36px;border-radius:8px;">
                         Lapak Chicken
                     </div>
                     <h1>Selamat Datang</h1>

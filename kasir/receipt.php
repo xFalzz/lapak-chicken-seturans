@@ -20,7 +20,7 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
     <div class="receipt">
         <div class="receipt-header">
             <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;">
-                <span style="width:36px;height:36px;background:var(--primary-container);color:var(--on-primary-container);border-radius:10px;display:grid;place-items:center;font-size:0.85rem;font-weight:800;">LC</span>
+                <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo" style="object-fit:cover;width:36px;height:36px;border-radius:10px;">
                 <h2><?= APP_NAME ?></h2>
             </div>
             <p>

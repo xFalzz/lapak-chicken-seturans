@@ -21,7 +21,7 @@ require __DIR__ . '/../includes/sidebar-kasir.php';
     <div class="kds-header" style="background: #161616; color: #FFFFFF; padding: 24px 28px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.06); margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
         <div class="kds-header-left">
             <h1 style="color: #FFFFFF; font-size: 1.6rem; font-weight: 800; display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
-                <span style="width:42px;height:42px;background:var(--primary-container);color:var(--on-primary-container);border-radius:12px;display:grid;place-items:center;font-size:0.9rem;font-weight:800;">LC</span>
+                <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo" style="object-fit:cover;width:42px;height:42px;border-radius:12px;">
                 Kitchen Display System
             </h1>
             <p style="color: rgba(255,255,255,0.45); font-size: 0.9rem;"><i class="fa-solid fa-store" style="margin-right:6px;"></i> <?= e($branchName) ?></p>

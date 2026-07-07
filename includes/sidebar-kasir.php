@@ -4,7 +4,7 @@ $inOrders = strpos($_SERVER['PHP_SELF'], '/orders/') !== false;
 ?>
 <aside class="sidebar kasir-sidebar" data-sidebar>
     <a class="sidebar-brand" href="<?= base_url('kasir/index.php') ?>">
-        <span class="brand-icon">LC</span>
+        <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo" class="brand-icon" style="object-fit:cover;width:32px;height:32px;border-radius:8px;">
         Kasir
     </a>
 

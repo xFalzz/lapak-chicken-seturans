@@ -52,7 +52,7 @@ try {
 <header class="topbar" id="mainTopbar">
     
     <a class="brand topbar-brand" href="<?= base_url('index.php') ?>">
-        <span class="brand-icon">LC</span>
+        <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo Lapak Chicken" class="brand-icon" style="object-fit:cover;width:36px;height:36px;border-radius:8px;">
         Lapak <span style="background:var(--primary-container);color:var(--on-primary-container);padding:2px 8px;border-radius:6px;margin-left:2px;">Chicken</span>
     </a>
 
@@ -176,7 +176,7 @@ try {
     <div class="mobile-drawer-content">
         <div class="drawer-header">
             <div class="brand" style="font-size:1.1rem;">
-                <span class="brand-icon" style="width:30px;height:30px;font-size:0.85rem;">LC</span>
+                <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo Lapak Chicken" class="brand-icon" style="object-fit:cover;width:30px;height:30px;border-radius:8px;">
                 Lapak Chicken
             </div>
             <button class="icon-btn" type="button" data-toggle-drawer aria-label="Tutup" style="width:36px;height:36px;">

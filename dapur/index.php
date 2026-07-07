@@ -20,7 +20,7 @@ require __DIR__ . '/../includes/header.php';
     <div class="kds-header">
         <div class="kds-header-left">
             <h1>
-                <span style="width:42px;height:42px;background:var(--primary-container);color:var(--on-primary-container);border-radius:12px;display:grid;place-items:center;font-size:0.9rem;font-weight:800;">LC</span>
+                <img src="<?= base_url('img/Logo.jpeg') ?>" alt="Logo" style="object-fit:cover;width:42px;height:42px;border-radius:12px;vertical-align:middle;margin-right:8px;">
                 Kitchen Display
             </h1>
             <p><i class="fa-solid fa-store" style="margin-right:6px;"></i> <?= e($branchName) ?></p>
