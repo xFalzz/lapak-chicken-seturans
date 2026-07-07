@@ -1,20 +1,20 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
-TRUNCATE TABLE rate_limits;
-TRUNCATE TABLE banners;
-TRUNCATE TABLE operating_hours;
-TRUNCATE TABLE settings;
-TRUNCATE TABLE reviews;
-TRUNCATE TABLE payments;
-TRUNCATE TABLE order_details;
-TRUNCATE TABLE orders;
-TRUNCATE TABLE cart_items;
-TRUNCATE TABLE carts;
-TRUNCATE TABLE menus;
-TRUNCATE TABLE sauces;
-TRUNCATE TABLE categories;
-TRUNCATE TABLE users;
-TRUNCATE TABLE branches;
+DELETE FROM rate_limits; ALTER TABLE rate_limits AUTO_INCREMENT = 1;
+DELETE FROM banners; ALTER TABLE banners AUTO_INCREMENT = 1;
+DELETE FROM operating_hours; ALTER TABLE operating_hours AUTO_INCREMENT = 1;
+DELETE FROM settings; ALTER TABLE settings AUTO_INCREMENT = 1;
+DELETE FROM reviews; ALTER TABLE reviews AUTO_INCREMENT = 1;
+DELETE FROM payments; ALTER TABLE payments AUTO_INCREMENT = 1;
+DELETE FROM order_details; ALTER TABLE order_details AUTO_INCREMENT = 1;
+DELETE FROM orders; ALTER TABLE orders AUTO_INCREMENT = 1;
+DELETE FROM cart_items; ALTER TABLE cart_items AUTO_INCREMENT = 1;
+DELETE FROM carts; ALTER TABLE carts AUTO_INCREMENT = 1;
+DELETE FROM menus; ALTER TABLE menus AUTO_INCREMENT = 1;
+DELETE FROM sauces; ALTER TABLE sauces AUTO_INCREMENT = 1;
+DELETE FROM categories; ALTER TABLE categories AUTO_INCREMENT = 1;
+DELETE FROM users; ALTER TABLE users AUTO_INCREMENT = 1;
+DELETE FROM branches; ALTER TABLE branches AUTO_INCREMENT = 1;
 
 INSERT INTO branches (id, name, address, phone) VALUES
 (1, 'Lapak Chicken Seturan Pusat', 'Jl. Seturan Raya No. 12, Caturtunggal, Depok, Sleman, Yogyakarta', '081234567890'),
