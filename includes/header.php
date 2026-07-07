@@ -51,15 +51,15 @@ try {
 
 <header class="topbar" id="mainTopbar">
     
-    <a class="brand" href="<?= base_url('index.php') ?>">
+    <a class="brand topbar-brand" href="<?= base_url('index.php') ?>">
         <span class="brand-icon">LC</span>
         Lapak <span style="background:var(--primary-container);color:var(--on-primary-container);padding:2px 8px;border-radius:6px;margin-left:2px;">Chicken</span>
     </a>
 
     <?php if ($isCustomerPage): ?>
         
-        <button class="icon-btn mobile-menu" id="mobileMenuBtn" type="button" data-toggle-drawer aria-label="Buka Menu" style="display:none;">
-            <i class="fa-solid fa-bars"></i>
+        <button class="icon-btn mobile-menu" id="mobileMenuBtn" type="button" data-toggle-drawer aria-label="Buka Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
 
         <nav class="topnav" id="mainNav">
@@ -143,10 +143,10 @@ try {
 
     <?php else: ?>
         
-        <button class="icon-btn mobile-menu" type="button" data-toggle-sidebar aria-label="Menu Sidebar" style="background:var(--surface-container);border:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;cursor:pointer;font-size:1.1rem;">
-            <i class="fa-solid fa-bars"></i>
+        <button class="icon-btn sidebar-toggle-btn" type="button" data-toggle-sidebar aria-label="Menu Sidebar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
-        <nav class="topnav" style="gap:16px;">
+        <nav class="topnav" style="gap:16px; margin-left: auto;">
             <?php if (is_logged_in()): ?>
                 <div style="display:flex;align-items:center;gap:16px;">
                     <span class="role-pill" style="background:var(--primary-container);color:var(--on-primary-container);font-weight:700;padding:6px 16px;border-radius:99px;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.05em;">

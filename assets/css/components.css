@@ -259,3 +259,40 @@
   }
 }
 
+.mobile-menu,
+.sidebar-toggle-btn {
+  background: var(--surface-container);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--on-surface);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.mobile-menu:hover,
+.sidebar-toggle-btn:hover {
+  background: var(--outline-variant);
+}
+
+.sidebar-toggle-btn {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-toggle-btn {
+    display: grid !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .admin-layout .topbar .topbar-brand,
+  .kasir-layout .topbar .topbar-brand,
+  .dapur-layout .topbar .topbar-brand {
+    display: none !important;
+  }
+}
+
