@@ -28,6 +28,9 @@ try {
     }
 
     if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!is_logged_in()) {
+            json_response(false, null, 'WAJIB LOGIN UNTUK MELANJUTKAN PEMBAYARAN', 401);
+        }
         $data = request_data();
         $branchId = (int) ($data['branch_id'] ?? $_SESSION['branch_id'] ?? 0);
         $cart = get_cart($db);

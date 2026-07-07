@@ -19,7 +19,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     <meta name="description" content="Lapak Chicken Seturan - Ayam crispy premium, saus pilihan, dan checkout cepat untuk dine-in, takeaway, atau delivery di Yogyakarta.">
     <meta name="theme-color" content="#FFFD00">
-    <title><?= e($pageTitle) ?> — <?= APP_NAME ?></title>
+    <title><?= ($pageTitle === APP_NAME) ? e(APP_NAME) : e($pageTitle) . ' | ' . e(APP_NAME) ?></title>
 
     <link rel="icon" type="image/jpeg" href="<?= base_url('img/logo2.jpeg') ?>">
 

@@ -135,9 +135,18 @@ require __DIR__ . '/../includes/header.php';
                         <span style="color:var(--on-surface);"><?= format_rupiah((float) $totalSim) ?></span>
                     </div>
 
-                    <a href="<?= base_url('customer/checkout.php') ?>" class="btn btn-primary" style="width:100%;margin-top:32px;justify-content:center;border-radius:16px;padding:16px;font-size:1.1rem;font-weight:800;box-shadow:0 8px 24px rgba(255,253,0,0.2);">
-                        Checkout Now <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                    <?php if (is_logged_in()): ?>
+                        <a href="<?= base_url('customer/checkout.php') ?>" class="btn btn-primary" style="width:100%;margin-top:32px;justify-content:center;border-radius:16px;padding:16px;font-size:1.1rem;font-weight:800;box-shadow:0 8px 24px rgba(255,253,0,0.2);">
+                            Checkout Now <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    <?php else: ?>
+                        <a href="<?= base_url('customer/login.php') ?>" onclick="alert('WAJIB LOGIN UNTUK MELANJUTKAN PEMBAYARAN');" class="btn btn-primary" style="width:100%;margin-top:32px;justify-content:center;border-radius:16px;padding:16px;font-size:1.1rem;font-weight:800;box-shadow:0 8px 24px rgba(255,253,0,0.2);">
+                            <i class="fa-solid fa-lock"></i> Login untuk Lanjut Pembayaran
+                        </a>
+                        <p style="text-align:center;font-size:0.85rem;color:#d9534f;font-weight:700;margin-top:12px;margin-bottom:0;">
+                            * WAJIB LOGIN UNTUK MELANJUTKAN PEMBAYARAN & MENDAPATKAN ID PESANAN
+                        </p>
+                    <?php endif; ?>
 
                     <div style="margin-top:32px;background:var(--surface-container-low);border-radius:16px;padding:20px;">
                         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">

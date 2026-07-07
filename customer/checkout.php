@@ -3,6 +3,11 @@ require_once __DIR__ . '/../includes/functions.php';
 $db = db();
 $cart = get_cart($db);
 
+if (!is_logged_in()) {
+    flash('error', 'WAJIB LOGIN UNTUK MELANJUTKAN PEMBAYARAN');
+    redirect(base_url('customer/login.php'));
+}
+
 if (!$cart['items']) {
     flash('error', 'Keranjang masih kosong');
     redirect(base_url('customer/menu.php'));
