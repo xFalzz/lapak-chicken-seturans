@@ -34,25 +34,26 @@ require __DIR__ . '/../includes/header.php';
 
         <form id="checkoutForm" class="grid grid-2" style="align-items:start;grid-template-columns:2fr 1.2fr;gap:40px;" method="post" action="<?= base_url('api/order.php?action=create') ?>">
             <input type="hidden" name="csrf_token" value="<?= csrf_token() ?>">
-            <input type="hidden" name="customer_name" value="<?= e($customerName) ?>">
-            <input type="hidden" name="customer_phone" value="<?= e($customerPhone) ?>">
 
             <div style="display:flex;flex-direction:column;gap:24px;">
                 
                 <div class="checkout-card" style="margin-bottom:0;border-radius:24px;border:none;box-shadow:0 4px 24px rgba(0,0,0,0.02);border:1px solid var(--outline-variant);">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-                        <h2 class="checkout-card-title" style="margin-bottom:0;font-size:1.2rem;font-weight:800;">Alamat Pengiriman</h2>
-                        <a href="#" style="font-size:0.9rem;font-weight:700;color:var(--on-surface);text-decoration:underline;">Ubah Alamat</a>
+                        <h2 class="checkout-card-title" style="margin-bottom:0;font-size:1.2rem;font-weight:800;">Informasi Penerima</h2>
                     </div>
                     
-                    <div class="address-box" style="background:transparent;border:1px solid var(--outline-variant);border-radius:16px;">
-                        <div class="address-icon" style="background:var(--surface-container-low);box-shadow:none;">
-                            <i class="fa-solid fa-location-dot"></i>
+                    <div style="display:flex;flex-direction:column;gap:14px;">
+                        <div>
+                            <label style="font-size:0.85rem;font-weight:700;color:var(--secondary);margin-bottom:6px;display:block;">Nama Lengkap</label>
+                            <input type="text" name="customer_name" value="<?= e($customerName) ?>" required placeholder="Nama lengkap penerima" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--outline-variant);font-size:0.95rem;font-family:inherit;background:var(--surface-container-low);outline:none;">
                         </div>
                         <div>
-                            <strong style="display:block;font-size:1.05rem;margin-bottom:4px;"><?= e($branch['name']) ?> (Mock Delivery)</strong>
-                            <span style="font-size:0.95rem;color:var(--secondary);line-height:1.5;display:block;">Gedung Cyber 2 Tower Lantai 17, Jl. H. R. Rasuna Said Blok X-5 Kav. 13</span>
-                            <span style="display:block;font-size:0.9rem;color:var(--secondary);margin-top:8px;"><i class="fa-solid fa-circle-info" style="color:var(--on-surface-variant);margin-right:4px;"></i> Tinggalkan di lobi, hubungi di bawah...</span>
+                            <label style="font-size:0.85rem;font-weight:700;color:var(--secondary);margin-bottom:6px;display:block;">Nomor WhatsApp</label>
+                            <input type="tel" name="customer_phone" value="<?= e($customerPhone) ?>" required placeholder="0821xxxxxxx" style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--outline-variant);font-size:0.95rem;font-family:inherit;background:var(--surface-container-low);outline:none;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.85rem;font-weight:700;color:var(--secondary);margin-bottom:6px;display:block;">Catatan Alamat <span style="font-weight:400;">(Opsional)</span></label>
+                            <textarea name="delivery_address" placeholder="Contoh: Kos blok B no. 5, minta hubungi via WA dulu..." style="width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--outline-variant);font-size:0.95rem;font-family:inherit;background:var(--surface-container-low);outline:none;resize:vertical;min-height:72px;"></textarea>
                         </div>
                     </div>
                 </div>
@@ -142,7 +143,18 @@ require __DIR__ . '/../includes/header.php';
                             </div>
                             <i class="fa-solid fa-wallet" style="color:var(--secondary);font-size:1.2rem;"></i>
                         </label>
-                        <a href="#" style="text-align:center;font-weight:700;color:var(--on-surface);text-decoration:underline;font-size:0.95rem;margin-top:8px;">Lihat metode lainnya</a>
+                        <button type="button" class="btn btn-outline" style="font-size:0.9rem;width:100%;margin-top:8px;border-radius:12px;padding:12px;" onclick="document.getElementById('extraPaymentMethods').style.display = document.getElementById('extraPaymentMethods').style.display === 'none' ? 'block' : 'none';"><i class="fa-solid fa-chevron-down"></i> Lihat Metode Lainnya</button>
+                        <div id="extraPaymentMethods" style="display:none;margin-top:12px;border:1px solid var(--outline-variant);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;">
+                            <label style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--outline-variant);border-radius:12px;cursor:pointer;" class="payment-method-label">
+                                <input type="radio" name="payment_method" value="Transfer Bank" style="accent-color:var(--primary-container);width:20px;height:20px;"> <span style="font-weight:700;">Transfer Bank</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--outline-variant);border-radius:12px;cursor:pointer;" class="payment-method-label">
+                                <input type="radio" name="payment_method" value="QRIS" style="accent-color:var(--primary-container);width:20px;height:20px;"> <span style="font-weight:700;">QRIS</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--outline-variant);border-radius:12px;cursor:pointer;" class="payment-method-label">
+                                <input type="radio" name="payment_method" value="Cash" style="accent-color:var(--primary-container);width:20px;height:20px;"> <span style="font-weight:700;">Bayar di Tempat (Cash)</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 

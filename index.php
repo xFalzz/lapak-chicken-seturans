@@ -25,6 +25,7 @@ if (empty($_SESSION['branch_id']) && !empty($branches)) {
 }
 $selectedBranch = (int) ($_SESSION['branch_id'] ?? ($branches[0]['id'] ?? 0));
 
+$categories  = $db->query('SELECT * FROM categories WHERE is_active = 1 ORDER BY name')->fetchAll();
 $popularMenus = $db->query('SELECT m.*, c.name category_name FROM menus m JOIN categories c ON c.id = m.category_id WHERE m.is_active = 1 LIMIT 4')->fetchAll();
 
 $pageTitle = 'Beranda';
@@ -38,10 +39,10 @@ require __DIR__ . '/includes/header.php';
             <div class="hero-logged-in-inner">
                 <div class="hero-logged-in-content">
                     <div class="hero-eyebrow">
-                        Makan Kenyang Diskon 50%
+                        Selamat Datang di Lapak Chicken Seturan 🍗
                     </div>
-                    <h1>Nikmati potongan harga spesial hingga 50%</h1>
-                    <p>Khusus menu andalan hanya dengan login aplikasimu sekarang juga!</p>
+                    <h1>Ayam Crispy Paling Enak di Seturan Jogja!</h1>
+                    <p>Pilih menumu, sesuaikan saus & level pedas, dan nikmati pengalaman makan yang tak terlupakan.</p>
                     <div class="hero-actions">
                         <a href="<?= base_url('customer/menu.php') ?>" class="btn btn-primary" style="border-radius:99px;padding:12px 32px;font-weight:700;">Pesan Sekarang</a>
                         <a href="#menu-pilihan" class="btn btn-outline" style="border-radius:99px;padding:12px 32px;color:white;border-color:white;font-weight:600;">Lihat Menu Pilihan</a>
@@ -57,26 +58,12 @@ require __DIR__ . '/includes/header.php';
             <h2 style="font-size:1.4rem;margin-bottom:20px;">Kategori Pilihan</h2>
             
             <div class="chip-row-icons" style="margin-bottom:48px;">
-                <div class="chip-icon active">
-                    <div class="chip-icon-circle"><i class="fa-solid fa-list"></i></div>
-                    Semua
-                </div>
-                <div class="chip-icon">
-                    <div class="chip-icon-circle"><i class="fa-solid fa-fire"></i></div>
-                    Ayam Geprek
-                </div>
-                <div class="chip-icon">
-                    <div class="chip-icon-circle"><i class="fa-solid fa-drumstick-bite"></i></div>
-                    Ayam Crispy
-                </div>
-                <div class="chip-icon">
-                    <div class="chip-icon-circle"><i class="fa-solid fa-box"></i></div>
-                    Paket Hemat
-                </div>
-                <div class="chip-icon">
-                    <div class="chip-icon-circle"><i class="fa-solid fa-glass-water"></i></div>
-                    Minuman
-                </div>
+                <?php foreach ($categories as $cat): ?>
+                <a href="<?= base_url('customer/menu.php') ?>?cat=<?= (int)$cat['id'] ?>" class="chip-icon" style="text-decoration:none;cursor:pointer;">
+                    <div class="chip-icon-circle"><i class="fa-solid fa-utensils"></i></div>
+                    <?= e($cat['name']) ?>
+                </a>
+                <?php endforeach; ?>
             </div>
 
             <div class="section-header-row" style="margin-bottom:24px;">

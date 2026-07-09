@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../includes/functions.php';
 $db = db();
 if (empty($_SESSION['branch_id'])) {
-    $defaultBranch = $db->query('SELECT id, name FROM branches WHERE is_active = 1 ORDER BY id ASC LIMIT 1')->fetch();
+    $defaultBranch = $db->query('SELECT id, name FROM branches ORDER BY id ASC LIMIT 1')->fetch();
     if ($defaultBranch) {
         $_SESSION['branch_id'] = (int) $defaultBranch['id'];
         $_SESSION['branch_name'] = $defaultBranch['name'];
@@ -527,6 +527,14 @@ document.addEventListener('DOMContentLoaded', () => {
             filterMenus();
         });
     });
+
+    // Bug 1 fix: Handle ?cat= URL param to pre-select category on page load
+    const urlParams = new URLSearchParams(window.location.search);
+    const catParam = urlParams.get('cat');
+    if (catParam) {
+        const matchBtn = document.querySelector(`[data-filter-category="${catParam}"]`);
+        if (matchBtn) matchBtn.click();
+    }
 });
 <?php
 $jsMenus = array_map(function($m) {
@@ -577,7 +585,7 @@ function openMenuModal(id) {
     } else {
         img.style.display = 'none';
     }
-    document.getElementById('sauceSelection').style.display = (menu.category_name && menu.category_name.toLowerCase().includes('ayam')) ? 'block' : 'none';
+    document.getElementById('sauceSelection').style.display = 'block';
     document.querySelectorAll('input[name="sauce_id"]').forEach(r => r.checked = false);
     
     qtyInput.value = 1;
@@ -617,6 +625,18 @@ document.getElementById('btnPlus')?.addEventListener('click', () => {
 document.getElementById('addToCartForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('btnAddCart');
+    
+    // Bug 5 fix: Validate sauce required when sauce section is visible
+    const sauceSection = document.getElementById('sauceSelection');
+    if (sauceSection && sauceSection.style.display !== 'none') {
+        const selectedSauce = document.querySelector('input[name="sauce_id"]:checked');
+        if (!selectedSauce) {
+            toast('Pilih saus terlebih dahulu ya!', 'error');
+            sauceSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+    }
+    
     btn.classList.add('loading');
     
     const formData = new FormData(e.target);

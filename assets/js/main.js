@@ -18,7 +18,8 @@ function toast(message, variant = "success") {
   const el = document.createElement("div");
   el.className = `toast ${variant}`;
   
-  const icon = variant === 'success' ? 'fa-circle-check' : (variant === 'error' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation');
+  const iconMap = { success: 'fa-circle-check', error: 'fa-circle-exclamation', warning: 'fa-triangle-exclamation', info: 'fa-circle-info' };
+  const icon = iconMap[variant] || 'fa-circle-info';
   
   el.innerHTML = `
     <i class="fa-solid ${icon} toast-icon"></i>

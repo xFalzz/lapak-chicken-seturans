@@ -85,7 +85,12 @@ try {
                     
                     <div class="user-dropdown-wrapper" style="position:relative;margin-left:12px;">
                         <button type="button" id="userDropdownBtn" style="display:flex;align-items:center;gap:12px;cursor:pointer;background:none;border:none;padding:0;">
-                            <img src="https://ui-avatars.com/api/?name=<?= urlencode(current_user()['name']) ?>&background=FFFD00&color=111&bold=true" alt="Avatar" style="width:36px;height:36px;border-radius:50%;object-fit:cover;">
+                            <?php
+                            $uname = current_user()['name'];
+                            $initials = strtoupper(substr($uname, 0, 1));
+                            if (strpos($uname, ' ') !== false) { $parts = explode(' ', $uname); $initials = strtoupper(substr($parts[0], 0, 1) . substr(end($parts), 0, 1)); }
+                            ?>
+                            <div style="width:36px;height:36px;border-radius:50%;background:#FFFD00;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.95rem;color:#111;flex-shrink:0;" aria-label="Avatar"><?= e($initials) ?></div>
                             <div style="display:flex;flex-direction:column;text-align:left;">
                                 <span style="font-size:0.85rem;font-weight:700;line-height:1.2;color:var(--on-surface);"><?= e(current_user()['name']) ?></span>
                                 <span style="font-size:0.75rem;color:var(--secondary);line-height:1.2;"><?= e(user_role()) ?></span>
@@ -95,7 +100,7 @@ try {
 
                         <div class="user-dropdown-menu" id="userDropdownMenu" style="display:none;position:absolute;top:calc(100% + 12px);right:0;background:var(--surface);border:1px solid var(--outline-variant);border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,0.12);min-width:240px;z-index:999;overflow:hidden;">
                             <div style="padding:16px 20px;border-bottom:1px solid var(--outline-variant);display:flex;align-items:center;gap:12px;">
-                                <img src="https://ui-avatars.com/api/?name=<?= urlencode(current_user()['name']) ?>&background=FFFD00&color=111&bold=true" alt="Avatar" style="width:40px;height:40px;border-radius:50%;">
+                                <div style="width:40px;height:40px;border-radius:50%;background:#FFFD00;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;color:#111;flex-shrink:0;"><?= e($initials) ?></div>
                                 <div>
                                     <strong style="display:block;font-size:0.9rem;"><?= e(current_user()['name']) ?></strong>
                                     <span style="font-size:0.8rem;color:var(--secondary);"><?= e(current_user()['email']) ?></span>

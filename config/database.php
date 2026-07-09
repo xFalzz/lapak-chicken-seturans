@@ -20,13 +20,14 @@ final class Database
                 try { self::$instance->exec("ALTER TABLE cart_items ADD COLUMN spice_level VARCHAR(20) DEFAULT '0'"); } catch (Exception $e) {}
                 try { self::$instance->exec("ALTER TABLE order_details ADD COLUMN spice_level VARCHAR(20) DEFAULT '0'"); } catch (Exception $e) {}
                 try { self::$instance->exec("ALTER TABLE order_details ADD COLUMN notes TEXT"); } catch (Exception $e) {}
+                try { self::$instance->exec("ALTER TABLE branches ADD COLUMN is_active TINYINT(1) DEFAULT 1"); } catch (Exception $e) {}
                 try {
-                    self::$instance->exec("UPDATE menus SET image_url = 'https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=600&q=80' WHERE slug = 'french-fries'");
-                    self::$instance->exec("UPDATE menus SET image_url = 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80' WHERE slug = 'es-teh-manis'");
-                    self::$instance->exec("UPDATE menus SET image_url = 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80' WHERE slug = 'lemon-tea'");
-                    self::$instance->exec("UPDATE menus SET image_url = 'https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=600&q=80' WHERE slug = 'air-mineral'");
-                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/Katsu.jpeg' WHERE slug = '1-slice-chicken-katsu'");
-                    self::$instance->exec("UPDATE menus SET image_url = 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80' WHERE slug = 'egg-telur'");
+                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/French Fries.png' WHERE slug = 'french-fries' AND (image_url IS NULL OR image_url LIKE '%unsplash%')");
+                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/Es Teh Manis.png' WHERE slug = 'es-teh-manis' AND (image_url IS NULL OR image_url LIKE '%unsplash%')");
+                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/Lemon Tea.png' WHERE slug = 'lemon-tea' AND (image_url IS NULL OR image_url LIKE '%unsplash%')");
+                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/Air Mineral.png' WHERE slug = 'air-mineral' AND (image_url IS NULL OR image_url LIKE '%unsplash%')");
+                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/Katsu.jpeg' WHERE slug = '1-slice-chicken-katsu' AND (image_url IS NULL OR image_url LIKE '%unsplash%')");
+                    self::$instance->exec("UPDATE menus SET image_url = 'img/Menu/Egg.png' WHERE slug = 'egg-telur' AND (image_url IS NULL OR image_url LIKE '%unsplash%')");
                 } catch (Exception $e) {}
             } catch (PDOException $e) {
                 error_log('[DB] ' . $e->getMessage());
