@@ -21,18 +21,9 @@ require __DIR__ . '/../includes/header.php';
 <section class="section" style="background:var(--surface);padding:40px 0;">
     <div class="container">
         
-        <div style="display:flex;gap:40px;">
+        <div class="menu-layout-wrapper" style="display:flex;gap:40px;">
             
             <aside style="width: 280px; flex-shrink:0;" class="hide-mobile">
-                
-                <label style="display:flex;align-items:center;gap:12px;padding:16px;background:white;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.03);margin-bottom:32px;cursor:pointer;">
-                    <div style="width:32px;height:32px;background:var(--primary-container);border-radius:50%;display:grid;place-items:center;color:var(--on-surface);">
-                        <i class="fa-solid fa-percent"></i>
-                    </div>
-                    <span style="font-weight:700;font-size:1.05rem;">Promo Spesial</span>
-                    <input type="checkbox" style="margin-left:auto;accent-color:var(--primary-container);width:20px;height:20px;">
-                </label>
-
                 <h3 style="font-size:1.15rem;margin-bottom:16px;font-weight:800;color:var(--on-surface);">Kategori Utama</h3>
                 <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;margin-bottom:32px;" id="categorySidebar">
                     <li>
@@ -59,9 +50,15 @@ require __DIR__ . '/../includes/header.php';
                 </div>
             </aside>
 
-            <div style="flex:1;">
+            <div style="flex:1;" class="menu-main-content">
+                <div class="mobile-category-bar" style="display:none; overflow-x:auto; gap:8px; margin-bottom:20px; padding-bottom:8px;">
+                    <button class="menu-sidebar-link active" data-filter-category="all" style="padding:10px 18px; border-radius:99px; font-weight:700; white-space:nowrap; border:1px solid var(--outline-variant); background:var(--surface-container-low);">Semua Menu</button>
+                    <?php foreach ($categories as $cat): ?>
+                        <button class="menu-sidebar-link" data-filter-category="<?= (int) $cat['id'] ?>" style="padding:10px 18px; border-radius:99px; font-weight:700; white-space:nowrap; border:1px solid var(--outline-variant); background:var(--surface-container-low);"><?= e($cat['name']) ?></button>
+                    <?php endforeach; ?>
+                </div>
 
-                <div style="margin-bottom:32px;position:relative;display:flex;align-items:center;background:white;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,0.04);padding:8px;border:1px solid var(--outline-variant);">
+                <div class="search-bar-wrap" style="margin-bottom:32px;position:relative;display:flex;align-items:center;background:white;border-radius:99px;box-shadow:0 8px 24px rgba(0,0,0,0.04);padding:8px;border:1px solid var(--outline-variant);">
                     <i class="fa-solid fa-magnifying-glass" style="margin-left:24px;color:var(--secondary);font-size:1.1rem;"></i>
                     <input 
                         type="search" 
@@ -94,12 +91,6 @@ require __DIR__ . '/../includes/header.php';
                                 <?php else: ?>
                                     <div class="placeholder-img" style="width:100%;height:100%;background:var(--surface-container);display:grid;place-items:center;"><i class="fa-solid fa-utensils"></i></div>
                                 <?php endif; ?>
-                                
-                                <?php if ($menu['price'] > 20000): // Simulasi promo ?>
-                                <div style="position:absolute;top:12px;left:12px;background:var(--primary-container);color:var(--on-surface);padding:4px 12px;border-radius:8px;font-size:0.75rem;font-weight:700;display:flex;align-items:center;gap:4px;">
-                                    <i class="fa-solid fa-tag"></i> Promo Spesial
-                                </div>
-                                <?php endif; ?>
 
                                 <?php if (!$isAvailable): ?>
                                     <div class="stock-badge" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.7);color:white;padding:8px 16px;border-radius:8px;font-weight:700;">Habis</div>
@@ -108,7 +99,7 @@ require __DIR__ . '/../includes/header.php';
 
                             <div class="menu-card-content" style="padding:20px;">
                                 <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:8px;line-height:1.3;"><?= e($menu['name']) ?></h3>
-                                <p style="font-size:0.85rem;color:var(--secondary);display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px;">Ayam goreng renyah dengan sambal spesial yang diproses dengan bumbu rahasia.</p>
+                                <p style="font-size:0.85rem;color:var(--secondary);display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px;"><?= e(!empty($menu['description']) ? $menu['description'] : 'Hidangan spesial khas Lapak Chicken Seturan.') ?></p>
                                 
                                 <div class="menu-card-footer" style="display:flex;align-items:center;justify-content:space-between;">
                                     <span class="price" style="font-weight:800;font-size:1.15rem;color:var(--on-surface);"><?= format_rupiah((float) $menu['price']) ?></span>
@@ -143,18 +134,21 @@ require __DIR__ . '/../includes/header.php';
 
 <style>
 .hide-mobile { display: block; }
-.mobile-cats { display: none; }
-@media(max-width: 768px) {
+@media(max-width: 992px) {
     .hide-mobile { display: none !important; }
-    .mobile-cats {
-        display: flex;
+    .mobile-category-bar {
+        display: flex !important;
         overflow-x: auto;
         gap: 8px;
         padding-bottom: 8px;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
     }
-    .mobile-cats::-webkit-scrollbar { display: none; }
-    .grid-3 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .mobile-category-bar::-webkit-scrollbar { display: none; }
+    .menu-layout-wrapper { flex-direction: column !important; gap: 20px !important; }
+    .grid-3 { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important; }
+}
+@media(max-width: 480px) {
+    .grid-3 { grid-template-columns: 1fr !important; }
 }
 
 .modal {
@@ -340,13 +334,6 @@ require __DIR__ . '/../includes/header.php';
 }
 </style>
 
-<div class="mobile-cats container">
-    <button class="chip active" type="button" data-filter-category="all">Semua Menu</button>
-    <?php foreach ($categories as $cat): ?>
-        <button class="chip" type="button" data-filter-category="<?= (int) $cat['id'] ?>"><?= e($cat['name']) ?></button>
-    <?php endforeach; ?>
-</div>
-
 <div class="modal" id="menuModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content" style="border:none; height:100%; display:flex; flex-direction:column; overflow:hidden; width:100%;">
@@ -384,7 +371,6 @@ require __DIR__ . '/../includes/header.php';
                             </div>
                         </div>
                         <div style="text-align:right;">
-                            <div style="text-decoration:line-through; color:var(--secondary); font-size:1.05rem; margin-bottom:2px;" id="modalPriceOriginal"></div>
                             <div id="modalPrice" style="font-size:1.85rem; font-weight:900; color:var(--on-surface);">Rp0</div>
                         </div>
                     </div>
@@ -414,10 +400,10 @@ require __DIR__ . '/../includes/header.php';
                                 </div>
                                 <div style="padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
                                     <div>
-                                        <h5 style="font-weight:700; font-size:0.95rem; margin-bottom:4px; color:var(--on-surface);">Iced Lemon Tea</h5>
-                                        <div style="font-weight:800; color:var(--on-surface); font-size:0.95rem; margin-bottom:12px;">Rp 12.000</div>
+                                        <h5 style="font-weight:700; font-size:0.95rem; margin-bottom:4px; color:var(--on-surface);">Lemon Tea</h5>
+                                        <div style="font-weight:800; color:var(--on-surface); font-size:0.95rem; margin-bottom:12px;">Rp 8.000</div>
                                     </div>
-                                    <button type="button" class="btn" style="width:100%; padding:8px; font-size:0.85rem; font-weight:700; border-radius:10px; background:var(--surface-container); color:var(--on-surface); border:none; cursor:pointer;">+ Add</button>
+                                    <button type="button" onclick="closeModal('menuModal'); openMenuModal(21);" class="btn" style="width:100%; padding:8px; font-size:0.85rem; font-weight:700; border-radius:10px; background:var(--primary-container); color:var(--on-surface); border:none; cursor:pointer;">+ Pesan</button>
                                 </div>
                             </div>
                             <div style="min-width:170px; background:var(--surface-container-lowest, #fff); border:1px solid var(--outline-variant); border-radius:20px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.03); display:flex; flex-direction:column; transition:transform 0.2s;">
@@ -426,10 +412,10 @@ require __DIR__ . '/../includes/header.php';
                                 </div>
                                 <div style="padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between;">
                                     <div>
-                                        <h5 style="font-weight:700; font-size:0.95rem; margin-bottom:4px; color:var(--on-surface);">French Fries Large</h5>
-                                        <div style="font-weight:800; color:var(--on-surface); font-size:0.95rem; margin-bottom:12px;">Rp 18.500</div>
+                                        <h5 style="font-weight:700; font-size:0.95rem; margin-bottom:4px; color:var(--on-surface);">French Fries</h5>
+                                        <div style="font-weight:800; color:var(--on-surface); font-size:0.95rem; margin-bottom:12px;">Rp 12.000</div>
                                     </div>
-                                    <button type="button" class="btn" style="width:100%; padding:8px; font-size:0.85rem; font-weight:700; border-radius:10px; background:var(--surface-container); color:var(--on-surface); border:none; cursor:pointer;">+ Add</button>
+                                    <button type="button" onclick="closeModal('menuModal'); openMenuModal(17);" class="btn" style="width:100%; padding:8px; font-size:0.85rem; font-weight:700; border-radius:10px; background:var(--primary-container); color:var(--on-surface); border:none; cursor:pointer;">+ Pesan</button>
                                 </div>
                             </div>
                         </div>
@@ -583,8 +569,6 @@ function openMenuModal(id) {
     document.getElementById('modalBreadcrumb').textContent = menu.name;
     document.getElementById('modalDesc').textContent = menu.description || 'Deskripsi menu belum tersedia.';
     document.getElementById('modalPrice').textContent = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(menu.price);
-    const origPrice = currentMenuPrice + 10000;
-    document.getElementById('modalPriceOriginal').textContent = new Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR', maximumFractionDigits: 0}).format(origPrice);
     
     const img = document.getElementById('modalImg');
     if(menu.image_url) {

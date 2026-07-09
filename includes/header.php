@@ -5,7 +5,7 @@ $cartCount = 0;
 $isCustomerPage = !in_array($bodyClass, ['admin-layout', 'kasir-layout', 'dapur-layout'], true);
 
 try {
-    if ($isCustomerPage && !str_starts_with($_SERVER['SCRIPT_NAME'] ?? '', '/lapak-chicken-seturan/api/')) {
+    if ($isCustomerPage && !str_contains($_SERVER['SCRIPT_NAME'] ?? '', '/api/')) {
         $cartCount = get_cart(db())['count'] ?? 0;
     }
 } catch (Throwable $e) {

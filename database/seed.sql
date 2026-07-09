@@ -63,12 +63,12 @@ INSERT INTO menus (id, category_id, name, slug, description, price, image_url, i
 (14, 3, 'Lapchick 7 (Salted Egg)', 'lapchick-7-salted-egg', 'Paket Creamy: Nasi + Salad + Telur + Chicken Pokpok Saus Salted Egg + Es Teh.', 25000, 'img/Menu/Salted Egg.jpeg', 1, 30),
 (15, 3, 'Lapchick 8 (Cordon Bleu)', 'lapchick-8-cordon-bleu', 'Paket Premium: Nasi / French Fries + Salad + 2 Chicken Cordon Bleu + Es Teh.', 35000, 'img/Menu/Cordon Blue.jpeg', 1, 20),
 (16, 4, 'Crispy Chicken Skin', 'crispy-chicken-skin', 'Kulit ayam goreng super renyah dengan bumbu Hot & Spicy yang gurih.', 10000, 'img/Menu/Crispy Chicken Skin.jpeg', 1, 40),
-(17, 4, 'French Fries', 'french-fries', 'Kentang goreng renyah disajikan dengan saus Spicy & Mayo.', 12000, '', 1, 40),
-(18, 4, '1 Slice Chicken Katsu', '1-slice-chicken-katsu', 'Tambahan 1 potong chicken katsu renyah berbumbu Hot & Spicy.', 10000, '', 1, 40),
-(19, 4, 'Egg (Telur)', 'egg-telur', 'Tambahan telur ceplok atau dadar untuk pelengkap hidanganmu.', 5000, '', 1, 100),
-(20, 5, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar alami.', 5000, '', 1, 100),
-(21, 5, 'Lemon Tea', 'lemon-tea', 'Teh lemon dingin yang segar dan kaya vitamin C.', 8000, '', 1, 80),
-(22, 5, 'Air Mineral', 'air-mineral', 'Air mineral botol segar dan higienis.', 4000, '', 1, 100);
+(17, 4, 'French Fries', 'french-fries', 'Kentang goreng renyah disajikan dengan saus Spicy & Mayo.', 12000, 'https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=600&q=80', 1, 40),
+(18, 4, '1 Slice Chicken Katsu', '1-slice-chicken-katsu', 'Tambahan 1 potong chicken katsu renyah berbumbu Hot & Spicy.', 10000, 'img/Menu/Katsu.jpeg', 1, 40),
+(19, 4, 'Egg (Telur)', 'egg-telur', 'Tambahan telur ceplok atau dadar untuk pelengkap hidanganmu.', 5000, 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80', 1, 100),
+(20, 5, 'Es Teh Manis', 'es-teh-manis', 'Teh manis dingin segar alami.', 5000, 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80', 1, 100),
+(21, 5, 'Lemon Tea', 'lemon-tea', 'Teh lemon dingin yang segar dan kaya vitamin C.', 8000, 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80', 1, 80),
+(22, 5, 'Air Mineral', 'air-mineral', 'Air mineral botol segar dan higienis.', 4000, 'https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=600&q=80', 1, 100);
 
 INSERT INTO operating_hours (branch_id, day_of_week, open_time, close_time, is_closed)
 SELECT b.id, d.day, '10:00:00', '22:00:00', 0
