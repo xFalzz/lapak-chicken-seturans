@@ -85,8 +85,7 @@
     </div>
 </footer>
 
-<div id="toast-root"></div>
-<script src="<?= base_url('assets/js/main.js') ?>?v=3.0"></script>
+<script src="<?= base_url('assets/js/main.js') ?>?v=3.1"></script>
 
 <script>
 (function() {
@@ -140,5 +139,6 @@
     });
 })();
 </script>
+<div id="toast-root"></div>
 </body>
 </html>
