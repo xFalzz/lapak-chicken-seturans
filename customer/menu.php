@@ -586,7 +586,21 @@ function openMenuModal(id) {
         img.style.display = 'none';
     }
     document.getElementById('sauceSelection').style.display = 'block';
+    document.getElementById('spiceSelection').style.display = 'block';
     document.querySelectorAll('input[name="sauce_id"]').forEach(r => r.checked = false);
+    
+    // Sembunyikan saus & level pedas untuk:
+    // - Minuman (category_id biasanya 5, atau category_name mengandung "minuman")
+    // - Topping & Snack (category_name mengandung "topping" / "snack")
+    const catName = (menu.category_name || '').toLowerCase();
+    const isDrinkOrSnack = catName.includes('minuman') || catName.includes('topping') || catName.includes('snack');
+    if (isDrinkOrSnack) {
+        document.getElementById('sauceSelection').style.display = 'none';
+        document.getElementById('spiceSelection').style.display = 'none';
+        // Reset spice ke level 0 otomatis
+        const spice0 = document.querySelector('input[name="spice_level"][value="0"]');
+        if (spice0) spice0.checked = true;
+    }
     
     qtyInput.value = 1;
     qtyDisplay.textContent = 1;
@@ -626,7 +640,7 @@ document.getElementById('addToCartForm')?.addEventListener('submit', async (e) =
     e.preventDefault();
     const btn = document.getElementById('btnAddCart');
     
-    // Bug 5 fix: Validate sauce required when sauce section is visible
+    // Validasi saus wajib — hanya jika section saus terlihat (bukan minuman)
     const sauceSection = document.getElementById('sauceSelection');
     if (sauceSection && sauceSection.style.display !== 'none') {
         const selectedSauce = document.querySelector('input[name="sauce_id"]:checked');
